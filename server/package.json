@@ -1,0 +1,40 @@
+{
+	"name": "collections-creator-server",
+	"version": "1.0.0",
+	"main": "index.js",
+	"scripts": {
+		"dev": "nodemon --exec ts-node --files src/index.ts",
+		"inspect": "nodemon --inspect dist/index.js",
+		"watch": "tsc -w",
+		"build": "tsc",
+		"start": "tsc && node dist/index.js"
+	},
+	"devDependencies": {
+		"@types/cors": "latest",
+		"@types/express": "latest",
+		"@types/multer": "^1.4.7",
+		"@types/node": "latest",
+		"nodemon": "latest",
+		"ts-node": "latest",
+		"typescript": "latest"
+	},
+	"dependencies": {
+		"cors": "latest",
+		"dotenv": "latest",
+		"express": "latest",
+		"express-fileupload": "latest",
+		"express-validator": "latest",
+		"fast-csv": "^4.3.6",
+		"multer": "^1.4.5-lts.1",
+		"pg": "latest",
+		"pg-hstore": "latest",
+		"sequelize": "latest",
+		"uuid": "latest"
+	},
+	"keywords": [],
+	"author": "Egor Dubovik",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/Egor-Dubovik/collections-creator/issues"
+	}
+}
