@@ -2,11 +2,11 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import express from 'express';
 import sequelize from './db';
-// import fileUpload from 'express-fileupload';
-// import sequelize from './db';
 import { errorMiddleware } from './midleware/errorMiddleware';
+import syncModels from './models/index';
 import router from './routes/index';
 import fileUpload from './utils/multer';
+// import fileUpload from 'express-fileupload';
 
 dotenv.config();
 const corsOptions = {
@@ -30,7 +30,7 @@ app.use(errorMiddleware);
 const start = async () => {
 	try {
 		await sequelize.authenticate();
-		await sequelize.sync({ alter: true });
+		syncModels();
 		app.listen(PORT, () => console.log(`Server started in port: ${PORT}`));
 	} catch (error) {
 		console.log(error);
