@@ -1,20 +1,32 @@
-import { Model } from 'sequelize';
-import Collection from './all/CollectionModel';
+import { Collection, CollectionProp, ItemCollectionProp } from './all/CollectionModel';
 import Comment from './all/CommentModel';
-import { Item, ItemCollectionProp } from './all/ItemModel';
+import { Item, ItemProp } from './all/ItemModel';
 import Like from './all/LikeModule';
 import { ItemTag, Tag } from './all/TagModel';
 
 import User from './all/UserModel';
 
-interface Models {
-	[key: string]: typeof Model;
-}
+const models = {
+	User,
+	Collection,
+	CollectionProp,
+	ItemCollectionProp,
+	Item,
+	ItemProp,
+	Tag,
+	ItemTag,
+	Comment,
+	Like,
+};
 
-const models: Models = { User, Collection, Item, ItemCollectionProp, Tag, ItemTag, Comment, Like };
+Collection.belongsToMany(CollectionProp, { through: ItemCollectionProp });
+CollectionProp.belongsToMany(Collection, { through: ItemCollectionProp });
 
-Collection.belongsToMany(Item, { through: ItemCollectionProp });
-Item.belongsToMany(Collection, { through: ItemCollectionProp });
+User.hasMany(Collection);
+Collection.belongsTo(User);
+
+Item.hasMany(ItemProp);
+ItemProp.belongsTo(Item);
 
 Item.belongsToMany(Tag, { through: ItemTag });
 Tag.belongsToMany(Item, { through: ItemTag });

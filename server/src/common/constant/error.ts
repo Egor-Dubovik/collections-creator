@@ -1,5 +1,5 @@
 export const errorMessage = {
-	allFields: 'All fields are required',
+	notAllFields: 'Not all fields passed',
 	notAuthorized: 'User not authorized',
 	registration: 'Validation error check email, password, nickName and avatar',
 	notAllDBVariables: 'Failed to get all environment variables to connect to database',
@@ -8,4 +8,5 @@ export const errorMessage = {
 	userExist: 'The user with the given email exists',
 	notFoundWithEmail: "User with this email wasn't found",
 	wrongPassword: 'Wrong password',
+	propExist: 'Such property already exists in your collection',
 };
