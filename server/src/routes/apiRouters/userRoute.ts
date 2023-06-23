@@ -1,6 +1,5 @@
 import { Router } from 'express';
 import { body } from 'express-validator';
-import passport from 'passport';
 import userController from '../../controllers/userController';
 import fileUpload from '../../utils/multer';
 
@@ -16,6 +15,6 @@ userRouter.post(
 );
 
 userRouter.post('/login', userController.login);
-userRouter.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
+// userRouter.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
 
 export default userRouter;

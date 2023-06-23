@@ -3,5 +3,10 @@ export interface IRegistrationData {
 	email: string;
 	password: string;
 	avatar: string;
-	role: string[];
+	role?: string[];
+	googleId?: string;
+}
+
+export interface IUser extends IRegistrationData {
+	id: number;
 }
