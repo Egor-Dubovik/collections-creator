@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import userRouter from '../exceptions/apiRouters/userRoute';
+import userRouter from './apiRouters/userRoute';
 
 const router: Router = Router({});
 router.use('/user', userRouter);

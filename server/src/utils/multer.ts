@@ -1,6 +1,7 @@
 import { Request } from 'express';
 import multer from 'multer';
 import path from 'path';
+import * as uuid from 'uuid';
 
 type DestinationCallback = (error: Error | null, destination: string) => void;
 type FileNameCallback = (error: Error | null, filename: string) => void;
@@ -10,10 +11,11 @@ const dirname = path.dirname(filename);
 
 const fileStorage = multer.diskStorage({
 	destination: (req: Request, file: Express.Multer.File, cb: DestinationCallback) => {
-		cb(null, path.resolve(dirname, 'static', 'image'));
+		cb(null, path.resolve(dirname, 'server', 'src', 'static', 'image'));
 	},
 	filename: (req: Request, file: Express.Multer.File, cb: FileNameCallback) => {
-		cb(null, file.originalname);
+		const fileName = uuid.v4() + '.jpg';
+		cb(null, fileName);
 	},
 });
 

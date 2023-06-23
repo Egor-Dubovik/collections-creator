@@ -11,7 +11,7 @@ const dbPort = process.env.DB_PORT;
 const dbDialect = 'postgres';
 
 if (!dbName || !dbUser || !dbPassword || !dbHost || !dbPort) {
-	throw new Error(errorMessage.notAllVariables);
+	throw new Error(errorMessage.notAllDBVariables);
 }
 
 const sequelize = new Sequelize(dbName, dbUser, dbPassword, {

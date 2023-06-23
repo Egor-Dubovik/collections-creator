@@ -1,4 +1,7 @@
-export interface IUserData {
-	id: string;
-	fullName: string;
+export interface IRegistrationData {
+	nickName: string;
+	email: string;
+	password: string;
+	avatar: string;
+	role: string[];
 }
