@@ -9,4 +9,5 @@ export const errorMessage = {
 	notFoundWithEmail: "User with this email wasn't found",
 	wrongPassword: 'Wrong password',
 	propExist: 'Such property already exists in your collection',
+	itemPropExist: 'the item already has a field with the same name',
 };

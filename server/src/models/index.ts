@@ -21,6 +21,8 @@ const models = {
 
 Collection.belongsToMany(CollectionProp, { through: ItemCollectionProp });
 CollectionProp.belongsToMany(Collection, { through: ItemCollectionProp });
+Collection.hasMany(Item);
+Item.belongsTo(Collection);
 
 User.hasMany(Collection);
 Collection.belongsTo(User);

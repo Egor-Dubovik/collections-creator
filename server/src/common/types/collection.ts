@@ -13,6 +13,8 @@ export interface ICollectionProp {
 	type: string;
 }
 
+export interface IItemProp extends ICollectionProp {}
+
 export interface IItemCollectionProp {
 	id?: number;
 	collectionId: number;
