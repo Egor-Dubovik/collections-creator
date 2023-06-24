@@ -27,6 +27,26 @@ class CollectionController {
 			next(err);
 		}
 	}
+
+	async getAll(req: Request, res: Response, next: NextFunction) {
+		try {
+			const collections = await collectionService.getAll();
+			return res.json(collections);
+		} catch (err) {
+			next(err);
+		}
+	}
+
+	async getAllByUserId(req: Request, res: Response, next: NextFunction) {
+		try {
+			const { id } = req.query;
+			if (!id) return next(ApiError.badRequest(errorMessage.notAllFields));
+			const collections = await collectionService.getAllByUserId(Number(id));
+			return res.json(collections);
+		} catch (err) {
+			next(err);
+		}
+	}
 }
 
 export default new CollectionController();

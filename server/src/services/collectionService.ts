@@ -15,6 +15,16 @@ class CollectionService {
 		const newProps = await Promise.all(propPromises);
 		return newProps;
 	}
+
+	async getAll() {
+		const propPromises = await Collection.findAll();
+		return propPromises;
+	}
+
+	async getAllByUserId(userId: number) {
+		const propPromises = await Collection.findAll({ where: { userId } });
+		return propPromises;
+	}
 }
 
 export default new CollectionService();
