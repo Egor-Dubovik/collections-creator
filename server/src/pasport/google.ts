@@ -29,12 +29,12 @@ passport.use(
 				// Поиск пользователя по googleId или email
 				let user = await User.findOne({ where: { googleId: profile.id } });
 				const nickName = profile.name?.givenName as string;
-				let avatarPath;
+				// let avatarPath;
 
-				if (profile.photos?.length) {
-					const photoPath = path.resolve(dirname, 'server', 'src', 'static', 'image');
-					fs.renameSync(profile.photos[0].value, photoPath);
-				}
+				// if (profile.photos?.length) {
+				// 	const photoPath = path.resolve(dirname, 'server', 'src', 'static', 'image');
+				// 	fs.renameSync(profile.photos[0].value, photoPath);
+				// }
 
 				if (!user) {
 					const email =

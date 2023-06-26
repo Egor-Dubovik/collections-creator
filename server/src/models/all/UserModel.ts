@@ -8,7 +8,7 @@ const User = sequelize.define('user', {
 	password: { type: DataTypes.STRING, allowNull: true },
 	avatar: { type: DataTypes.STRING(500), allowNull: true },
 	role: { type: DataTypes.ARRAY(DataTypes.STRING), defaultValue: ['user'] },
-	googleId: { type: DataTypes.STRING(500), allowNull: true },
+	// googleId: { type: DataTypes.STRING(500), allowNull: true },
 });
 
 export default User;

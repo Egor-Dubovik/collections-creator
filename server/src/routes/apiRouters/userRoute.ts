@@ -15,6 +15,15 @@ userRouter.post(
 );
 
 userRouter.post('/login', userController.login);
+
 // userRouter.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
+// userRouter.get(
+// 	'/auth/google/callback',
+// 	passport.authenticate('google', { failureRedirect: '/login' }),
+// 	function (req, res) {
+// 		// Successful authentication, redirect home.
+// 		res.redirect('/');
+// 	}
+// );
 
 export default userRouter;

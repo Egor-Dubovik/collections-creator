@@ -3,11 +3,13 @@ import Comment from './all/CommentModel';
 import { Item, ItemProp } from './all/ItemModel';
 import Like from './all/LikeModule';
 import { ItemTag, Tag } from './all/TagModel';
+import Token from './all/TokenModel';
 
 import User from './all/UserModel';
 
 const models = {
 	User,
+	Token,
 	Collection,
 	CollectionProp,
 	ItemCollectionProp,
@@ -26,6 +28,8 @@ Item.belongsTo(Collection);
 
 User.hasMany(Collection);
 Collection.belongsTo(User);
+User.hasOne(Token);
+Token.belongsTo(User);
 
 Item.hasMany(ItemProp);
 ItemProp.belongsTo(Item);

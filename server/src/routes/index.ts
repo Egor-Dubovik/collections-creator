@@ -4,6 +4,7 @@ import commentRoute from './apiRouters/commentRoute';
 import itemRoute from './apiRouters/itemRoute';
 import likeRoute from './apiRouters/likeRoute';
 import tagRouter from './apiRouters/tagRouter';
+import tokenRouter from './apiRouters/tokenRouter';
 import userRouter from './apiRouters/userRoute';
 
 const router: Router = Router({});
@@ -13,5 +14,6 @@ router.use('/item', itemRoute);
 router.use('/comment', commentRoute);
 router.use('/tag', tagRouter);
 router.use('/like', likeRoute);
+router.use('/token', tokenRouter);
 
 export default router;

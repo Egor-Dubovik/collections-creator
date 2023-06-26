@@ -11,11 +11,13 @@ const dirname = path.dirname(filename);
 
 const fileStorage = multer.diskStorage({
 	destination: (req: Request, file: Express.Multer.File, cb: DestinationCallback) => {
-		cb(null, path.resolve(dirname, 'server', 'src', 'static', 'image'));
+		if (file) cb(null, path.resolve(dirname, 'server', 'src', 'static', 'image'));
 	},
 	filename: (req: Request, file: Express.Multer.File, cb: FileNameCallback) => {
-		const fileName = uuid.v4() + '.jpg';
-		cb(null, fileName);
+		if (file) {
+			const fileName = uuid.v4() + '.jpg';
+			cb(null, fileName);
+		}
 	},
 });
 
