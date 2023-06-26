@@ -1,9 +1,9 @@
-import { DataTypes } from 'sequelize';
+import { DataTypes, Model } from 'sequelize';
+import { ITag } from '../../common/types/tag';
 import sequelize from '../../db';
 
-export const Tag = sequelize.define('tag', {
+export const Tag = sequelize.define<Model<ITag>>('tag', {
 	id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-	name: { type: DataTypes.STRING },
 	value: { type: DataTypes.STRING },
 });
 

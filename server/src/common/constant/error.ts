@@ -10,4 +10,6 @@ export const errorMessage = {
 	wrongPassword: 'Wrong password',
 	propExist: 'Such property already exists in your collection',
 	itemPropExist: 'the item already has a field with the same name',
+	tagExist:
+		'You are trying to pass tags that already exist in your item!Remove or replace them and try again',
 };
