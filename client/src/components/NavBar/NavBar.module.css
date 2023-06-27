@@ -1,0 +1,29 @@
+.navbar__link {
+	font-size: 18px;
+	transition: all 0.2s ease;
+}
+
+.navbar__link:hover {
+	color: #3cc7bd;
+}
+
+.navbar__link_active {
+	text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+	.navbar_active {
+		padding: 30px 0;
+		border-bottom: 1px solid;
+	}
+
+	.navbar__list {
+		justify-content: center;
+		align-items: center;
+	}
+
+	.navbar__link {
+		font-size: 22px;
+		font-weight: 600;
+	}
+}
