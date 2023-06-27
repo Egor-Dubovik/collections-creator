@@ -1,6 +1,6 @@
 import Footer from '@/components/footer/Footer';
 import Header from '@/components/header/Header';
-import Logo from '@/components/Logo';
+import Logo from '@/components/logo/Logo';
 import Providers from '@/components/Providers';
 import { Roboto } from 'next/font/google';
 import { ReactNode } from 'react';

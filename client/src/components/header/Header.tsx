@@ -2,6 +2,7 @@
 import { HamburgerIcon } from '@chakra-ui/icons';
 import { Box, Flex, IconButton, useDisclosure } from '@chakra-ui/react';
 import { FC, ReactNode } from 'react';
+import ColorModeSwitcher from '../ColorModeSwitcherProps';
 import PageContainer from '../PageContainer';
 import NavBar from './NavBar/NavBar';
 
@@ -13,27 +14,28 @@ const Header: FC<IHeaderProps> = ({ logo }) => {
 	const { isOpen, onOpen, onClose } = useDisclosure();
 
 	const handleSwitchMenu = (): void => (isOpen ? onClose() : onOpen());
-
 	return (
-		<Box bg='gray.100' py={4}>
+		<Box py={4} as='header' className='header'>
 			<PageContainer>
 				<Flex align='center' justify='space-between' gap='15px'>
-					<Box>{logo}</Box>
-					<NavBar
-						as='ul'
-						display={{ base: 'none', md: 'flex' }}
-						align='center'
-						flexWrap='wrap'
-						gap='15px'
-					/>
-
-					<IconButton
-						display={{ base: 'flex', md: 'none' }}
-						icon={<HamburgerIcon />}
-						variant='outline'
-						onClick={handleSwitchMenu}
-						aria-label='burger icon'
-					/>
+					<Box className='header__logo'>{logo}</Box>
+					<Flex className='header__menu' align='center'>
+						<NavBar
+							as='ul'
+							display={{ base: 'none', md: 'flex' }}
+							align='center'
+							flexWrap='wrap'
+							gap='15px'
+						/>
+						<ColorModeSwitcher />
+						<IconButton
+							display={{ base: 'flex', md: 'none' }}
+							icon={<HamburgerIcon />}
+							variant='outline'
+							onClick={handleSwitchMenu}
+							aria-label='burger icon'
+						/>
+					</Flex>
 				</Flex>
 
 				<NavBar
