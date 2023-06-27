@@ -39,22 +39,10 @@ class ItemController {
 		}
 	}
 
-	async getItemsByCollectionId(req: Request, res: Response, next: NextFunction) {
-		try {
-			const { collectionId, offset, limit, sortOrder } = req.query;
-			const order = sortOrder as TypeOrder;
-			if (!collectionId || !offset || !limit || !sortOrder)
-				return next(ApiError.badRequest(errorMessage.notAllFields));
-			const items = await itemService.getItemsByCollectionId(+offset, +limit, +collectionId, order);
-			return res.json(items);
-		} catch (err) {
-			next(err);
-		}
-	}
-
 	async getByParams(req: Request, res: Response, next: NextFunction) {
 		try {
-			const { collectionId, offset, limit, order, isCommented, minLike, maxLike, tags } = req.query;
+			const { collectionId, offset, limit, order, isCommented, tags } = req.query;
+			const tagsArray = tags ? JSON.parse(tags as string) : tags;
 			if (!collectionId || !offset || !limit || !order)
 				return next(ApiError.badRequest(errorMessage.notAllFields));
 			const items = await itemService.getItems({
@@ -63,9 +51,7 @@ class ItemController {
 				limit: Number(limit),
 				order: order as TypeOrder,
 				isCommented: isCommented as unknown as boolean,
-				minLike: Number(minLike),
-				maxLike: Number(maxLike),
-				tags: tags as string[],
+				tags: tagsArray,
 			});
 			return res.json(items);
 		} catch (err) {

@@ -2,10 +2,10 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import express from 'express';
 import sequelize from './db';
-import { errorMiddleware } from './midleware/errorMiddleware';
 import syncModels from './models/index';
 import router from './routes/index';
 import cookieParser from 'cookie-parser';
+import { errorMiddleware } from './middleware/errorMiddleware';
 
 dotenv.config();
 const PORT = process.env.PORT || 6666;

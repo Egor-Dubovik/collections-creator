@@ -45,14 +45,9 @@ class ItemService {
 	}
 
 	async getItems(data: IItemsData) {
-		const { collectionId, order, offset, limit, isCommented, minLike, maxLike, tags } = data;
+		const { collectionId, order, offset, limit, isCommented, tags } = data;
 		const filters = [] as Includeable[];
 		const include = [] as Includeable[];
-
-		if (minLike && maxLike) {
-			const likeFilter = filterService.createLike(+minLike, +maxLike);
-			filters.push(likeFilter);
-		}
 
 		if (!!isCommented) {
 			const commentFilter = filterService.createComment();
@@ -61,7 +56,7 @@ class ItemService {
 
 		if (tags?.length) {
 			const tagInclude = filterService.createTagInclude(tags);
-			include.push(tagInclude);
+			filters.push(tagInclude);
 		}
 
 		const totalItemsCount = await this.getTotalItemsCount(collectionId, filters, include);

@@ -1,23 +1,19 @@
-import { Op, WhereOptions } from 'sequelize';
-import Like from '../models/all/LikeModule';
+import { Includeable } from 'sequelize';
 import Comment from '../models/all/CommentModel';
 import { Tag } from '../models/all/TagModel';
 
 class FilterService {
-	createLike(minCount: number, maxCount: number) {
-		return { model: Like, where: { count: { [Op.between]: [minCount, maxCount] } } };
-	}
-
-	createComment() {
-		const filter: WhereOptions = {
-			model: Comment,
-			where: { [Op.not]: { id: null }, required: true },
-		};
-		return filter;
+	createComment(): Includeable {
+		return { model: Comment, required: true };
 	}
 
 	createTagInclude(tags: string[]) {
-		return { model: Tag, attributes: tags };
+		return {
+			model: Tag,
+			where: { value: tags },
+			attributes: ['id', 'value'],
+			through: { attributes: [] },
+		};
 	}
 }
 
