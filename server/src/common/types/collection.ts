@@ -2,8 +2,8 @@ export interface ICollectionData {
 	id?: number;
 	title: string;
 	description: string;
-	topic: string;
 	userId: number;
+	topicId: number;
 }
 
 export interface ICollectionProp {

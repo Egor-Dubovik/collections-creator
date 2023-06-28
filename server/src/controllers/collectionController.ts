@@ -7,10 +7,13 @@ import collectionService from '../services/collectionService';
 class CollectionController {
 	async create(req: Request, res: Response, next: NextFunction) {
 		try {
-			const { title, description, topic, props, userId } = req.body;
-			if (!title || !description || !topic || !userId || !props.length)
+			const { title, description, topicId, props, userId } = req.body;
+			if (!title || !description || !topicId || !userId || !props.length)
 				return next(ApiError.badRequest(errorMessage.notAllFields));
-			const userData = await collectionService.create({ title, topic, description, userId }, props);
+			const userData = await collectionService.create(
+				{ title, topicId, description, userId },
+				props
+			);
 			return res.json(userData);
 		} catch (err) {
 			next(err);
