@@ -5,3 +5,19 @@ export interface IRegisterProps {
 	avatar?: string;
 	role?: string[];
 }
+
+export interface IUser extends IRegisterProps {
+	id: number;
+}
+
+export interface IAuthResponse {
+	accessToken: string;
+	refreshToken: string;
+	user: IUser;
+}
+
+export interface IToken {
+	id: number;
+	userId: number;
+	refreshToken: string;
+}
