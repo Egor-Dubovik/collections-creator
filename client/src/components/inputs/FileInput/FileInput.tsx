@@ -48,7 +48,7 @@ const FileInput: FC<FileInputProps> = ({ onFileUpload, fileName }) => {
 	}, [selectedFile]);
 
 	return (
-		<Box className={styles.filePicker} mt={4}>
+		<Box className={styles.filePicker} mt={3}>
 			<Box className={styles.fileUploader}>
 				<Box
 					className={`${styles.dropArea} ${drag ? styles.dragActive : ''}`}

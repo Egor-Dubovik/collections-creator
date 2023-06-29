@@ -1,9 +1,11 @@
 import { FC } from 'react';
 import { IRegisterProps } from '@/common/types/user';
-import { Button } from '@chakra-ui/react';
+import { Button, Text } from '@chakra-ui/react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import EmailInput from '../inputs/EmailInput';
 import PasswordInput from '../inputs/PasswordInput';
+import { ROUTES } from '@/common/types/api';
+import Link from 'next/link';
 
 const LoginForm: FC = () => {
 	const {
@@ -23,9 +25,16 @@ const LoginForm: FC = () => {
 			<EmailInput register={register} error={errors.email} />
 			<PasswordInput register={register} error={errors.password} />
 			{/* isLoading={props.isSubmitting} */}
-			<Button w='100%' p='25px 10px' mt={3} colorScheme='teal' type='submit'>
+			<Button w='100%' p='23px 10px' mt={3} colorScheme='teal' type='submit'>
 				login
 			</Button>
+			<Text fontSize='lg' mt={2}>
+				Don`t have an account?{' '}
+				<Link style={{ color: 'teal' }} href={ROUTES.REGISTER}>
+					Register
+				</Link>{' '}
+				now.
+			</Text>
 		</form>
 	);
 };
