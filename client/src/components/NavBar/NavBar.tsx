@@ -1,10 +1,10 @@
 'use client';
-import { ROUTES } from '@/common/types';
 import { Box, Flex, FlexProps, useColorMode } from '@chakra-ui/react';
 import Link from 'next/link';
 import { FC } from 'react';
 import { usePathname } from 'next/navigation';
 import styles from './NavBar.module.css';
+import { ROUTES } from '@/common/types/api';
 
 type INavBarProps = FlexProps & {
 	handleSwitch?: () => void;
@@ -35,6 +35,11 @@ const NavBar: FC<INavBarProps> = ({ handleSwitch, isOpen, ...flexProps }) => {
 				<Box as='li' onClick={handleSwitch}>
 					<Link className={getLinkStyles(ROUTES.COLLECTIONS)} href={ROUTES.COLLECTIONS}>
 						Collections
+					</Link>
+				</Box>
+				<Box as='li' onClick={handleSwitch}>
+					<Link className={getLinkStyles(ROUTES.REGISTER)} href={ROUTES.REGISTER}>
+						signup
 					</Link>
 				</Box>
 			</Flex>

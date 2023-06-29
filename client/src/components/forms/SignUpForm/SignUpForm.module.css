@@ -1,0 +1,15 @@
+.signUpForm {
+	width: 500px;
+}
+
+@media (max-width: 768px) {
+	.signUpForm {
+		width: 450px;
+	}
+}
+
+@media (max-width: 480px) {
+	.signUpForm {
+		width: 280px;
+	}
+}

@@ -11,10 +11,14 @@ const theme = extendTheme({
 	},
 	colors: {
 		transparent: 'transparent',
-		black: '#000',
 		white: '#fff',
+		black: {
+			100: '#00000070',
+			900: '#000',
+		},
 		gr: {
 			50: '#f7fafc',
+			100: '#cbd5e066',
 			900: '#17192304',
 		},
 	},
