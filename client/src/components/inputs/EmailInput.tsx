@@ -1,10 +1,10 @@
 import { FC } from 'react';
-import { ISignUpProps } from '@/common/types/user';
+import { IRegisterProps } from '@/common/types/user';
 import { FormControl, FormErrorMessage, Input } from '@chakra-ui/react';
 import { FieldError, UseFormRegister } from 'react-hook-form';
 
 interface IEmailProps {
-	register: UseFormRegister<ISignUpProps>;
+	register: UseFormRegister<IRegisterProps>;
 	error?: FieldError;
 }
 

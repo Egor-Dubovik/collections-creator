@@ -1,18 +1,17 @@
 import { FC, useState } from 'react';
+import { FieldError, UseFormRegister } from 'react-hook-form';
+import { IRegisterProps } from '@/common/types/user';
+import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import {
-	Button,
 	FormControl,
 	FormErrorMessage,
 	Input,
 	InputGroup,
 	InputRightElement,
 } from '@chakra-ui/react';
-import { FieldError, UseFormRegister } from 'react-hook-form';
-import { ISignUpProps } from '@/common/types/user';
-import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 
 interface IPasswordProps {
-	register: UseFormRegister<ISignUpProps>;
+	register: UseFormRegister<IRegisterProps>;
 	error?: FieldError;
 }
 

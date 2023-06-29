@@ -1,5 +1,5 @@
-export interface ISignUpProps {
-	nickName: string;
+export interface IRegisterProps {
+	nickName?: string;
 	email: string;
 	password: string;
 	avatar?: string;
