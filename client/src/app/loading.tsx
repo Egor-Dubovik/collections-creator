@@ -1,12 +1,8 @@
 'use client';
-import { Spinner } from '@chakra-ui/react';
+import Loader from '@/components/Loader';
 
-const Loader = () => {
-	return (
-		<div>
-			<Spinner />
-		</div>
-	);
+const MainPreLoader = () => {
+	return <Loader />;
 };
 
-export default Loader;
+export default MainPreLoader;

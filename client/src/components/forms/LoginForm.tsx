@@ -1,14 +1,14 @@
-import { FC, MutableRefObject } from 'react';
+import { FC } from 'react';
 import { IRegisterProps } from '@/common/types/user';
-import { Button, Text, useToast } from '@chakra-ui/react';
+import { Button, Text } from '@chakra-ui/react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import EmailInput from '../inputs/EmailInput';
 import PasswordInput from '../inputs/PasswordInput';
 import { ROUTES } from '@/common/types/api';
 import Link from 'next/link';
 import useLogin from '@/hooks/auth/useLogin';
-import { AUTH_TOAST } from '@/common/constant/toast';
 import useAuthNotification from '@/hooks/auth/useAuthNotification';
+import useAuthToast from '@/hooks/useAuthToast';
 
 const LoginForm: FC = () => {
 	const {
@@ -18,23 +18,13 @@ const LoginForm: FC = () => {
 		formState: { errors },
 	} = useForm<IRegisterProps>();
 	const { login, isLoading, isSuccess, err } = useLogin();
-	const toast = useToast();
-
-	const addToast = (isSuccess: boolean, toastIdRef: MutableRefObject<string | null>): void => {
-		toastIdRef.current = toast({
-			title: isSuccess ? AUTH_TOAST.SUCCESS.TITLE.LOGIN : AUTH_TOAST.ERR.TITLE.LOGIN,
-			description: isSuccess ? AUTH_TOAST.SUCCESS.DESCRIPT.LOGIN : AUTH_TOAST.ERR.DESCRIPT.LOGIN,
-			status: isSuccess ? AUTH_TOAST.SUCCESS.STATUS : AUTH_TOAST.ERR.STATUS,
-			duration: AUTH_TOAST.DURATION,
-			isClosable: AUTH_TOAST.IS_CLOSABLE,
-		}) as string;
-	};
+	const addToast = useAuthToast();
 
 	const onSubmit: SubmitHandler<IRegisterProps> = data => {
 		login(data);
 	};
 
-	useAuthNotification(isSuccess, err, reset, addToast);
+	useAuthNotification(isSuccess, err, 'LOGIN', addToast, reset);
 
 	return (
 		<form onSubmit={handleSubmit(onSubmit)} className='auth-form'>

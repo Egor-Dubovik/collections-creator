@@ -1,25 +1,28 @@
 import { ROUTES } from '@/common/types/api';
 import { IAxiosError } from '@/common/types/axios';
 import { IRegisterProps } from '@/common/types/user';
+import { ToastId } from '@chakra-ui/react';
 import { useRouter } from 'next/navigation';
-import { MutableRefObject, useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import { UseFormReset } from 'react-hook-form';
+import { TypeNotification } from '../useAuthToast';
 
 const useAuthNotification = (
 	isSuccess: boolean,
 	err: IAxiosError<{ message: string }>,
-	reset: UseFormReset<IRegisterProps>,
-	addToast: (isSuccess: boolean, toastIdRef: MutableRefObject<string | null>) => void
+	authType: TypeNotification,
+	addNotification: (isSuccess: boolean, toastType: TypeNotification) => ToastId,
+	reset?: UseFormReset<IRegisterProps>
 ) => {
-	const toastIdRef = useRef<string | null>(null);
 	const router = useRouter();
+	const redirectPath = authType !== 'LOGOUT' ? ROUTES.PROFILE : ROUTES.HOME;
 
 	useEffect(() => {
 		if (isSuccess) {
-			reset();
-			router.push(ROUTES.HOME);
+			if (reset) reset();
+			router.push(redirectPath);
 		}
-		if (isSuccess || err) addToast(isSuccess, toastIdRef);
+		if (isSuccess || err) addNotification(isSuccess, authType);
 	}, [isSuccess, err]);
 };
 

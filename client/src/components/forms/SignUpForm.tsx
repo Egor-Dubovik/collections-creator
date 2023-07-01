@@ -1,17 +1,17 @@
 'use client';
-import { FC, MutableRefObject, useState } from 'react';
+import { FC, useState } from 'react';
 import PasswordInput from '@/components/inputs/PasswordInput';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { IRegisterProps } from '@/common/types/user';
 import NickNameInput from '@/components/inputs/NickNameInput';
-import { Button, useToast, Text } from '@chakra-ui/react';
+import { Button, Text } from '@chakra-ui/react';
 import EmailInput from '@/components/inputs/EmailInput';
 import FileInput from '@/components/inputs/FileInput/FileInput';
 import useRegistration from '@/hooks/auth/useRegistration';
 import { ROUTES } from '@/common/types/api';
 import Link from 'next/link';
-import { AUTH_TOAST } from '@/common/constant/toast';
 import useAuthNotification from '@/hooks/auth/useAuthNotification';
+import useAuthToast from '@/hooks/useAuthToast';
 
 const SignUpForm: FC = () => {
 	const {
@@ -22,19 +22,7 @@ const SignUpForm: FC = () => {
 	} = useForm<IRegisterProps>();
 	const [selectedFile, setSelectedFile] = useState<File | null>(null);
 	const { registration, isLoading, isSuccess, err } = useRegistration();
-	const toast = useToast();
-
-	const addToast = (isSuccess: boolean, toastIdRef: MutableRefObject<string | null>): void => {
-		toastIdRef.current = toast({
-			title: isSuccess ? AUTH_TOAST.SUCCESS.TITLE.SIGN_UP : AUTH_TOAST.ERR.TITLE.SIGN_UP,
-			description: isSuccess
-				? AUTH_TOAST.SUCCESS.DESCRIPT.SIGN_UP
-				: AUTH_TOAST.ERR.DESCRIPT.SIGN_UP,
-			status: isSuccess ? AUTH_TOAST.SUCCESS.STATUS : AUTH_TOAST.ERR.STATUS,
-			duration: AUTH_TOAST.DURATION,
-			isClosable: AUTH_TOAST.IS_CLOSABLE,
-		}) as string;
-	};
+	const addToast = useAuthToast();
 
 	const appendUserForm = (formData: FormData, data: IRegisterProps): void => {
 		const dataEntries = Object.entries(data);
@@ -52,7 +40,7 @@ const SignUpForm: FC = () => {
 		registration(userFormData);
 	};
 
-	useAuthNotification(isSuccess, err, reset, addToast);
+	useAuthNotification(isSuccess, err, 'SIGN_UP', addToast, reset);
 
 	return (
 		<form onSubmit={handleSubmit(onSubmit)} className='auth-form'>

@@ -1,26 +1,21 @@
 import { FC } from 'react';
 import { ChevronDownIcon } from '@chakra-ui/icons';
-import { Button, Menu, MenuButton, MenuItem, MenuList, Image, Box } from '@chakra-ui/react';
+import { Button, Menu, MenuButton, Image, Box } from '@chakra-ui/react';
 import { ROUTES } from '@/common/types/api';
 import { usePathname } from 'next/navigation';
-import Link from 'next/link';
-import useUserStore from '../../store/UserStore';
+import UserMenuList from './UserMenuList';
 
 interface IUserMenuProps {
 	handleSwitch?: () => void;
 }
 
 const UserMenu: FC<IUserMenuProps> = () => {
-	const user = useUserStore.use.user();
 	const pathname = usePathname();
-
 	const getBorderColor = () => {
 		return ROUTES.REGISTER === pathname || ROUTES.LOGIN === pathname || ROUTES.PROFILE === pathname
 			? 'tealLight'
 			: 'inherit';
 	};
-
-	const getLinkDecoration = (route: string) => (route === pathname ? 'underline' : 'none');
 
 	return (
 		<Box margin='0 10px 0 15px'>
@@ -46,44 +41,7 @@ const UserMenu: FC<IUserMenuProps> = () => {
 						alt='Fluffybuns the destroyer'
 					/>
 				</MenuButton>
-				<MenuList>
-					{!user ? (
-						<>
-							<MenuItem>
-								<Link
-									style={{ width: '100%', textDecoration: getLinkDecoration(ROUTES.REGISTER) }}
-									href={ROUTES.REGISTER}
-								>
-									signup
-								</Link>
-							</MenuItem>
-							<MenuItem>
-								<Link
-									style={{ width: '100%', textDecoration: getLinkDecoration(ROUTES.LOGIN) }}
-									href={ROUTES.LOGIN}
-								>
-									login
-								</Link>
-							</MenuItem>
-						</>
-					) : (
-						<>
-							<MenuItem>
-								<Link
-									style={{ width: '100%', textDecoration: getLinkDecoration(ROUTES.PROFILE) }}
-									href={ROUTES.PROFILE}
-								>
-									profile
-								</Link>
-							</MenuItem>
-							<MenuItem>
-								<Link style={{ width: '100%' }} href={ROUTES.HOME}>
-									logout
-								</Link>
-							</MenuItem>
-						</>
-					)}
-				</MenuList>
+				<UserMenuList />
 			</Menu>
 		</Box>
 	);

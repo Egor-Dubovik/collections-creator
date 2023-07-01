@@ -13,7 +13,7 @@ const useLogout = () => {
 	} = useMutation({
 		mutationKey: ['logout'],
 		mutationFn: () => UserService.logout(),
-		onSuccess: (data: number) => {
+		onSuccess: () => {
 			localStorage.removeItem('token');
 			setUser(null);
 		},
