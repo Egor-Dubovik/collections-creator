@@ -12,4 +12,6 @@ export const errorMessage = {
 	itemPropExist: 'the item already has a field with the same name',
 	tagExist:
 		'You are trying to pass tags that already exist in your item!Remove or replace them and try again',
+	invalidToken:
+		'Invalid token, most likely you are trying to log out of an account to which you do not have access',
 };

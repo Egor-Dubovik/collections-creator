@@ -27,6 +27,11 @@ class UserService {
 		const tokens = await tokenService.generateAndSaveTokens({ ...userDto });
 		return { ...tokens, user };
 	}
+
+	async logout(refreshToken: string) {
+		const token = await tokenService.removeToken(refreshToken);
+		return token;
+	}
 }
 
 export default new UserService();
