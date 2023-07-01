@@ -6,6 +6,11 @@ export interface IRegisterProps {
 	role?: string[];
 }
 
+export interface ILoginParams {
+	email: string;
+	password: string;
+}
+
 export interface IUser extends IRegisterProps {
 	id: number;
 }

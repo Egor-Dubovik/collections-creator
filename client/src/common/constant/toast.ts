@@ -1,6 +1,12 @@
 interface IStatusProps {
-	TITLE: string;
-	DESCRIPT: string;
+	TITLE: {
+		LOGIN: string;
+		SIGN_UP: string;
+	};
+	DESCRIPT: {
+		LOGIN: string;
+		SIGN_UP: string;
+	};
 	STATUS: 'error' | 'success' | 'info' | 'warning' | 'loading' | undefined;
 }
 
@@ -13,13 +19,25 @@ interface IToast {
 
 export const AUTH_TOAST: IToast = {
 	SUCCESS: {
-		TITLE: 'Account created.',
-		DESCRIPT: "We've created your account for you.",
+		TITLE: {
+			SIGN_UP: 'Account created.',
+			LOGIN: 'Successfully!',
+		},
+		DESCRIPT: {
+			SIGN_UP: "We've created your account for you.",
+			LOGIN: 'You are logged into your account.',
+		},
 		STATUS: 'success',
 	},
 	ERR: {
-		TITLE: 'Something went wrong.',
-		DESCRIPT: "Your account wasn't created.",
+		TITLE: {
+			SIGN_UP: 'Something went wrong.',
+			LOGIN: 'Something went wrong.',
+		},
+		DESCRIPT: {
+			SIGN_UP: "Your account wasn't created.",
+			LOGIN: 'Failed to login to your account',
+		},
 		STATUS: 'error',
 	},
 	DURATION: 9000,

@@ -1,17 +1,17 @@
 'use client';
-import { FC, useEffect, useRef, useState } from 'react';
+import { FC, MutableRefObject, useState } from 'react';
 import PasswordInput from '@/components/inputs/PasswordInput';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { IRegisterProps } from '@/common/types/user';
 import NickNameInput from '@/components/inputs/NickNameInput';
-import { Button, useToast, Text, FormErrorMessage } from '@chakra-ui/react';
+import { Button, useToast, Text } from '@chakra-ui/react';
 import EmailInput from '@/components/inputs/EmailInput';
 import FileInput from '@/components/inputs/FileInput/FileInput';
 import useRegistration from '@/hooks/auth/useRegistration';
 import { ROUTES } from '@/common/types/api';
-import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { AUTH_TOAST } from '@/common/constant/toast';
+import useAuthNotification from '@/hooks/auth/useAuthNotification';
 
 const SignUpForm: FC = () => {
 	const {
@@ -23,13 +23,13 @@ const SignUpForm: FC = () => {
 	const [selectedFile, setSelectedFile] = useState<File | null>(null);
 	const { registration, isLoading, isSuccess, err } = useRegistration();
 	const toast = useToast();
-	const toastIdRef = useRef<string | null>(null);
-	const router = useRouter();
 
-	const addToast = (isSuccess: boolean): void => {
+	const addToast = (isSuccess: boolean, toastIdRef: MutableRefObject<string | null>): void => {
 		toastIdRef.current = toast({
-			title: isSuccess ? AUTH_TOAST.SUCCESS.TITLE : AUTH_TOAST.ERR.TITLE,
-			description: isSuccess ? AUTH_TOAST.SUCCESS.DESCRIPT : AUTH_TOAST.ERR.DESCRIPT,
+			title: isSuccess ? AUTH_TOAST.SUCCESS.TITLE.SIGN_UP : AUTH_TOAST.ERR.TITLE.SIGN_UP,
+			description: isSuccess
+				? AUTH_TOAST.SUCCESS.DESCRIPT.SIGN_UP
+				: AUTH_TOAST.ERR.DESCRIPT.SIGN_UP,
 			status: isSuccess ? AUTH_TOAST.SUCCESS.STATUS : AUTH_TOAST.ERR.STATUS,
 			duration: AUTH_TOAST.DURATION,
 			isClosable: AUTH_TOAST.IS_CLOSABLE,
@@ -52,14 +52,7 @@ const SignUpForm: FC = () => {
 		registration(userFormData);
 	};
 
-	useEffect(() => {
-		console.log(err);
-		if (isSuccess || err) addToast(isSuccess);
-		if (isSuccess) {
-			reset();
-			router.push(ROUTES.HOME);
-		}
-	}, [isSuccess, err]);
+	useAuthNotification(isSuccess, err, reset, addToast);
 
 	return (
 		<form onSubmit={handleSubmit(onSubmit)} className='auth-form'>
