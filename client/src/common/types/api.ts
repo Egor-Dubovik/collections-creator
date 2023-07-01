@@ -5,5 +5,6 @@ export enum ROUTES {
 	SEARCH = '/search',
 	COLLECTIONS = '/collections',
 	COLLECTION = '/collection',
-	ITEM = 'item',
+	ITEM = '/item',
+	PROFILE = '/profile',
 }

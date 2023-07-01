@@ -14,8 +14,9 @@ const ColorModeSwitcher: FC<ColorModeSwitcherProps> = props => {
 			size='md'
 			fontSize='lg'
 			variant='ghost'
-			color='current'
-			marginLeft='2'
+			_hover={{ color: 'tealLight' }}
+			transition='color 0.2s ease'
+			marginRight='2'
 			onClick={toggleColorMode}
 			icon={<SwitchIcon />}
 			aria-label={`Switch to ${text} mode`}

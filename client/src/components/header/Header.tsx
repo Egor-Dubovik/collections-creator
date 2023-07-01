@@ -1,10 +1,21 @@
 'use client';
-import { HamburgerIcon } from '@chakra-ui/icons';
-import { Box, Flex, IconButton, useColorMode, useDisclosure } from '@chakra-ui/react';
+import { ChevronDownIcon, HamburgerIcon } from '@chakra-ui/icons';
+import {
+	Box,
+	Flex,
+	IconButton,
+	Menu,
+	MenuButton,
+	useColorMode,
+	useDisclosure,
+	Image,
+	Button,
+} from '@chakra-ui/react';
 import { FC, ReactNode } from 'react';
 import ColorModeSwitcher from '../ColorModeSwitcherProps';
 import NavBar from '../NavBar/NavBar';
 import PageContainer from '../PageContainer';
+import UserMenu from '../UserMenu';
 
 interface IHeaderProps {
 	logo: ReactNode;
@@ -29,6 +40,7 @@ const Header: FC<IHeaderProps> = ({ logo }) => {
 							flexWrap='wrap'
 							gap='15px'
 						/>
+						<UserMenu />
 						<ColorModeSwitcher />
 						<IconButton
 							display={{ base: 'flex', md: 'none' }}

@@ -12,6 +12,7 @@ const theme = extendTheme({
 	colors: {
 		transparent: 'transparent',
 		white: '#fff',
+		tealLight: '#3cc7bd',
 		black: {
 			100: '#00000070',
 			900: '#000',
