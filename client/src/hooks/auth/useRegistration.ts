@@ -1,10 +1,11 @@
 import { IAxiosError } from '@/common/types/axios';
-import { IRegisterProps, IAuthResponse } from '@/common/types/user';
+import { IAuthResponse } from '@/common/types/user';
 import UserService from '@/service/UserService';
 import { useMutation } from 'react-query';
+import useUserStore from '../../../store/UserStore';
 
 const useRegistration = () => {
-	// const { user } = useContext(Context);
+	const setUser = useUserStore.use.setUser();
 	const {
 		mutate: registration,
 		isSuccess,
@@ -14,10 +15,7 @@ const useRegistration = () => {
 		mutationFn: (data: FormData) => UserService.registration(data),
 		onSuccess: (data: IAuthResponse) => {
 			localStorage.setItem('token', data.accessToken);
-			console.log(data.user);
-
-			// user.setUser(data.user);
-			// user.setIsAuth(true);
+			setUser(data.user);
 		},
 	});
 

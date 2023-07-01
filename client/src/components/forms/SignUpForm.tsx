@@ -4,13 +4,14 @@ import PasswordInput from '@/components/inputs/PasswordInput';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { IRegisterProps } from '@/common/types/user';
 import NickNameInput from '@/components/inputs/NickNameInput';
-import { Button, useToast, Text } from '@chakra-ui/react';
+import { Button, useToast, Text, FormErrorMessage } from '@chakra-ui/react';
 import EmailInput from '@/components/inputs/EmailInput';
 import FileInput from '@/components/inputs/FileInput/FileInput';
 import useRegistration from '@/hooks/auth/useRegistration';
 import { ROUTES } from '@/common/types/api';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { AUTH_TOAST } from '@/common/constant/toast';
 
 const SignUpForm: FC = () => {
 	const {
@@ -25,13 +26,13 @@ const SignUpForm: FC = () => {
 	const toastIdRef = useRef<string | null>(null);
 	const router = useRouter();
 
-	const addToast = (): void => {
+	const addToast = (isSuccess: boolean): void => {
 		toastIdRef.current = toast({
-			title: 'Account created.',
-			description: "We've created your account for you.",
-			status: 'success',
-			duration: 7000,
-			isClosable: true,
+			title: isSuccess ? AUTH_TOAST.SUCCESS.TITLE : AUTH_TOAST.ERR.TITLE,
+			description: isSuccess ? AUTH_TOAST.SUCCESS.DESCRIPT : AUTH_TOAST.ERR.DESCRIPT,
+			status: isSuccess ? AUTH_TOAST.SUCCESS.STATUS : AUTH_TOAST.ERR.STATUS,
+			duration: AUTH_TOAST.DURATION,
+			isClosable: AUTH_TOAST.IS_CLOSABLE,
 		}) as string;
 	};
 
@@ -52,15 +53,17 @@ const SignUpForm: FC = () => {
 	};
 
 	useEffect(() => {
+		console.log(err);
+		if (isSuccess || err) addToast(isSuccess);
 		if (isSuccess) {
 			reset();
-			addToast();
 			router.push(ROUTES.HOME);
 		}
-	}, [isSuccess]);
+	}, [isSuccess, err]);
 
 	return (
 		<form onSubmit={handleSubmit(onSubmit)} className='auth-form'>
+			{err && <Text color='tomato'>{err.message}</Text>}
 			<NickNameInput register={register} error={errors.nickName} />
 			<EmailInput register={register} error={errors.email} />
 			<PasswordInput register={register} error={errors.password} />
