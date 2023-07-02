@@ -3,7 +3,7 @@ import { ChevronDownIcon } from '@chakra-ui/icons';
 import { Button, Menu, MenuButton, Image, Box } from '@chakra-ui/react';
 import { ROUTES } from '@/common/types/api';
 import { usePathname } from 'next/navigation';
-import UserMenuList from './UserMenuList';
+import UserMenuList from './menuList/UserMenuList';
 
 interface IUserMenuProps {
 	handleSwitch?: () => void;

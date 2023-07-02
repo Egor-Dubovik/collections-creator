@@ -6,17 +6,23 @@ import ColorModeSwitcher from '../ColorModeSwitcherProps';
 import NavBar from '../NavBar/NavBar';
 import UserMenu from '../UserMenu';
 import useRefreshToken from '@/hooks/auth/useToken';
+import useUserStore from '../../../store/UserStore';
 
 interface IHeaderProps {
 	logo: ReactNode;
 }
 
 const Header: FC<IHeaderProps> = ({ logo }) => {
-	const { refresh } = useRefreshToken();
+	const setUserLoading = useUserStore.use.setLoading();
+	const { refresh, isLoading } = useRefreshToken();
 	const { isOpen, onOpen, onClose } = useDisclosure();
 	const { colorMode } = useColorMode();
 
 	const handleSwitchMenu = (): void => (isOpen ? onClose() : onOpen());
+
+	useEffect(() => {
+		setUserLoading(isLoading);
+	}, [isLoading]);
 
 	useEffect(() => {
 		refresh();
