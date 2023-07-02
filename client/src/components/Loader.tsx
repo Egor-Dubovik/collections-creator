@@ -6,17 +6,17 @@ interface ILoaderProps {
 	height?: string;
 }
 
-const Loader: FC<ILoaderProps> = ({ width, height }) => {
+const Loader: FC<ILoaderProps> = ({ width = '40px', height = '40px' }) => {
 	return (
 		<Box
 			position='absolute'
 			top='50%'
 			left='50%'
-			w={width}
-			h={height}
+			width={width}
+			height={height}
 			transform='translate(-50%,-50%)'
 		>
-			<Spinner />
+			<Spinner position='absolute' width='100%' height='100%' />
 		</Box>
 	);
 };

@@ -1,12 +1,11 @@
-import PageContainer from '@/components/PageContainer';
 import { FC } from 'react';
 
 const NotFoundPage: FC = () => {
 	return (
 		<main className='main'>
-			<PageContainer>
-				<section>404</section>
-			</PageContainer>
+			<section className='page-notfound'>
+				<div className='page-notfound__container'>404</div>
+			</section>
 		</main>
 	);
 };

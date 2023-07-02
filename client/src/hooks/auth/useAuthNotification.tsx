@@ -5,7 +5,7 @@ import { ToastId } from '@chakra-ui/react';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import { UseFormReset } from 'react-hook-form';
-import { TypeNotification } from '../useAuthToast';
+import { TypeNotification } from './useAuthToast';
 
 const useAuthNotification = (
 	isSuccess: boolean,

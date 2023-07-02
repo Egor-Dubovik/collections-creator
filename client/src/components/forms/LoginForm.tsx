@@ -8,7 +8,7 @@ import { ROUTES } from '@/common/types/api';
 import Link from 'next/link';
 import useLogin from '@/hooks/auth/useLogin';
 import useAuthNotification from '@/hooks/auth/useAuthNotification';
-import useAuthToast from '@/hooks/useAuthToast';
+import useAuthToast from '@/hooks/auth/useAuthToast';
 
 const LoginForm: FC = () => {
 	const {

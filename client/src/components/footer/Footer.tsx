@@ -1,10 +1,9 @@
 import { FC } from 'react';
-import PageContainer from '../PageContainer';
 
 const Footer: FC = () => {
 	return (
-		<footer>
-			<PageContainer>footer</PageContainer>
+		<footer className='footer'>
+			<div className='footer__container'>footer</div>
 		</footer>
 	);
 };

@@ -1,6 +1,6 @@
-import { API_URL, API } from '@/common/constant/api';
-import { IAuthResponse } from '@/common/types/user';
+import { API_URL } from '@/common/constant/api';
 import axios from 'axios';
+import UserService from './UserService';
 
 const $api = axios.create({
 	withCredentials: true,
@@ -21,10 +21,8 @@ $api.interceptors.response.use(
 		if (error.response.status == 401 && error.config && !error.config._isRetry) {
 			originalRequest._isRetry = true;
 			try {
-				const response = await axios.get<IAuthResponse>(`${API_URL}${API.refresh}`, {
-					withCredentials: true,
-				});
-				localStorage.setItem('token', response.data.accessToken);
+				const userData = await UserService.refreshToken();
+				localStorage.setItem('token', userData.accessToken);
 				return $api.request(originalRequest);
 			} catch (e) {
 				console.log('NOT AUTHORIZED');

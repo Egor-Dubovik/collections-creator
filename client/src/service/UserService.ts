@@ -1,5 +1,6 @@
-import { API } from '@/common/constant/api';
+import { API, API_URL } from '@/common/constant/api';
 import { IAuthResponse, ILoginParams } from '@/common/types/user';
+import axios from 'axios';
 import $api from '.';
 
 const UserService = {
@@ -15,6 +16,13 @@ const UserService = {
 
 	async logout() {
 		const response = await $api.post<number>(API.logout);
+		return response.data;
+	},
+
+	async refreshToken() {
+		const response = await axios.get<IAuthResponse>(`${API_URL}${API.refresh}`, {
+			withCredentials: true,
+		});
 		return response.data;
 	},
 };

@@ -7,7 +7,7 @@ import useUserStore from '../../store/UserStore';
 import useLogout from '@/hooks/auth/useLogout';
 import Loader from './Loader';
 import useAuthNotification from '@/hooks/auth/useAuthNotification';
-import useAuthToast from '@/hooks/useAuthToast';
+import useAuthToast from '@/hooks/auth/useAuthToast';
 
 const UserMenuList: FC = () => {
 	const user = useUserStore.use.user();

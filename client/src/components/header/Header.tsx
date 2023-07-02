@@ -1,35 +1,30 @@
 'use client';
-import { ChevronDownIcon, HamburgerIcon } from '@chakra-ui/icons';
-import {
-	Box,
-	Flex,
-	IconButton,
-	Menu,
-	MenuButton,
-	useColorMode,
-	useDisclosure,
-	Image,
-	Button,
-} from '@chakra-ui/react';
-import { FC, ReactNode } from 'react';
+import { FC, ReactNode, useEffect } from 'react';
+import { HamburgerIcon } from '@chakra-ui/icons';
+import { Box, Flex, IconButton, useColorMode, useDisclosure } from '@chakra-ui/react';
 import ColorModeSwitcher from '../ColorModeSwitcherProps';
 import NavBar from '../NavBar/NavBar';
-import PageContainer from '../PageContainer';
 import UserMenu from '../UserMenu';
+import useRefreshToken from '@/hooks/auth/useToken';
 
 interface IHeaderProps {
 	logo: ReactNode;
 }
 
 const Header: FC<IHeaderProps> = ({ logo }) => {
+	const { refresh } = useRefreshToken();
 	const { isOpen, onOpen, onClose } = useDisclosure();
 	const { colorMode } = useColorMode();
 
 	const handleSwitchMenu = (): void => (isOpen ? onClose() : onOpen());
 
+	useEffect(() => {
+		refresh();
+	}, []);
+
 	return (
 		<Box py={4} as='header' bg={colorMode !== 'dark' ? 'gr.50' : 'gr.900'} className='header'>
-			<PageContainer>
+			<div className='header__container'>
 				<Flex align='center' justify='space-between' gap='15px'>
 					<Box className='header__logo'>{logo}</Box>
 					<Flex className='header__menu' align='center'>
@@ -61,7 +56,7 @@ const Header: FC<IHeaderProps> = ({ logo }) => {
 					handleSwitch={handleSwitchMenu}
 					isOpen={isOpen}
 				/>
-			</PageContainer>
+			</div>
 		</Box>
 	);
 };

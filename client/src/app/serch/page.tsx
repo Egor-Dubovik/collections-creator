@@ -1,12 +1,9 @@
-import PageContainer from '@/components/PageContainer';
 import { FC } from 'react';
 
 const SearchPage: FC = () => {
 	return (
 		<main className='main'>
-			<PageContainer>
-				<section>SearchPage</section>
-			</PageContainer>
+			<section>SearchPage</section>
 		</main>
 	);
 };
