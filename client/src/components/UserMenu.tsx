@@ -18,7 +18,7 @@ const UserMenu: FC<IUserMenuProps> = () => {
 	};
 
 	return (
-		<Box margin='0 10px 0 15px'>
+		<Box marginRight={2}>
 			<Menu>
 				<MenuButton
 					as={Button}

@@ -1,5 +1,5 @@
 'use client';
-import { FC, ReactNode, useEffect } from 'react';
+import { FC, ReactNode, useEffect, useState } from 'react';
 import { HamburgerIcon } from '@chakra-ui/icons';
 import { Box, Flex, IconButton, useColorMode, useDisclosure } from '@chakra-ui/react';
 import ColorModeSwitcher from '../ColorModeSwitcherProps';
@@ -7,18 +7,22 @@ import NavBar from '../NavBar/NavBar';
 import UserMenu from '../UserMenu';
 import useRefreshToken from '@/hooks/auth/useToken';
 import useUserStore from '../../../store/UserStore';
+import MainInputSearch from '../inputs/MainInputSearch/MainInputSearch';
+import SearchSwitcher from '../SearchSwitcher';
 
 interface IHeaderProps {
 	logo: ReactNode;
 }
 
 const Header: FC<IHeaderProps> = ({ logo }) => {
+	const [isSearchVisible, setSearchVisible] = useState(false);
 	const setUserLoading = useUserStore.use.setLoading();
 	const { refresh, isLoading } = useRefreshToken();
 	const { isOpen, onOpen, onClose } = useDisclosure();
 	const { colorMode } = useColorMode();
 
 	const handleSwitchMenu = (): void => (isOpen ? onClose() : onOpen());
+	const handleSwitchSearch = (): void => setSearchVisible(!isSearchVisible);
 
 	useEffect(() => {
 		setUserLoading(isLoading);
@@ -29,7 +33,14 @@ const Header: FC<IHeaderProps> = ({ logo }) => {
 	}, []);
 
 	return (
-		<Box py={4} as='header' bg={colorMode !== 'dark' ? 'gr.50' : 'gr.900'} className='header'>
+		<Box
+			as='header'
+			position='relative'
+			bg={colorMode !== 'dark' ? 'gr.50' : 'gr.900'}
+			className='header'
+			py={4}
+		>
+			<MainInputSearch isVisible={isSearchVisible} handleSwitch={handleSwitchSearch} />
 			<div className='header__container'>
 				<Flex align='center' justify='space-between' gap='15px'>
 					<Box className='header__logo'>{logo}</Box>
@@ -41,8 +52,9 @@ const Header: FC<IHeaderProps> = ({ logo }) => {
 							flexWrap='wrap'
 							gap='15px'
 						/>
-						<UserMenu />
+						<SearchSwitcher handleSwitch={handleSwitchSearch} />
 						<ColorModeSwitcher />
+						<UserMenu />
 						<IconButton
 							display={{ base: 'flex', md: 'none' }}
 							icon={<HamburgerIcon />}
@@ -52,7 +64,6 @@ const Header: FC<IHeaderProps> = ({ logo }) => {
 						/>
 					</Flex>
 				</Flex>
-
 				<NavBar
 					as='ul'
 					py={2}

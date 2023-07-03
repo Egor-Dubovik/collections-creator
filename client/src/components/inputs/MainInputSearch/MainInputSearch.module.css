@@ -1,0 +1,21 @@
+.search {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	padding: 10px 0;
+	visibility: hidden;
+	opacity: 0;
+	transition: all 0.3s ease;
+	z-index: 1;
+}
+
+.searchActive {
+	top: 100%;
+	visibility: visible;
+	opacity: 1;
+}
+
+.inputSearch {
+	max-width: 500px;
+}

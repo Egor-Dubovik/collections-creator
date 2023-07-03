@@ -20,6 +20,7 @@ const theme = extendTheme({
 		gr: {
 			50: '#f7fafc',
 			100: '#cbd5e066',
+			800: '#1A202C',
 			900: '#17192304',
 		},
 	},
