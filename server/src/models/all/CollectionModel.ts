@@ -13,7 +13,6 @@ export const Collection = sequelize.define<Model<ICollectionData>>('collection',
 export const CollectionProp = sequelize.define<Model<ICollectionProp>>('collectionProp', {
 	id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
 	name: { type: DataTypes.STRING },
-	value: { type: DataTypes.STRING },
 	type: { type: DataTypes.STRING },
 });
 

@@ -9,11 +9,12 @@ export interface ICollectionData {
 export interface ICollectionProp {
 	id?: number;
 	name: string;
-	value: string;
 	type: string;
 }
 
-export interface IItemProp extends ICollectionProp {}
+export interface IItemProp extends ICollectionProp {
+	value: string;
+}
 
 export interface IItemCollectionProp {
 	id?: number;

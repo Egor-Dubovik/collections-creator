@@ -6,6 +6,7 @@ import syncModels from './models/index';
 import router from './routes/index';
 import cookieParser from 'cookie-parser';
 import { errorMiddleware } from './middleware/errorMiddleware';
+import path from 'path';
 
 dotenv.config();
 const PORT = process.env.PORT || 6666;
@@ -15,6 +16,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(cors({ credentials: true, origin: process.env.CLIENT_URL }));
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.resolve(__dirname, 'static', 'image')));
 app.use('/cl-creator', router);
 app.use(errorMiddleware);
 
