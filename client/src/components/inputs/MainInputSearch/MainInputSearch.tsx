@@ -25,7 +25,7 @@ const MainInputSearch: FC<IMainInputSearchProps> = ({ isVisible, handleSwitch })
 
 	return (
 		<Box
-			className={isVisible ? styles.search : `${styles.search} ${styles.searchActive}`}
+			className={isVisible ? `${styles.search} ${styles.searchActive}` : styles.search}
 			bg={colorMode !== 'dark' ? 'white' : 'gr.800'}
 		>
 			<div className='search__container'>
