@@ -6,7 +6,7 @@ import { ICollectionProp, ICollectionRegister } from '@/common/types/collection'
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { appendForm } from '@/utils/appendForm';
 import useCreate from '@/hooks/collection/useCreate';
-import { FIRST_TOPIC_ID } from '@/common/constant/collectons';
+import { FIRST_TOPIC_ID } from '@/common/constant/collections';
 import useUserStore from '../../../store/UserStore';
 import {
 	Button,

@@ -6,12 +6,11 @@ import Image from 'next/image';
 import useUserStore from '../../../../store/UserStore';
 import styles from './UserProfile.module.css';
 import CollectionModel from '@/components/modals/CollectionModel';
+import { getAvatarPath } from '@/utils/getAvatarPath';
 
 const UserProfile: FC = () => {
 	const user = useUserStore.use.user();
 	const { isOpen, onOpen, onClose } = useDisclosure();
-
-	const getAvatarPath = (avatar: string | undefined) => (avatar ? avatar : 'avatar.jpg');
 
 	return (
 		<>

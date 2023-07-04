@@ -4,12 +4,16 @@ import { Button, Menu, MenuButton, Image, Box } from '@chakra-ui/react';
 import { ROUTES } from '@/common/types/api';
 import { usePathname } from 'next/navigation';
 import UserMenuList from './menuList/UserMenuList';
+import useUserStore from '../../store/UserStore';
+import { BASE_URL } from '@/common/constant/api';
+import { getAvatarPath } from '@/utils/getAvatarPath';
 
 interface IUserMenuProps {
 	handleSwitch?: () => void;
 }
 
 const UserMenu: FC<IUserMenuProps> = () => {
+	const user = useUserStore.use.user();
 	const pathname = usePathname();
 	const getBorderColor = () => {
 		return ROUTES.REGISTER === pathname || ROUTES.LOGIN === pathname || ROUTES.PROFILE === pathname
@@ -37,8 +41,8 @@ const UserMenu: FC<IUserMenuProps> = () => {
 						borderColor={getBorderColor()}
 						boxSizing='content-box'
 						borderRadius='full'
-						src='https://placekitten.com/100/100'
-						alt='Fluffybuns the destroyer'
+						src={BASE_URL + getAvatarPath(user?.avatar)}
+						alt='avatar menu preview'
 					/>
 				</MenuButton>
 				<UserMenuList />

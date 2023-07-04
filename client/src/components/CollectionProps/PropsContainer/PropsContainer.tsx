@@ -3,7 +3,7 @@ import { Box, Flex, Heading, Text, Tooltip, useColorMode } from '@chakra-ui/reac
 import { ICollectionProp } from '@/common/types/collection';
 import { QuestionOutlineIcon } from '@chakra-ui/icons';
 import styles from './PropsContainer.module.css';
-import { PROPS_INFO } from '@/common/constant/collectons';
+import { PROPS_INFO } from '@/common/constant/collections';
 
 interface IPropsContainer {
 	props: ICollectionProp[];
