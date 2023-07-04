@@ -8,4 +8,6 @@ export const API = {
 	logout: '/user/logout',
 	profile: '/profile',
 	refresh: '/token/refresh',
+	topic: '/topic',
+	collection: '/collection',
 };
