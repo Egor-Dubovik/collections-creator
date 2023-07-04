@@ -1,3 +1,4 @@
+'use client';
 import { FC } from 'react';
 import { Box, Spinner } from '@chakra-ui/react';
 

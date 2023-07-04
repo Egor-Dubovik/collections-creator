@@ -16,8 +16,8 @@ const UserProfile: FC = () => {
 		<>
 			<CollectionModel isOpen={isOpen} onClose={onClose} />
 			<Box className={styles.userInfo}>
-				<div className='user-info__container'>
-					<Heading as='h1' mb={3}>
+				<section className='user-info__container'>
+					<Heading as='h1' size='xl' mb={{ base: 2, md: 3 }}>
 						Profile
 					</Heading>
 					<div className={styles.userInfoContent}>
@@ -43,7 +43,7 @@ const UserProfile: FC = () => {
 							</Button>
 						</div>
 					</div>
-				</div>
+				</section>
 			</Box>
 		</>
 	);

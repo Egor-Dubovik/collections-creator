@@ -22,7 +22,7 @@ interface ITime {
 
 export interface ICollectionResponse extends ITime {
 	id: number;
-	name: string;
+	title: string;
 	image: string | null;
 	collectionId: number;
 }

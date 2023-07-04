@@ -1,0 +1,31 @@
+.item {
+	padding: 30px 25px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	column-gap: 15px;
+	border-width: 1px;
+	border-style: solid;
+	border-radius: 10px;
+	cursor: pointer;
+}
+
+.image {
+	position: relative;
+	flex: 0 0 100px;
+	height: 100px;
+}
+
+.image img {
+	border-radius: 50%;
+}
+
+.title {
+	font-size: 28px;
+}
+
+@media (max-width: 768px) {
+	.title {
+		font-size: 24px;
+	}
+}
