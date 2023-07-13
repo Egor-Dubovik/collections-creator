@@ -7,9 +7,9 @@ export const getDateFromString = (dateString: string) => {
 	const date = new Date(dateString);
 	const currentDate = new Date();
 	const timeString = getTimeFromString(date);
-	if (currentDate.toDateString() === date.toDateString()) return timeString;
+	if (currentDate.toDateString() === date.toDateString()) return 'today ' + timeString;
 	const yearOption = currentDate.getFullYear() !== date.getFullYear() ? 'numeric' : undefined;
 	const options: Intl.DateTimeFormatOptions = { day: 'numeric', month: 'long', year: yearOption };
 	const dateWithoutTime = date.toLocaleString(undefined, options);
-	return `${dateWithoutTime} ${timeString}`;
+	return `${dateWithoutTime} ⌚${timeString}`;
 };

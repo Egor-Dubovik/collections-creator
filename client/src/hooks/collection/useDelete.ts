@@ -2,23 +2,23 @@ import { IAxiosError } from '@/common/types/axios';
 import { useMutation, useQueryClient } from 'react-query';
 import CollectionService from '@/service/CollectionService';
 
-const useCreate = () => {
+const useDeleteCollection = () => {
 	const client = useQueryClient();
 	const {
-		mutate: create,
+		mutate: deleteCollection,
 		isSuccess,
 		isLoading,
 		error,
 	} = useMutation({
-		mutationKey: ['collection'],
-		mutationFn: (data: FormData) => CollectionService.create(data),
+		mutationKey: ['delete collection'],
+		mutationFn: (id: number) => CollectionService.delete(id),
 		onSuccess: () => {
 			client.invalidateQueries({ queryKey: ['user collections'] });
 		},
 	});
 
 	const err = error as IAxiosError<{ message: string }>;
-	return { create, isSuccess, isLoading, err };
+	return { deleteCollection, isSuccess, isLoading, err };
 };
 
-export default useCreate;
+export default useDeleteCollection;

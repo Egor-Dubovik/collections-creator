@@ -1,5 +1,5 @@
 .userInfo {
-	padding: 20px 0;
+	padding: 15px 0;
 }
 
 .userInfoContent {
@@ -63,7 +63,7 @@
 
 @media (max-width: 768px) {
 	.userInfo {
-		padding: 15px 0;
+		padding: 10px 0;
 	}
 	.userInfoContent {
 		flex-direction: column;

@@ -1,4 +1,3 @@
-'use client';
 import { FC } from 'react';
 import { Box, Button, Heading, Skeleton, Text, useDisclosure } from '@chakra-ui/react';
 import { BASE_URL } from '@/common/constant/api';
@@ -15,8 +14,8 @@ const UserProfile: FC = () => {
 	return (
 		<>
 			<CollectionModel isOpen={isOpen} onClose={onClose} />
-			<Box className={styles.userInfo}>
-				<section className='user-info__container'>
+			<section className={styles.userInfo}>
+				<div className='user-info__container'>
 					<Heading as='h1' size='xl' mb={{ base: 2, md: 3 }}>
 						Profile
 					</Heading>
@@ -43,8 +42,8 @@ const UserProfile: FC = () => {
 							</Button>
 						</div>
 					</div>
-				</section>
-			</Box>
+				</div>
+			</section>
 		</>
 	);
 };

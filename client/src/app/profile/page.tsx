@@ -1,14 +1,11 @@
-import dynamic from 'next/dynamic';
+'use client';
 import UserCollections from '@/components/sections/UserCollections/UserCollections';
-
-const DynamicUserProfile = dynamic(() => import('@/components/sections/UserProfile/UserProfile'), {
-	ssr: false,
-});
+import UserProfile from '@/components/sections/UserProfile/UserProfile';
 
 const Profile = async () => {
 	return (
 		<main className='main profile'>
-			<DynamicUserProfile />
+			<UserProfile />
 			<UserCollections />
 		</main>
 	);

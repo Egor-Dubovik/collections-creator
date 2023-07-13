@@ -74,7 +74,7 @@ const FileInput: FC<FileInputProps> = ({ onFileUpload, fileName }) => {
 							icon={<DeleteIcon />}
 							variant='outline'
 							onClick={() => setSelectedFile(null)}
-							aria-label='burger icon'
+							aria-label='delete button'
 						/>
 					</>
 				)}

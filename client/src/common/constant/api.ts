@@ -10,4 +10,5 @@ export const API = {
 	refresh: '/token/refresh',
 	topic: '/topic',
 	collection: '/collection',
+	userCollection: '/collection/user',
 };
