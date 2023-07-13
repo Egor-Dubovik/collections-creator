@@ -19,6 +19,7 @@ class CollectionPropService {
 	async checkPropExistsInCollection(name: string, collectionId: number) {
 		const itemCollectionProp = await ItemCollectionProp.findOne({ where: { collectionId } });
 		const collectionPropId = itemCollectionProp?.getDataValue('collectionPropId');
+		if (!collectionPropId) return;
 		const collectionProp = await CollectionProp.findOne({ where: { id: collectionPropId, name } });
 		if (!!collectionProp) throw ApiError.badRequest(errorMessage.propExist);
 	}

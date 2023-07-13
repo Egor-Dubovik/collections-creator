@@ -7,8 +7,8 @@ import { Item, ItemProp } from '../models/all/ItemModel';
 import filterService from './filterService';
 
 class ItemService {
-	async create(name: string, props: IItemProp[], collectionId: string) {
-		const newItem = await Item.create({ name, collectionId });
+	async create(name: string, props: IItemProp[], image: string | undefined, collectionId: string) {
+		const newItem = await Item.create({ name, collectionId, image });
 		await this.createItemProps(props, newItem.getDataValue('id'));
 		return newItem;
 	}

@@ -14,4 +14,5 @@ export const errorMessage = {
 		'You are trying to pass tags that already exist in your item!Remove or replace them and try again',
 	invalidToken:
 		'Invalid token, most likely you are trying to log out of an account to which you do not have access',
+	noCollection: 'The collection with the given id does not exist',
 };

@@ -8,6 +8,7 @@ export const Collection = sequelize.define<Model<ICollectionData>>('collection',
 	description: { type: DataTypes.TEXT },
 	userId: { type: DataTypes.INTEGER },
 	topicId: { type: DataTypes.INTEGER, allowNull: true },
+	image: { type: DataTypes.STRING, allowNull: true },
 });
 
 export const CollectionProp = sequelize.define<Model<ICollectionProp>>('collectionProp', {

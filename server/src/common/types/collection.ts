@@ -4,6 +4,7 @@ export interface ICollectionData {
 	description: string;
 	userId: number;
 	topicId: number;
+	image?: string;
 }
 
 export interface ICollectionProp {

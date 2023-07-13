@@ -8,9 +8,10 @@ class ItemController {
 	async create(req: Request, res: Response, next: NextFunction) {
 		try {
 			const { name, props, collectionId } = req.body;
-			if (!name || !collectionId || !props.length)
+			const propsArray = JSON.parse(props);
+			if (!name || !collectionId || !propsArray.length)
 				return next(ApiError.badRequest(errorMessage.notAllFields));
-			const newItem = await itemService.create(name, props, collectionId);
+			const newItem = await itemService.create(name, propsArray, req.file?.filename, collectionId);
 			return res.json(newItem);
 		} catch (err) {
 			next(err);

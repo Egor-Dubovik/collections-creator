@@ -27,8 +27,8 @@ CollectionProp.belongsToMany(Collection, { through: ItemCollectionProp });
 Collection.hasMany(Item);
 Item.belongsTo(Collection);
 
-Collection.hasOne(Topic);
-Topic.belongsTo(Collection);
+Topic.hasMany(Collection);
+Collection.belongsTo(Topic);
 
 User.hasMany(Collection);
 Collection.belongsTo(User);

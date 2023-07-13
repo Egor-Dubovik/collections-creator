@@ -7,13 +7,15 @@ import collectionService from '../services/collectionService';
 class CollectionController {
 	async create(req: Request, res: Response, next: NextFunction) {
 		try {
-			const { title, description, topicId, props, userId } = req.body;
+			const { title, description, topicId, userId, props, image } = req.body;
+
 			if (!title || !description || !topicId || !userId || !props.length)
 				return next(ApiError.badRequest(errorMessage.notAllFields));
 			const userData = await collectionService.create(
-				{ title, topicId, description, userId },
-				props
+				{ title, topicId, description, userId, image: req.file?.filename },
+				JSON.parse(props)
 			);
+
 			return res.json(userData);
 		} catch (err) {
 			next(err);
@@ -46,6 +48,17 @@ class CollectionController {
 			if (!id) return next(ApiError.badRequest(errorMessage.notAllFields));
 			const collections = await collectionService.getAllByUserId(Number(id));
 			return res.json(collections);
+		} catch (err) {
+			next(err);
+		}
+	}
+
+	async delete(req: Request, res: Response, next: NextFunction) {
+		try {
+			const { id } = req.body;
+			if (!id) return next(ApiError.badRequest(errorMessage.notAllFields));
+			const isDeleted = await collectionService.delete(id);
+			return res.json({ isDeleted });
 		} catch (err) {
 			next(err);
 		}
