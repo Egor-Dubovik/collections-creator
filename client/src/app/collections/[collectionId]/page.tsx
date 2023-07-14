@@ -1,9 +1,16 @@
-import { FC } from 'react';
+'use client';
+import CollectionItems from '@/components/sections/CollectionItems/CollectionItems';
+import CollectionToolbar from '@/components/sections/CollectionToolbar/CollectionToolbar';
+import { useParams } from 'next/navigation';
 
-const CollectionPage: FC = () => {
+const CollectionPage = () => {
+	const params = useParams();
+	const id = Number(params.collectionId);
+
 	return (
 		<main className='main'>
-			<section>current collection</section>
+			<CollectionToolbar collectionId={id} />
+			<CollectionItems />
 		</main>
 	);
 };

@@ -2,7 +2,7 @@ import { IAxiosError } from '@/common/types/axios';
 import { IAuthResponse, ILoginParams } from '@/common/types/user';
 import { useMutation } from 'react-query';
 import UserService from '@/service/UserService';
-import useUserStore from '../../../store/UserStore';
+import useUserStore from '../../store/UserStore';
 
 const useLogin = () => {
 	const setUser = useUserStore.use.setUser();

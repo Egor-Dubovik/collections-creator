@@ -5,5 +5,5 @@ export const PropTypes = [
 	{ name: 'date', value: 'date' },
 ];
 
-export const PROPS_INFO = 'Props that you add can be used for items in this collection.';
+export const PROPS_INFO = 'The props you add will be used for the items in this collection.';
 export const FIRST_TOPIC_ID = 1;

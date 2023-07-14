@@ -1,7 +1,7 @@
 import { IAxiosError } from '@/common/types/axios';
 import { useMutation } from 'react-query';
 import UserService from '@/service/UserService';
-import useUserStore from '../../../store/UserStore';
+import useUserStore from '../../store/UserStore';
 
 const useLogout = () => {
 	const setUser = useUserStore.use.setUser();

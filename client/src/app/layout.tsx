@@ -4,7 +4,7 @@ import Logo from '@/components/logo/Logo';
 import Providers from '@/components/Providers';
 import { Roboto } from 'next/font/google';
 import { ReactNode } from 'react';
-import './globals.css';
+import './styles/globals.css';
 
 const appFont = Roboto({ subsets: ['cyrillic'], weight: ['400', '500', '700'] });
 

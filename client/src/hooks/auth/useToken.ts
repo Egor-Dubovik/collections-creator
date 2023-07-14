@@ -2,7 +2,7 @@ import { IAxiosError } from '@/common/types/axios';
 import { IAuthResponse } from '@/common/types/user';
 import { useMutation } from 'react-query';
 import UserService from '@/service/UserService';
-import useUserStore from '../../../store/UserStore';
+import useUserStore from '../../store/UserStore';
 
 const useRefreshToken = () => {
 	const setUser = useUserStore.use.setUser();

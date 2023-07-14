@@ -2,7 +2,7 @@ import { ICollectionResponse } from '@/common/types/collection';
 import CollectionList from '@/components/collection/CollectionList/CollectionList';
 import useGetUserCollections from '@/hooks/collection/useGetUserCollections';
 import { Text } from '@chakra-ui/react';
-import useUserStore from '../../../../store/UserStore';
+import useUserStore from '../../../store/UserStore';
 import styles from './UserCollections.module.css';
 
 const UserCollections = () => {

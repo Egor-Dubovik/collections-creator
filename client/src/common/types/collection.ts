@@ -1,12 +1,11 @@
 export type TypeProp = 'number' | 'time' | 'text' | 'date';
 
 export interface ICollectionProp {
+	id?: number;
 	name: string;
 	type: TypeProp;
-}
-
-export interface IItemProp extends ICollectionProp {
-	value: string;
+	updatedAt?: string;
+	createdAt?: string;
 }
 
 export interface ICollectionRegister {
@@ -15,20 +14,19 @@ export interface ICollectionRegister {
 	topicId: number;
 }
 
-interface ITime {
-	updatedAt: string;
-	createdAt: string;
-}
-
-export interface ICollectionResponse extends ITime {
+export interface ICollectionResponse {
 	id: number;
 	title: string;
 	image: string | null;
 	collectionId: number;
+	updatedAt?: string;
+	createdAt?: string;
 }
 
-export interface ITopic extends ITime {
+export interface ITopic {
 	id: number;
 	en: string;
 	ru: string;
+	updatedAt?: string;
+	createdAt?: string;
 }

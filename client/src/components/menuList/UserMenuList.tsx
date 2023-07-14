@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { MenuList, Skeleton, Stack } from '@chakra-ui/react';
-import useUserStore from '../../../store/UserStore';
+import useUserStore from '../../store/UserStore';
 import PublicItems from './PublicItems';
 import PrivateItems from './PrivateItems';
 

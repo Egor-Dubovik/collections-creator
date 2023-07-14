@@ -2,8 +2,8 @@ import { FC } from 'react';
 import { Box, Flex, Heading, Text, Tooltip, useColorMode } from '@chakra-ui/react';
 import { ICollectionProp } from '@/common/types/collection';
 import { QuestionOutlineIcon } from '@chakra-ui/icons';
-import styles from './PropsContainer.module.css';
 import { PROPS_INFO } from '@/common/constant/collections';
+import styles from './PropsContainer.module.css';
 
 interface IPropsContainer {
 	props: ICollectionProp[];

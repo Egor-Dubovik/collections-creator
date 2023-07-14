@@ -2,7 +2,7 @@ import { Dispatch, FC, SetStateAction, useState } from 'react';
 import { ICollectionProp, TypeProp } from '@/common/types/collection';
 import { Button, FormControl, HStack, Input, Select } from '@chakra-ui/react';
 import { PropTypes } from '@/common/constant/collections';
-import PropsContainer from './PropsContainer/PropsContainer';
+import PropsContainer from '../PropsContainer/PropsContainer';
 
 interface ICollectionProps {
 	props: ICollectionProp[];

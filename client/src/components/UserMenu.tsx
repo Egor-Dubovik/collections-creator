@@ -4,7 +4,7 @@ import { Button, Menu, MenuButton, Image, Box } from '@chakra-ui/react';
 import { ROUTES } from '@/common/types/api';
 import { usePathname } from 'next/navigation';
 import UserMenuList from './menuList/UserMenuList';
-import useUserStore from '../../store/UserStore';
+import useUserStore from '../store/UserStore';
 import { BASE_URL } from '@/common/constant/api';
 import { getAvatarPath } from '@/utils/getAvatarPath';
 

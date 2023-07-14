@@ -6,7 +6,7 @@ import ColorModeSwitcher from '../ColorModeSwitcherProps';
 import NavBar from '../NavBar/NavBar';
 import UserMenu from '../UserMenu';
 import useRefreshToken from '@/hooks/auth/useToken';
-import useUserStore from '../../../store/UserStore';
+import useUserStore from '../../store/UserStore';
 import MainInputSearch from '../inputs/MainInputSearch/MainInputSearch';
 import SearchSwitcher from '../SearchSwitcher';
 

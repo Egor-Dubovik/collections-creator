@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { Box, Button, Heading, Skeleton, Text, useDisclosure } from '@chakra-ui/react';
 import { BASE_URL } from '@/common/constant/api';
 import Image from 'next/image';
-import useUserStore from '../../../../store/UserStore';
+import useUserStore from '../../../store/UserStore';
 import styles from './UserProfile.module.css';
 import CollectionModel from '@/components/modals/CollectionModel';
 import { getAvatarPath } from '@/utils/getAvatarPath';

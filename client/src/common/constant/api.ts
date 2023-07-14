@@ -11,4 +11,6 @@ export const API = {
 	topic: '/topic',
 	collection: '/collection',
 	userCollection: '/collection/user',
+	item: '/item',
+	collectionProps: '/collection/props',
 };
