@@ -53,11 +53,21 @@ class CollectionController {
 		}
 	}
 
+	async getProps(req: Request, res: Response, next: NextFunction) {
+		try {
+			const { collectionId } = req.query;
+			const props = await collectionPropService.getItemCollectionProps(Number(collectionId));
+			return res.json(props);
+		} catch (err) {
+			next(err);
+		}
+	}
+
 	async delete(req: Request, res: Response, next: NextFunction) {
 		try {
-			const { id } = req.body;
+			const { id } = req.query;
 			if (!id) return next(ApiError.badRequest(errorMessage.notAllFields));
-			const isDeleted = await collectionService.delete(id);
+			const isDeleted = await collectionService.delete(Number(id));
 			return res.json({ isDeleted });
 		} catch (err) {
 			next(err);

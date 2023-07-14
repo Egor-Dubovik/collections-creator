@@ -1,3 +1,4 @@
+import { Op } from 'sequelize';
 import { errorMessage } from '../common/constant/error';
 import { ICollectionProp } from '../common/types/collection';
 import ApiError from '../exceptions/ApiError';
@@ -27,6 +28,13 @@ class CollectionPropService {
 	async createItemCollectionProp(collectionId: number, collectionPropId: number) {
 		const newProp = await ItemCollectionProp.create({ collectionId, collectionPropId });
 		return newProp;
+	}
+
+	async getItemCollectionProps(collectionId: number) {
+		const itemCollectionProps = await ItemCollectionProp.findAll({ where: { collectionId } });
+		const propIds = itemCollectionProps.map(prop => prop.getDataValue('collectionPropId'));
+		const collectionProps = await CollectionProp.findAll({ where: { id: { [Op.in]: propIds } } });
+		return collectionProps;
 	}
 }
 

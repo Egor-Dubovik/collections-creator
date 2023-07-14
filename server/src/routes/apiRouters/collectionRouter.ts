@@ -5,6 +5,7 @@ import fileUpload from '../../utils/multer';
 const collectionRouter = Router({});
 
 collectionRouter.get('/', collectionController.getAll);
+collectionRouter.get('/props', collectionController.getProps);
 collectionRouter.get('/user', collectionController.getAllByUserId);
 collectionRouter.post('/', fileUpload.single('image'), collectionController.create);
 collectionRouter.post('/prop', collectionController.createProp);
