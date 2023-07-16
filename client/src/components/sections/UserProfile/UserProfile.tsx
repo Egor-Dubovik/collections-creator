@@ -5,7 +5,7 @@ import Image from 'next/image';
 import useUserStore from '../../../store/UserStore';
 import styles from './UserProfile.module.css';
 import CollectionModel from '@/components/modals/CollectionModel';
-import { getAvatarPath } from '@/utils/getAvatarPath';
+import { getImagePath } from '@/utils/getImagePath';
 
 const UserProfile: FC = () => {
 	const user = useUserStore.use.user();
@@ -22,7 +22,7 @@ const UserProfile: FC = () => {
 					<div className={styles.userInfoContent}>
 						<div className={styles.image}>
 							<Image
-								src={BASE_URL + getAvatarPath(user?.avatar)}
+								src={BASE_URL + getImagePath(user?.avatar)}
 								style={{ borderRadius: '10px' }}
 								alt='avatar'
 								priority={true}

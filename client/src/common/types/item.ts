@@ -1,19 +1,23 @@
 import { ICollectionProp } from './collection';
 
+export type TypeOrder = 'asc' | 'desc';
+
 export interface IItemRegisterData {
 	name: string;
 	props: IItemProp[];
 	image: string;
 }
 
-export interface IItemReqData extends IItemRegisterData {
-	collectionId: number;
-}
-
-export interface IItemResData extends IItemReqData {
+export interface IItemData extends IItemRegisterData {
 	id: number;
+	collectionId: number;
 	updatedAt: string;
 	createdAt: string;
+}
+
+export interface IItemResData extends IItemRegisterData {
+	items: IItemData[];
+	hasNextItem: boolean;
 }
 
 export interface IItemProp extends ICollectionProp {
@@ -23,8 +27,8 @@ export interface IItemProp extends ICollectionProp {
 export interface IItemQuery {
 	offset: number;
 	limit: number;
-	collectionId: number;
-	order: 'desc' | 'asc';
-	tags: string[];
+	order: TypeOrder;
+	tags?: string[];
 	isCommented?: boolean;
+	collectionId?: number;
 }

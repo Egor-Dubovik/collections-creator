@@ -1,13 +1,17 @@
-import { useState } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 import { Button, Heading, useDisclosure } from '@chakra-ui/react';
-import styles from './CollectionToolbar.module.css';
+import { TypeOrder } from '@/common/types/item';
 import ItemModel from '@/components/modals/ItemModel';
+import OderSelect from '@/components/selects/OderSelect';
+import styles from './CollectionToolbar.module.css';
 
 interface IToolbarProps {
 	collectionId: number;
+	order: TypeOrder;
+	setOrder: Dispatch<SetStateAction<TypeOrder>>;
 }
 
-const CollectionToolbar = ({ collectionId }: IToolbarProps) => {
+const CollectionToolbar = ({ collectionId, order, setOrder }: IToolbarProps) => {
 	const { isOpen, onOpen, onClose } = useDisclosure();
 
 	return (
@@ -19,6 +23,7 @@ const CollectionToolbar = ({ collectionId }: IToolbarProps) => {
 				<div>
 					<ItemModel collectionId={collectionId} isOpen={isOpen} onClose={onClose} />
 					<Button onClick={() => onOpen()}>+ add item</Button>
+					<OderSelect setOrder={setOrder} order={order} />
 				</div>
 			</div>
 		</section>

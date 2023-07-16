@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation';
 import UserMenuList from './menuList/UserMenuList';
 import useUserStore from '../store/UserStore';
 import { BASE_URL } from '@/common/constant/api';
-import { getAvatarPath } from '@/utils/getAvatarPath';
+import { getImagePath } from '@/utils/getImagePath';
 
 interface IUserMenuProps {
 	handleSwitch?: () => void;
@@ -41,7 +41,7 @@ const UserMenu: FC<IUserMenuProps> = () => {
 						borderColor={getBorderColor()}
 						boxSizing='content-box'
 						borderRadius='full'
-						src={BASE_URL + getAvatarPath(user?.avatar)}
+						src={BASE_URL + getImagePath(user?.avatar)}
 						alt='avatar menu preview'
 					/>
 				</MenuButton>

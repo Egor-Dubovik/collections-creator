@@ -1,12 +1,14 @@
 import { MouseEvent } from 'react';
 import { BASE_URL } from '@/common/constant/api';
 import { ICollectionResponse } from '@/common/types/collection';
-import { getAvatarPath } from '@/utils/getAvatarPath';
+import { getImagePath } from '@/utils/getImagePath';
 import { getDateFromString } from '@/utils/getDateFromString';
 import { DeleteIcon } from '@chakra-ui/icons';
 import Image from 'next/image';
 import styles from './CollectionItem.module.css';
 import useDeleteCollection from '@/hooks/collection/useDelete';
+import Link from 'next/link';
+import { ROUTES } from '@/common/types/api';
 import {
 	Box,
 	Grid,
@@ -17,8 +19,6 @@ import {
 	IconButton,
 	useBreakpointValue,
 } from '@chakra-ui/react';
-import Link from 'next/link';
-import { ROUTES } from '@/common/types/api';
 
 interface ICollectionItemProps {
 	collection: ICollectionResponse;
@@ -50,7 +50,7 @@ const CollectionItem = ({ collection }: ICollectionItemProps) => {
 					<GridItem>
 						<Box className={styles.image}>
 							<Image
-								src={BASE_URL + getAvatarPath(collection.image, 'collection.png')}
+								src={BASE_URL + getImagePath(collection.image, 'collection.png')}
 								alt='collection image'
 								fill
 							/>
@@ -62,7 +62,7 @@ const CollectionItem = ({ collection }: ICollectionItemProps) => {
 								{collection.title}
 							</Heading>
 						</Grid>
-						<Text>{getDateFromString(collection.createdAt)}</Text>
+						<Text>{getDateFromString(collection.createdAt as string)}</Text>
 					</GridItem>
 					<GridItem colSpan={isMobileResolution ? 2 : 1}>
 						<IconButton

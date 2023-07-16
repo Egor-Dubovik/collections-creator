@@ -51,13 +51,19 @@ const ItemModel = ({ collectionId, isOpen, onClose }: IItemModelProps) => {
 		create(formData);
 	};
 
+	const resetForm = () => {
+		setIsShowSuccessMess(true);
+		setSelectedFile(null);
+		setProps([]);
+		reset();
+	};
+
 	useEffect(() => {
 		if (isSuccess) {
-			setIsShowSuccessMess(true);
+			resetForm();
 			const timer = setTimeout(() => {
 				setIsShowSuccessMess(false);
 			}, 3000);
-
 			return () => clearTimeout(timer);
 		}
 	}, [isSuccess]);
