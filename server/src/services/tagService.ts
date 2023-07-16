@@ -5,6 +5,11 @@ import ApiError from '../exceptions/ApiError';
 import { ItemTag, Tag } from '../models/all/TagModel';
 
 class TagService {
+	async getAll() {
+		const tags = await Tag.findAll();
+		return tags;
+	}
+
 	async getAllByItemId(itemId: number) {
 		const itemTags = await ItemTag.findAll({ where: { itemId } });
 		const tagIds = itemTags.map(tag => tag.getDataValue('tagId'));

@@ -9,8 +9,7 @@ class ItemController {
 		try {
 			const { name, props, collectionId } = req.body;
 			const propsArray = JSON.parse(props);
-			if (!name || !collectionId || !propsArray.length)
-				return next(ApiError.badRequest(errorMessage.notAllFields));
+			if (!name || !collectionId) return next(ApiError.badRequest(errorMessage.notAllFields));
 			const newItem = await itemService.create(name, propsArray, req.file?.filename, collectionId);
 			return res.json(newItem);
 		} catch (err) {
@@ -44,14 +43,13 @@ class ItemController {
 		try {
 			const { collectionId, offset, limit, order, isCommented, tags } = req.query;
 			const tagsArray = tags ? JSON.parse(tags as string) : tags;
-			if (!collectionId || !offset || !limit || !order)
-				return next(ApiError.badRequest(errorMessage.notAllFields));
+			if (!offset || !limit || !order) return next(ApiError.badRequest(errorMessage.notAllFields));
 			const items = await itemService.getItems({
 				collectionId: Number(collectionId),
 				offset: Number(offset),
 				limit: Number(limit),
 				order: order as TypeOrder,
-				isCommented: isCommented as unknown as boolean,
+				isCommented: JSON.parse(isCommented as string) as boolean,
 				tags: tagsArray,
 			});
 			return res.json(items);

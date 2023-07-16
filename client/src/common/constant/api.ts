@@ -13,4 +13,6 @@ export const API = {
 	userCollection: '/collection/user',
 	item: '/item',
 	collectionProps: '/collection/props',
+	tag: '/tag',
+	itemTag: '/tag/item',
 };

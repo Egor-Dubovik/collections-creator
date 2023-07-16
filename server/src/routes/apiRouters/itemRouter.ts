@@ -5,9 +5,9 @@ import fileUpload from '../../utils/multer';
 
 const itemRoute = Router({});
 
-itemRoute.get('/', authMiddleware, itemController.getByParams);
+itemRoute.get('/', itemController.getByParams);
 itemRoute.get('/recent', itemController.getRecentItems);
-itemRoute.post('/', fileUpload.single('image'), itemController.create);
-itemRoute.post('/prop', itemController.createProp);
+itemRoute.post('/', authMiddleware, fileUpload.single('image'), itemController.create);
+itemRoute.post('/prop', authMiddleware, itemController.createProp);
 
 export default itemRoute;

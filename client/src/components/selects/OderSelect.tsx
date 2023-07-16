@@ -1,6 +1,6 @@
 import { ChangeEvent, Dispatch, SetStateAction } from 'react';
 import { TypeOrder } from '@/common/types/item';
-import { Select } from '@chakra-ui/react';
+import { Box, Select, Text } from '@chakra-ui/react';
 
 interface IOderSelectProps {
 	order: TypeOrder;
@@ -13,10 +13,13 @@ const OderSelect = ({ order, setOrder }: IOderSelectProps) => {
 	};
 
 	return (
-		<Select mt={3} value={order} onChange={event => handleChange(event)}>
-			<option value={'desc'}>descending</option>
-			<option value={'asc'}>ascending</option>
-		</Select>
+		<Box>
+			<Text>Sorting by date creating</Text>
+			<Select mt={1} value={order} onChange={event => handleChange(event)}>
+				<option value={'desc'}>descending</option>
+				<option value={'asc'}>ascending</option>
+			</Select>
+		</Box>
 	);
 };
 

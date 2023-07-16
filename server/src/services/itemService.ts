@@ -40,7 +40,10 @@ class ItemService {
 	}
 
 	async getTotalItemsCount(collectionId: number, filters: Includeable[], include: Includeable[]) {
-		const total = await Item.count({ where: { collectionId }, include: [...filters, ...include] });
+		const total = await Item.count({
+			where: collectionId ? { collectionId } : undefined,
+			include: [...filters, ...include],
+		});
 		return total;
 	}
 
@@ -49,7 +52,7 @@ class ItemService {
 		const filters = [] as Includeable[];
 		const include = [] as Includeable[];
 
-		if (!!isCommented) {
+		if (isCommented) {
 			const commentFilter = filterService.createComment();
 			filters.push(commentFilter);
 		}
@@ -63,7 +66,7 @@ class ItemService {
 		const hasNextItem = offset + limit < totalItemsCount;
 
 		const items = await Item.findAll({
-			where: { collectionId },
+			where: collectionId ? { collectionId } : undefined,
 			include: [...filters, ...include],
 			order: [['createdAt', order === 'desc' ? 'DESC' : 'ASC']],
 			offset,

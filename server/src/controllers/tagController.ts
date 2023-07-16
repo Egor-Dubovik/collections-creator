@@ -16,6 +16,15 @@ class TagController {
 		}
 	}
 
+	async getAll(req: Request, res: Response, next: NextFunction) {
+		try {
+			const tags = await tagService.getAll();
+			return res.json(tags);
+		} catch (err) {
+			next(err);
+		}
+	}
+
 	async getAllByItemId(req: Request, res: Response, next: NextFunction) {
 		try {
 			const { itemId } = req.query;

@@ -14,7 +14,13 @@ const CollectionPage = () => {
 
 	return (
 		<main className='main'>
-			<CollectionToolbar collectionId={id} order={order} setOrder={setOrder} />
+			<CollectionToolbar
+				collectionId={id}
+				order={order}
+				setOrder={setOrder}
+				isCommented={isCommented}
+				setIsCommented={setIsCommented}
+			/>
 			<CollectionItems order={order} isCommented={isCommented} tags={tags} collectionId={id} />
 		</main>
 	);
