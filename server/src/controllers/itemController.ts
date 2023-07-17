@@ -28,6 +28,26 @@ class ItemController {
 		}
 	}
 
+	async getAll(req: Request, res: Response, next: NextFunction) {
+		try {
+			const newItem = await itemService.getAll();
+			return res.json(newItem);
+		} catch (err) {
+			next(err);
+		}
+	}
+
+	async getOne(req: Request, res: Response, next: NextFunction) {
+		try {
+			const { id } = req.query;
+			if (!id) return next(ApiError.badRequest(errorMessage.notAllFields));
+			const newItem = await itemService.getOne(Number(id));
+			return res.json(newItem);
+		} catch (err) {
+			next(err);
+		}
+	}
+
 	async getRecentItems(req: Request, res: Response, next: NextFunction) {
 		try {
 			const { offset, limit } = req.query;

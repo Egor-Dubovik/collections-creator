@@ -24,6 +24,16 @@ class ItemService {
 		return newProp;
 	}
 
+	async getAll() {
+		const items = await Item.findAll();
+		return items;
+	}
+
+	async getOne(id: number) {
+		const item = await Item.findOne({ where: { id } });
+		return item;
+	}
+
 	async getRecentItems(offset: number, initLimit: number) {
 		const limit = initLimit + 1;
 		const items = await Item.findAll({ limit, offset, order: [['createdAt', 'DESC']] });
