@@ -1,9 +1,67 @@
 .collectionToolbar {
-	padding: 15px 0;
+	padding: 15px 0 5px;
 }
 
-.content {
+.tools {
 	display: flex;
-	align-items: end;
+	flex-direction: column;
+	gap: 12px;
+}
+
+.actionTools {
+	display: flex;
+	align-items: center;
 	gap: 10px;
+}
+
+.sortTools {
+	display: flex;
+	gap: 20px;
+}
+
+.mainTools {
+	flex: 0 1 295px;
+	padding: 10px 12px;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	border-width: 1px;
+	border-style: solid;
+	border-radius: 5px;
+}
+
+.secondTools {
+	position: relative;
+	align-self: stretch;
+	flex: 0 1 59%;
+}
+
+@media (max-width: 1400px) {
+	.mainTools {
+		flex: 0 1 31%;
+	}
+	.secondTools {
+		flex: 0 1 100%;
+	}
+}
+
+@media (max-width: 992px) {
+	.sortTools {
+		gap: 15px;
+	}
+	.mainTools {
+		flex: 0 1 47%;
+	}
+}
+
+@media (max-width: 768px) {
+	.sortTools {
+		flex-direction: column;
+	}
+	.mainTools {
+		flex: 0 1 auto;
+	}
+	.secondTools {
+		flex: 0 0 100px;
+	}
 }

@@ -28,7 +28,7 @@ export interface IItemQuery {
 	offset: number;
 	limit: number;
 	order: TypeOrder;
-	tags?: string[];
+	tags: string;
 	isCommented?: boolean;
 	collectionId?: number;
 }

@@ -14,7 +14,7 @@ const OderSelect = ({ order, setOrder }: IOderSelectProps) => {
 
 	return (
 		<Box>
-			<Text>Sorting by date creating</Text>
+			<Text fontWeight={600}>Sorting by date creating</Text>
 			<Select mt={1} value={order} onChange={event => handleChange(event)}>
 				<option value={'desc'}>descending</option>
 				<option value={'asc'}>ascending</option>

@@ -1,13 +1,14 @@
+import { useState, useEffect } from 'react';
+import { Box, Button, List, ListItem, Text, useColorMode } from '@chakra-ui/react';
 import { BASE_URL } from '@/common/constant/api';
 import { START_OFFSET, LIMIT } from '@/common/constant/item';
 import { IItemData, IItemResData, TypeOrder } from '@/common/types/item';
-import ItemService from '@/service/ItemService';
+import { ITag } from '@/common/types/tag';
 import { getDateFromString } from '@/utils/getDateFromString';
 import { getImagePath } from '@/utils/getImagePath';
-import { Box, Button, List, ListItem, Text, useColorMode } from '@chakra-ui/react';
+import ItemService from '@/service/ItemService';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState, useEffect } from 'react';
 import styles from './CollectionItems.module.css';
 
 interface IItemsProps {
@@ -28,7 +29,7 @@ const CollectionItems = ({ collectionId, order, isCommented, tags }: IItemsProps
 		const data = await ItemService.getByParams({
 			order,
 			offset,
-			tags,
+			tags: JSON.stringify(tags),
 			isCommented,
 			limit: LIMIT,
 			collectionId,

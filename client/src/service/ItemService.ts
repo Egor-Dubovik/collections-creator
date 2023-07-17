@@ -10,6 +10,7 @@ const ItemService = {
 	},
 
 	async getByParams(data: IItemQuery): Promise<IItemResData> {
+		console.log(data);
 		const response = await axios.get<IItemResData>(API_URL + API.item, {
 			params: data,
 		});
