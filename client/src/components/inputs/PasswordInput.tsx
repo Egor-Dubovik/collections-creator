@@ -36,6 +36,7 @@ const PasswordInput: FC<IPasswordProps> = ({ register, error }) => {
 					pr='4.5rem'
 					type={show ? 'text' : 'password'}
 					placeholder='password'
+					name='password'
 				/>
 				{error && <FormErrorMessage>{error.message}</FormErrorMessage>}
 			</FormControl>

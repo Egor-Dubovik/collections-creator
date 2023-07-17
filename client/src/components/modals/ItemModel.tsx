@@ -74,7 +74,7 @@ const ItemModel = ({ collectionId, isOpen, onClose }: IItemModelProps) => {
 			<ModalContent>
 				<ModalHeader>Create new item</ModalHeader>
 				<ModalCloseButton />
-				<form onSubmit={handleSubmit(onSubmit)}>
+				<form id='item-form' onSubmit={handleSubmit(onSubmit)}>
 					<ModalBody pb={6}>
 						{isShowSuccessMess && (
 							<Text mb={1} color='green.400'>

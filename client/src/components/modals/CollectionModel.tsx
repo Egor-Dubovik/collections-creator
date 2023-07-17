@@ -74,6 +74,7 @@ const CollectionModel: FC<ICollectionModelProps> = ({ isOpen, onClose }) => {
 								{...register('title', { required: 'Name is required' })}
 								type='text'
 								placeholder='name'
+								name='name'
 							/>
 						</FormControl>
 						<TopicSelect control={control} />
@@ -81,6 +82,7 @@ const CollectionModel: FC<ICollectionModelProps> = ({ isOpen, onClose }) => {
 							<Textarea
 								{...register('description', { required: 'Description is required' })}
 								placeholder='description'
+								name='description'
 							/>
 						</FormControl>
 						<FileInput fileName='image' onFileUpload={handleFileUpload} />

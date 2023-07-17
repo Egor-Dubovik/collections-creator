@@ -19,6 +19,7 @@ const EmailInput: FC<IEmailProps> = ({ register, error }) => {
 						message: 'Please enter valid email! Example: test@gmail.com',
 					},
 				})}
+				name='email'
 				type='email'
 				placeholder='email'
 			/>

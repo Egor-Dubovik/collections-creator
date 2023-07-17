@@ -40,6 +40,7 @@ const CollectionProps: FC<ICollectionProps> = ({ props, setProps }) => {
 							onChange={event => setName(event.target.value)}
 							type='text'
 							placeholder='name'
+							name='name'
 						/>
 					</FormControl>
 				</HStack>

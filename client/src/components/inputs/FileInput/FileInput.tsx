@@ -1,5 +1,5 @@
 import React, { FC, useState, useEffect, DragEvent } from 'react';
-import { Box, Highlight, Text, Heading, IconButton, useColorMode } from '@chakra-ui/react';
+import { Box, Text, Heading, IconButton, useColorMode } from '@chakra-ui/react';
 import styles from './FileInput.module.css';
 import { DeleteIcon } from '@chakra-ui/icons';
 
@@ -38,6 +38,7 @@ const FileInput: FC<FileInputProps> = ({ onFileUpload, fileName }) => {
 	const addFileHandler = (): void => {
 		const input = document.createElement('input');
 		input.type = 'file';
+		input.name = 'file';
 		input.accept = '.jpg, .png, .webp';
 		input.onchange = onInputChange;
 		input.click();

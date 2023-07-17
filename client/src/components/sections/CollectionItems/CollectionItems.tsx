@@ -1,9 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Box, Button, List, ListItem, Text, useColorMode } from '@chakra-ui/react';
 import { BASE_URL } from '@/common/constant/api';
 import { START_OFFSET, LIMIT } from '@/common/constant/item';
 import { IItemData, IItemResData, TypeOrder } from '@/common/types/item';
-import { ITag } from '@/common/types/tag';
 import { getDateFromString } from '@/utils/getDateFromString';
 import { getImagePath } from '@/utils/getImagePath';
 import ItemService from '@/service/ItemService';
@@ -25,7 +24,7 @@ const CollectionItems = ({ collectionId, order, isCommented, tags }: IItemsProps
 	const [offset, setOffset] = useState<number>(START_OFFSET);
 	const { colorMode } = useColorMode();
 
-	const getItems = async () => {
+	const getItems = useCallback(async () => {
 		const data = await ItemService.getByParams({
 			order,
 			offset,
@@ -35,7 +34,7 @@ const CollectionItems = ({ collectionId, order, isCommented, tags }: IItemsProps
 			collectionId,
 		});
 		return data;
-	};
+	}, [order, offset, tags, isCommented, collectionId]);
 
 	const handleShowMore = async () => {
 		setOffset(offset + LIMIT);
