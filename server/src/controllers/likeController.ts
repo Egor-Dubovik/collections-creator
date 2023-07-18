@@ -25,6 +25,17 @@ class LikeController {
 			next(err);
 		}
 	}
+
+	async delete(req: Request, res: Response, next: NextFunction) {
+		try {
+			const { userId } = req.query;
+			if (!userId) return next(ApiError.badRequest(errorMessage.notAllFields));
+			const likesData = await likeService.delete(userId as string);
+			return res.json(likesData);
+		} catch (err) {
+			next(err);
+		}
+	}
 }
 
 export default new LikeController();

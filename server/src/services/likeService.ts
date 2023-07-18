@@ -1,6 +1,3 @@
-import { Model } from 'sequelize';
-import { errorMessage } from '../common/constant/error';
-import ApiError from '../exceptions/ApiError';
 import Like from '../models/all/LikeModule';
 
 class LikeService {
@@ -12,6 +9,11 @@ class LikeService {
 	async getItemLikes(itemId: number) {
 		const likes = await Like.findAll({ where: { itemId } });
 		return likes;
+	}
+
+	async delete(userId: string) {
+		const number = await Like.destroy({ where: { userId } });
+		return !!number;
 	}
 }
 

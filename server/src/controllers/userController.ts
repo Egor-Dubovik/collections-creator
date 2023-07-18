@@ -40,6 +40,17 @@ class UserController {
 			next(err);
 		}
 	}
+
+	async getUser(req: Request, res: Response, next: NextFunction) {
+		try {
+			const { id } = req.query;
+			if (!id) ApiError.badRequest(errorMessage.invalidToken);
+			const user = await userService.getUserById(id as string);
+			return res.json(user);
+		} catch (err) {
+			next(err);
+		}
+	}
 }
 
 export default new UserController();

@@ -1,4 +1,3 @@
-import itemService from '../services/itemService';
 import { NextFunction, Request, Response } from 'express';
 import { errorMessage } from '../common/constant/error';
 import ApiError from '../exceptions/ApiError';

@@ -15,4 +15,6 @@ export const errorMessage = {
 	invalidToken:
 		'Invalid token, most likely you are trying to log out of an account to which you do not have access',
 	noCollection: 'The collection with the given id does not exist',
+	notFound: 'not found',
+	noUser: 'User with given id does not exist',
 };

@@ -29,9 +29,16 @@ class ItemService {
 		return items;
 	}
 
+	// async getOne(id: number) {
+	// 	const items = await Item.findOne({ where: { id } });
+	// 	return items;
+	// }
+
 	async getOne(id: number) {
 		const item = await Item.findOne({ where: { id } });
-		return item;
+		if (!item) throw ApiError.badRequest(errorMessage.notFound);
+		const itemProps = await ItemProp.findAll({ where: { itemId: id } });
+		return { item, props: itemProps };
 	}
 
 	async getRecentItems(offset: number, initLimit: number) {

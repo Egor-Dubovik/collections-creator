@@ -32,6 +32,11 @@ class UserService {
 		const token = await tokenService.removeToken(refreshToken);
 		return token;
 	}
+
+	async getUserById(id: string) {
+		const user = await User.findOne({ where: { id } });
+		return user;
+	}
 }
 
 export default new UserService();

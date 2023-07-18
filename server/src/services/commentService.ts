@@ -1,8 +1,14 @@
+import { errorMessage } from '../common/constant/error';
+import ApiError from '../exceptions/ApiError';
 import Comment from '../models/all/CommentModel';
+import User from '../models/all/UserModel';
 
 class CommentService {
 	async create(value: string, itemId: number, userId: number) {
-		const newItem = await Comment.create({ value, itemId, userId });
+		const user = await User.findOne({ where: { id: userId } });
+		if (!user) throw ApiError.badRequest(errorMessage.noUser);
+		const userNickName = user.getDataValue('nickName');
+		const newItem = await Comment.create({ value, itemId, userId, userNickName });
 		return newItem;
 	}
 
