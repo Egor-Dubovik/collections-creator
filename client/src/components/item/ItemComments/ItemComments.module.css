@@ -1,0 +1,16 @@
+.comments {
+	max-width: 500px;
+}
+
+.title {
+	font-size: 22px;
+	font-weight: 600;
+	letter-spacing: 1px;
+	margin-bottom: 5px;
+}
+
+@media (max-width: 768px) {
+	.comments {
+		max-width: 100%;
+	}
+}

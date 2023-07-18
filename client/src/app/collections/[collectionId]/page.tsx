@@ -20,7 +20,6 @@ const CollectionPage = () => {
 				setOrder={setOrder}
 				isCommented={isCommented}
 				setIsCommented={setIsCommented}
-				tags={tags}
 				setTags={setTags}
 			/>
 			<CollectionItems order={order} isCommented={isCommented} tags={tags} collectionId={id} />

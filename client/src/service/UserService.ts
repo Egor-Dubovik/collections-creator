@@ -19,6 +19,11 @@ const UserService = {
 		return response.data;
 	},
 
+	async getUser(id: number) {
+		const response = await $api.get<number>(API.user, { params: { id } });
+		return response.data;
+	},
+
 	async refreshToken() {
 		const response = await axios.get<IAuthResponse>(`${API_URL}${API.refresh}`, {
 			withCredentials: true,

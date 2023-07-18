@@ -2,7 +2,7 @@ import { MouseEvent } from 'react';
 import { BASE_URL } from '@/common/constant/api';
 import { ICollectionResponse } from '@/common/types/collection';
 import { getImagePath } from '@/utils/getImagePath';
-import { getDateFromString } from '@/utils/getDateFromString';
+import { getDateAndTimeFromString } from '@/utils/getDateFromString';
 import { DeleteIcon } from '@chakra-ui/icons';
 import Image from 'next/image';
 import styles from './CollectionItem.module.css';
@@ -62,7 +62,7 @@ const CollectionItem = ({ collection }: ICollectionItemProps) => {
 								{collection.title}
 							</Heading>
 						</Grid>
-						<Text>{getDateFromString(collection.createdAt as string)}</Text>
+						<Text>{getDateAndTimeFromString(collection.createdAt as string)}</Text>
 					</GridItem>
 					<GridItem colSpan={isMobileResolution ? 2 : 1}>
 						<IconButton

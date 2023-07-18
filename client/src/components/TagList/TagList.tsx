@@ -1,19 +1,18 @@
-import { Dispatch, SetStateAction, useCallback, useEffect, useState } from 'react';
+import { Dispatch, SetStateAction, useCallback, useEffect, useRef, useState } from 'react';
 import { List, ListItem, useColorMode } from '@chakra-ui/react';
 import { ITag } from '@/common/types/tag';
 import TagService from '@/service/TagService';
 import styles from './TagList.module.css';
 
 interface ITagsProps {
-	tags: string[];
 	setTags: Dispatch<SetStateAction<string[]>>;
 }
 
-const TagList = ({ tags, setTags }: ITagsProps) => {
+const TagList = ({ setTags }: ITagsProps) => {
 	const [allTags, setAllTags] = useState<ITag[]>([]);
 	const [activeTags, setActiveTags] = useState<string[]>([]);
+	const debounceTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 	const { colorMode } = useColorMode();
-	let debounceTimer: ReturnType<typeof setTimeout> | null = null;
 
 	const getTags = async () => {
 		const tags = await TagService.getAll();
@@ -29,8 +28,8 @@ const TagList = ({ tags, setTags }: ITagsProps) => {
 	};
 
 	const debounceSetTags = useCallback(() => {
-		if (debounceTimer) clearTimeout(debounceTimer);
-		debounceTimer = setTimeout(() => {
+		if (debounceTimer.current) clearTimeout(debounceTimer.current);
+		debounceTimer.current = setTimeout(() => {
 			setTags(activeTags);
 		}, 250);
 	}, [activeTags]);
@@ -41,6 +40,11 @@ const TagList = ({ tags, setTags }: ITagsProps) => {
 
 	useEffect(() => {
 		getTags();
+		return () => {
+			if (debounceTimer.current) {
+				clearTimeout(debounceTimer.current);
+			}
+		};
 	}, []);
 
 	return (

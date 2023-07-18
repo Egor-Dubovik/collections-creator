@@ -1,11 +1,23 @@
 import { API, API_URL } from '@/common/constant/api';
-import { IItemQuery, IItemResData, IItemData } from '@/common/types/item';
+import { IItemQuery, IItem, IItemData, IItemResData } from '@/common/types/item';
 import axios from 'axios';
 import $api from '.';
 
 const ItemService = {
-	async create(data: FormData): Promise<IItemData> {
-		const response = await $api.post<IItemData>(API.item, data);
+	async create(data: FormData): Promise<IItem> {
+		const response = await $api.post<IItem>(API.item, data);
+		return response.data;
+	},
+
+	async getAll(): Promise<IItem[]> {
+		const response = await axios.get<IItem[]>(API_URL + API.allItems);
+		return response.data;
+	},
+
+	async getOneById(id: string): Promise<IItemData> {
+		const response = await axios.get<IItemData>(API_URL + API.oneItem, {
+			params: { id },
+		});
 		return response.data;
 	},
 

@@ -8,15 +8,22 @@ export interface IItemRegisterData {
 	image: string;
 }
 
-export interface IItemData extends IItemRegisterData {
+export interface IItem {
 	id: number;
+	name: string;
+	image: string;
 	collectionId: number;
 	updatedAt: string;
 	createdAt: string;
 }
 
+export interface IItemData {
+	item: IItem;
+	props: IItemProp[];
+}
+
 export interface IItemResData extends IItemRegisterData {
-	items: IItemData[];
+	items: IItem[];
 	hasNextItem: boolean;
 }
 

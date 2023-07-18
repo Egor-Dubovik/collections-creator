@@ -2,9 +2,10 @@ import { useState, useEffect, useCallback } from 'react';
 import { Box, Button, List, ListItem, Text, useColorMode } from '@chakra-ui/react';
 import { BASE_URL } from '@/common/constant/api';
 import { START_OFFSET, LIMIT } from '@/common/constant/item';
-import { IItemData, IItemResData, TypeOrder } from '@/common/types/item';
-import { getDateFromString } from '@/utils/getDateFromString';
+import { IItem, IItemResData, TypeOrder } from '@/common/types/item';
+import { getDateAndTimeFromString } from '@/utils/getDateFromString';
 import { getImagePath } from '@/utils/getImagePath';
+import { ROUTES } from '@/common/types/api';
 import ItemService from '@/service/ItemService';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -18,7 +19,7 @@ interface IItemsProps {
 }
 
 const CollectionItems = ({ collectionId, order, isCommented, tags }: IItemsProps) => {
-	const [items, setItems] = useState<IItemData[]>([]);
+	const [items, setItems] = useState<IItem[]>([]);
 	const [isHasNext, setIsHasNext] = useState(false);
 	const [isAddingMore, setIsAddingMore] = useState(false);
 	const [offset, setOffset] = useState<number>(START_OFFSET);
@@ -71,7 +72,7 @@ const CollectionItems = ({ collectionId, order, isCommented, tags }: IItemsProps
 							className={styles.item}
 							backgroundColor={colorMode !== 'dark' ? 'gray.200' : 'gray.700'}
 						>
-							<Link href={''} className={styles.link}>
+							<Link href={`${ROUTES.ITEM}/${item.id}`} className={styles.link}>
 								<Box className={styles.imageWrapper}>
 									<Image
 										src={BASE_URL + getImagePath(item.image, 'item.jpg')}
@@ -82,7 +83,7 @@ const CollectionItems = ({ collectionId, order, isCommented, tags }: IItemsProps
 									/>
 								</Box>
 								<h3 className={styles.title}>{item.name}</h3>
-								<Text>{getDateFromString(item.createdAt)}</Text>
+								<Text>{getDateAndTimeFromString(item.createdAt)}</Text>
 							</Link>
 						</ListItem>
 					))}
