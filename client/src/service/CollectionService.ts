@@ -9,10 +9,18 @@ const CollectionService = {
 		return response.data;
 	},
 
+	async getOne(id: number): Promise<ICollectionResponse> {
+		const response = await axios.get<ICollectionResponse>(API_URL + API.oneCollection, {
+			params: { id },
+		});
+		return response.data;
+	},
+
 	async getAll(): Promise<ICollectionResponse[]> {
 		const response = await axios.get<ICollectionResponse[]>(API_URL + API.collection);
 		return response.data;
 	},
+
 	async getAllByUserId(id: number): Promise<ICollectionResponse[]> {
 		const response = await $api.get<ICollectionResponse[]>(API_URL + API.userCollection, {
 			params: { id },

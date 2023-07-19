@@ -8,12 +8,6 @@
 	gap: 12px;
 }
 
-.actionTools {
-	display: flex;
-	align-items: center;
-	gap: 10px;
-}
-
 .sortTools {
 	display: flex;
 	gap: 20px;

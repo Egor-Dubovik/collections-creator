@@ -17,8 +17,10 @@ export interface ICollectionRegister {
 export interface ICollectionResponse {
 	id: number;
 	title: string;
+	description: string;
 	image: string | null;
-	collectionId: number;
+	topicId: number;
+	userId: number;
 	updatedAt?: string;
 	createdAt?: string;
 }
