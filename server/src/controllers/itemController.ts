@@ -7,10 +7,16 @@ import { TypeOrder } from '../common/types/item';
 class ItemController {
 	async create(req: Request, res: Response, next: NextFunction) {
 		try {
-			const { name, props, collectionId } = req.body;
-			const propsArray = JSON.parse(props);
-			if (!name || !collectionId) return next(ApiError.badRequest(errorMessage.notAllFields));
-			const newItem = await itemService.create(name, propsArray, req.file?.filename, collectionId);
+			const { name, props, collectionId, tags } = req.body;
+			if (!name || !collectionId || !tags)
+				return next(ApiError.badRequest(errorMessage.notAllFields));
+			const newItem = await itemService.create({
+				name,
+				props: JSON.parse(props),
+				image: req.file?.filename,
+				tags: JSON.parse(tags),
+				collectionId,
+			});
 			return res.json(newItem);
 		} catch (err) {
 			next(err);

@@ -1,15 +1,19 @@
 import { OrderItem, Includeable } from 'sequelize';
 import { errorMessage } from '../common/constant/error';
 import { IItemProp } from '../common/types/collection';
-import { IItemsData, TypeOrder } from '../common/types/item';
-import ApiError from '../exceptions/ApiError';
+import { IItemCreationProps, IItemsData, TypeOrder } from '../common/types/item';
 import { Item, ItemProp } from '../models/all/ItemModel';
+import ApiError from '../exceptions/ApiError';
 import filterService from './filterService';
+import tagService from './tagService';
 
 class ItemService {
-	async create(name: string, props: IItemProp[], image: string | undefined, collectionId: string) {
+	async create(data: IItemCreationProps) {
+		const { name, image, props, tags, collectionId } = data;
 		const newItem = await Item.create({ name, collectionId, image });
-		await this.createItemProps(props, newItem.getDataValue('id'));
+		const itemId = newItem.getDataValue('id');
+		await this.createItemProps(props, itemId);
+		await tagService.createTags(tags, itemId);
 		return newItem;
 	}
 
@@ -28,11 +32,6 @@ class ItemService {
 		const items = await Item.findAll();
 		return items;
 	}
-
-	// async getOne(id: number) {
-	// 	const items = await Item.findOne({ where: { id } });
-	// 	return items;
-	// }
 
 	async getOne(id: number) {
 		const item = await Item.findOne({ where: { id } });

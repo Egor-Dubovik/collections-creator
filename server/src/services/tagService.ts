@@ -18,6 +18,8 @@ class TagService {
 	}
 
 	async createTags(tagValues: string[], itemId: number) {
+		console.log('------------------');
+		console.log(tagValues);
 		const existingTags = await this.findExistingTags(tagValues);
 		const newTags = await this.createMissingTags(tagValues, existingTags);
 		await this.createItemTags(itemId, [...existingTags, ...newTags]);
