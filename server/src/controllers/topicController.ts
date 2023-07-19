@@ -17,7 +17,7 @@ class TopicController {
 		try {
 			const { id } = req.query;
 			if (!id) return next(ApiError.badRequest(errorMessage.notAllFields));
-			const topic = await topicService.getOneById(Number(id));
+			const topic = await topicService.getOneById(id as string);
 			return res.json(topic);
 		} catch (err) {
 			next(err);

@@ -7,15 +7,13 @@ import collectionService from '../services/collectionService';
 class CollectionController {
 	async create(req: Request, res: Response, next: NextFunction) {
 		try {
-			const { title, description, topicId, userId, props, image } = req.body;
-
+			const { title, description, topicId, userId, props } = req.body;
 			if (!title || !description || !topicId || !userId || !props.length)
 				return next(ApiError.badRequest(errorMessage.notAllFields));
 			const userData = await collectionService.create(
 				{ title, topicId, description, userId, image: req.file?.filename },
 				JSON.parse(props)
 			);
-
 			return res.json(userData);
 		} catch (err) {
 			next(err);
@@ -28,6 +26,16 @@ class CollectionController {
 			if (!prop || !collectionId) return next(ApiError.badRequest(errorMessage.notAllFields));
 			const newProp = await collectionPropService.createOneProp(prop, collectionId);
 			return res.json(newProp);
+		} catch (err) {
+			next(err);
+		}
+	}
+
+	async getOne(req: Request, res: Response, next: NextFunction) {
+		try {
+			const { id } = req.query;
+			const collection = await collectionService.getOne(id as string);
+			return res.json(collection);
 		} catch (err) {
 			next(err);
 		}

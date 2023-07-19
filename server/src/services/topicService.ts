@@ -6,7 +6,7 @@ class TopicService {
 		return topics;
 	}
 
-	async getOneById(id: number) {
+	async getOneById(id: string) {
 		const topic = await Topic.findOne({ where: { id } });
 		return topic;
 	}

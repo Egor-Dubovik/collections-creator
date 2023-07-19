@@ -24,6 +24,11 @@ class CollectionService {
 		return propPromises;
 	}
 
+	async getOne(id: string) {
+		const propPromises = await Collection.findOne({ where: { id } });
+		return propPromises;
+	}
+
 	async getAllByUserId(userId: number) {
 		const propPromises = await Collection.findAll({ where: { userId } });
 		return propPromises;
