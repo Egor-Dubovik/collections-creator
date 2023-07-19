@@ -1,0 +1,8 @@
+.tagList {
+	margin-bottom: 10px;
+	max-height: 110px;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 7px;
+	overflow-y: auto;
+}

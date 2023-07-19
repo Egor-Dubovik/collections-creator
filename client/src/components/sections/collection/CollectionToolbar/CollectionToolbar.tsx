@@ -1,10 +1,10 @@
 import { Dispatch, SetStateAction } from 'react';
-import { Box, Button, Checkbox, Heading, useColorMode, useDisclosure } from '@chakra-ui/react';
+import { Box, Checkbox, useColorMode } from '@chakra-ui/react';
 import { TypeOrder } from '@/common/types/item';
-import ItemModel from '@/components/modals/ItemModel';
 import OderSelect from '@/components/selects/OderSelect';
+import TagList from '@/components/tags/TagList/TagList';
+import useGetTags from '@/hooks/tag/useGetTags';
 import styles from './CollectionToolbar.module.css';
-import TagList from '@/components/TagList/TagList';
 
 interface IToolbarProps {
 	order: TypeOrder;
@@ -21,6 +21,7 @@ const CollectionToolbar = ({
 	setOrder,
 	setIsCommented,
 }: IToolbarProps) => {
+	const { allTags, isLoading } = useGetTags();
 	const { colorMode } = useColorMode();
 
 	return (
@@ -38,7 +39,7 @@ const CollectionToolbar = ({
 							</Checkbox>
 						</Box>
 						<Box className={styles.secondTools}>
-							<TagList setTags={setTags} />
+							<TagList tags={allTags} setTags={setTags} loading={isLoading} />
 						</Box>
 					</Box>
 				</div>

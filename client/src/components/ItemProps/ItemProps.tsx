@@ -4,6 +4,7 @@ import { TypeProp } from '@/common/types/collection';
 import { IItemProp } from '@/common/types/item';
 import PropsContainer from '../PropsContainer/PropsContainer';
 import ItemNameAndTypeSelect from '../selects/ItemNameAndTypeSelect';
+import styles from './ItemProps.module.css';
 
 interface IItemProps {
 	collectionId: number;
@@ -38,7 +39,7 @@ const ItemProps = ({ collectionId, props, setProps }: IItemProps) => {
 		<div className='item-props'>
 			<PropsContainer props={props} handleDelete={handleDeleteProp} />
 			<div>
-				<HStack mb={3}>
+				<HStack className={styles.inputsBox}>
 					<ItemNameAndTypeSelect collectionId={collectionId} setType={setType} setName={setName} />
 					<FormControl>
 						<Input

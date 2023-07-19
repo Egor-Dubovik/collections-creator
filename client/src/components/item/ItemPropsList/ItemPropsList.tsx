@@ -1,5 +1,5 @@
 import { IItemProp } from '@/common/types/item';
-import { capitalizeFirstLetter } from '@/utils/capitalizeFirstLetter';
+import { capitalizeFirstLetter } from '@/utils/string/capitalizeFirstLetter';
 import { getDateAndTimeFromString } from '@/utils/getDateFromString';
 import styles from './ItemPropsList.module.css';
 

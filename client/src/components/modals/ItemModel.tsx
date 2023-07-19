@@ -5,9 +5,9 @@ import { MESSAGE } from '@/common/constant/message';
 import useCreateItem from '@/hooks/item/useCreateItem';
 import FileInput from '../inputs/FileInput/FileInput';
 import ItemProps from '../ItemProps/ItemProps';
+import InputTags from '../InputTags/InputTags';
 import {
 	Button,
-	FormControl,
 	Input,
 	Modal,
 	ModalBody,
@@ -28,6 +28,7 @@ interface IItemModelProps {
 const ItemModel = ({ collectionId, isOpen, onClose }: IItemModelProps) => {
 	const [selectedFile, setSelectedFile] = useState<File | null>(null);
 	const [props, setProps] = useState<IItemProp[]>([]);
+	const [itemTags, setItemTags] = useState<string[]>([]);
 	const [isShowSuccessMess, setIsShowSuccessMess] = useState(false);
 	const { register, handleSubmit, control, reset } = useForm<IItemRegisterData>();
 	const { create, isLoading, isSuccess, err } = useCreateItem();
@@ -42,6 +43,7 @@ const ItemModel = ({ collectionId, isOpen, onClose }: IItemModelProps) => {
 		formData.append('name', data.name);
 		formData.append('image', selectedFile as unknown as string);
 		formData.append('props', JSON.stringify(props));
+		formData.append('tags', JSON.stringify(itemTags));
 		formData.append('collectionId', String(collectionId));
 	};
 
@@ -55,6 +57,7 @@ const ItemModel = ({ collectionId, isOpen, onClose }: IItemModelProps) => {
 		setIsShowSuccessMess(true);
 		setSelectedFile(null);
 		setProps([]);
+		setItemTags([]);
 		reset();
 	};
 
@@ -82,13 +85,13 @@ const ItemModel = ({ collectionId, isOpen, onClose }: IItemModelProps) => {
 							</Text>
 						)}
 						{err && <Text color='tomato'>{err.message}</Text>}
-						<FormControl>
-							<Input
-								{...register('name', { required: 'Name is required' })}
-								type='text'
-								placeholder='name'
-							/>
-						</FormControl>
+						<Input
+							mb={2}
+							{...register('name', { required: 'Name is required' })}
+							type='text'
+							placeholder='name'
+						/>
+						<InputTags itemTags={itemTags} setItemTags={setItemTags} />
 						<FileInput fileName='image' onFileUpload={handleFileUpload} />
 						<ItemProps collectionId={collectionId} props={props} setProps={setProps} />
 					</ModalBody>

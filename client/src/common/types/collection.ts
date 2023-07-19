@@ -4,6 +4,7 @@ export interface ICollectionProp {
 	id?: number;
 	name: string;
 	type: TypeProp;
+	value?: string;
 	updatedAt?: string;
 	createdAt?: string;
 }
