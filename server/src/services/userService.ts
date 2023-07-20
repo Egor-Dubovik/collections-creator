@@ -1,4 +1,5 @@
 import bcrypt from 'bcrypt';
+import { Op } from 'sequelize';
 import { errorMessage } from '../common/constant/error';
 import { IRegistrationData } from '../common/types/user';
 import UserDto from '../dtos/UserDto';
@@ -36,6 +37,22 @@ class UserService {
 	async getUserById(id: string) {
 		const user = await User.findOne({ where: { id } });
 		return user;
+	}
+
+	async getSearchUsers(query?: string) {
+		if (query?.length) {
+			const searchUsers = await User.findAll({
+				where: {
+					[Op.or]: [
+						{ email: { [Op.like]: `%${query}%` } },
+						{ nickName: { [Op.like]: `%${query}%` } },
+					],
+				},
+			});
+			return searchUsers;
+		}
+		const allUsers = await User.findAll();
+		return allUsers;
 	}
 }
 

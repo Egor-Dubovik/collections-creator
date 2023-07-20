@@ -17,6 +17,7 @@ userRouter.post(
 userRouter.post('/login', userController.login);
 userRouter.post('/logout', userController.logout);
 userRouter.get('/one', userController.getUser);
+userRouter.get('/all', userController.getSearchUsers);
 
 // userRouter.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
 // userRouter.get(

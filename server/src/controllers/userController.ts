@@ -44,9 +44,19 @@ class UserController {
 	async getUser(req: Request, res: Response, next: NextFunction) {
 		try {
 			const { id } = req.query;
-			if (!id) ApiError.badRequest(errorMessage.invalidToken);
+			if (!id) ApiError.badRequest(errorMessage.notAllFields);
 			const user = await userService.getUserById(id as string);
 			return res.json(user);
+		} catch (err) {
+			next(err);
+		}
+	}
+
+	async getSearchUsers(req: Request, res: Response, next: NextFunction) {
+		try {
+			const { query } = req.query;
+			const users = await userService.getSearchUsers(query as string);
+			return res.json(users);
 		} catch (err) {
 			next(err);
 		}
