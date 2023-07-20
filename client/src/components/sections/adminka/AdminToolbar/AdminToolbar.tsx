@@ -1,25 +1,41 @@
-import { ChangeEvent } from 'react';
+import { Dispatch, SetStateAction } from 'react';
 import { Box, Button, Input } from '@chakra-ui/react';
-import styles from './AdminToolbar.module.css';
 import useUpdateStatus from '@/hooks/user/useUpdateStatus';
-import useUserStore from '@/store/UserStore';
+import useUpdateRole from '@/hooks/user/useUpdateRole';
+import { IUser, TypeUserRole } from '@/common/types/user';
+import styles from './AdminToolbar.module.css';
 
 interface IAdminToolbarProps {
-	selectedUserIDs: number[];
-	query: string;
-	handleSearch: (event: ChangeEvent<HTMLInputElement>) => void;
+	selectedUsers: IUser[];
+	search: string;
+	setSearch: Dispatch<SetStateAction<string>>;
 }
 
-const AdminToolbar = ({ selectedUserIDs, query, handleSearch }: IAdminToolbarProps) => {
-	const user = useUserStore.use.user();
+const AdminToolbar = ({ selectedUsers, search, setSearch }: IAdminToolbarProps) => {
 	const { updateStatus, isLoadingStatus } = useUpdateStatus();
+	const { updateRole, isLoadingRole } = useUpdateRole();
 
 	const handleBlock = (): void => {
-		if (user) updateStatus({ userId: user.id, status: 'blocked' });
+		selectedUsers.forEach(user => {
+			updateStatus({ userId: user.id, status: 'blocked' });
+		});
 	};
-
-	const handleActive = () => {
-		if (user) updateStatus({ userId: user.id, status: 'active' });
+	const handleActive = (): void => {
+		selectedUsers.forEach(user => {
+			updateStatus({ userId: user.id, status: 'active' });
+		});
+	};
+	const handleMakeAdmin = (): void => {
+		selectedUsers.forEach(user => {
+			const role = [...(user.role as TypeUserRole[]), 'admin' as TypeUserRole];
+			updateRole({ userId: user.id, role });
+		});
+	};
+	const handleMakeUser = (): void => {
+		selectedUsers.forEach(user => {
+			const role = [...(user.role as TypeUserRole[])].filter(role => role !== 'admin');
+			updateRole({ userId: user.id, role });
+		});
 	};
 
 	return (
@@ -27,11 +43,11 @@ const AdminToolbar = ({ selectedUserIDs, query, handleSearch }: IAdminToolbarPro
 			<div className='admin-toolbar__container'>
 				<Box className={styles.tools}>
 					<Input
-						value={query}
-						onChange={handleSearch}
+						value={search}
+						onChange={event => setSearch(event.target.value)}
 						className={styles.input}
 						size='lg'
-						placeholder='query by name and email'
+						placeholder='search by name and email'
 					/>
 					<Box className={styles.buttons}>
 						<Box className={styles.buttonBox}>
@@ -53,10 +69,20 @@ const AdminToolbar = ({ selectedUserIDs, query, handleSearch }: IAdminToolbarPro
 							</Button>
 						</Box>
 						<Box className={`${styles.buttonBox} ${styles.adminRight}`}>
-							<Button colorScheme='blue' variant='solid'>
+							<Button
+								colorScheme='blue'
+								variant='solid'
+								isLoading={isLoadingRole}
+								onClick={handleMakeAdmin}
+							>
 								make admin
 							</Button>
-							<Button colorScheme='pink' variant='solid'>
+							<Button
+								colorScheme='pink'
+								variant='solid'
+								isLoading={isLoadingRole}
+								onClick={handleMakeUser}
+							>
 								revoke admin rights
 							</Button>
 						</Box>

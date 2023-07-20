@@ -2,6 +2,7 @@ import { Dispatch, SetStateAction, useCallback, useEffect, useRef, useState } fr
 import { List, ListItem, Skeleton, Text, useColorMode } from '@chakra-ui/react';
 import { ITag } from '@/common/types/tag';
 import styles from './TagList.module.css';
+import useDebounce from '@/hooks/useDebounce';
 
 interface ITagsProps {
 	setTags: Dispatch<SetStateAction<string[]>>;
@@ -11,7 +12,6 @@ interface ITagsProps {
 
 const TagList = ({ setTags, tags, loading }: ITagsProps) => {
 	const [activeTags, setActiveTags] = useState<string[]>([]);
-	const debounceTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 	const { colorMode } = useColorMode();
 
 	const handleTagClick = (value: string) => {
@@ -22,24 +22,11 @@ const TagList = ({ setTags, tags, loading }: ITagsProps) => {
 		setActiveTags(prevTags => [...prevTags, value]);
 	};
 
-	const debounceSetTags = useCallback(() => {
-		if (debounceTimer.current) clearTimeout(debounceTimer.current);
-		debounceTimer.current = setTimeout(() => {
-			setTags(activeTags);
-		}, 250);
-	}, [activeTags]);
+	const handleSetTags = useCallback(() => {
+		setTags(activeTags);
+	}, [activeTags, setTags]);
 
-	useEffect(() => {
-		debounceSetTags();
-	}, [activeTags, debounceSetTags]);
-
-	useEffect(() => {
-		return () => {
-			if (debounceTimer.current) {
-				clearTimeout(debounceTimer.current);
-			}
-		};
-	}, []);
+	useDebounce(activeTags, handleSetTags);
 
 	return (
 		<>

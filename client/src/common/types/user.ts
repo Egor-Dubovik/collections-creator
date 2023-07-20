@@ -15,7 +15,7 @@ export interface IRegisterProps {
 	email: string;
 	password: string;
 	avatar?: string;
-	role?: string[];
+	role?: TypeUserRole[];
 }
 
 export interface ILoginParams {

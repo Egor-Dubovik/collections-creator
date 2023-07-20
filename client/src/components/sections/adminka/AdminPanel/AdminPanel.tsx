@@ -1,30 +1,28 @@
 'use client';
-import { ChangeEvent, useEffect, useState } from 'react';
+import { useState } from 'react';
+import { IUser } from '@/common/types/user';
+import { SEARCH_DELAY } from '@/common/constant/numbers';
 import AdminToolbar from '../AdminToolbar/AdminToolbar';
 import UsersTable from '../UsersTable/UsersTable';
 import AdminPanelInfo from '../AdminPanelInfo';
+import useDebounce from '@/hooks/useDebounce';
 
 const AdminPanel = () => {
+	const [search, setSearch] = useState('');
 	const [query, setQuery] = useState('');
-	const [selectedUserIDs, setSelectedUserIDs] = useState<number[]>([]);
+	const [selectedUsers, setSelectedUsers] = useState<IUser[]>([]);
 
-	const onSearch = (event: ChangeEvent<HTMLInputElement>): void => {
-		setQuery(event.target.value);
+	const handleSetQuery = () => {
+		setQuery(search);
 	};
 
-	useEffect(() => {
-		console.log(selectedUserIDs);
-	}, [selectedUserIDs]);
+	useDebounce(search, handleSetQuery, SEARCH_DELAY);
 
 	return (
-		<div>
+		<div className='admin-panel'>
 			<AdminPanelInfo />
-			<AdminToolbar query={query} handleSearch={onSearch} selectedUserIDs={selectedUserIDs} />
-			<UsersTable
-				query={query}
-				selectedUserIDs={selectedUserIDs}
-				setSelectedUserIDs={setSelectedUserIDs}
-			/>
+			<AdminToolbar search={search} setSearch={setSearch} selectedUsers={selectedUsers} />
+			<UsersTable query={query} selectedUsers={selectedUsers} setSelectedUsers={setSelectedUsers} />
 		</div>
 	);
 };
