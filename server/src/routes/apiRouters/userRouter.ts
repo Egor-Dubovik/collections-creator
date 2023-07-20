@@ -17,16 +17,8 @@ userRouter.post(
 userRouter.post('/login', userController.login);
 userRouter.post('/logout', userController.logout);
 userRouter.get('/one', userController.getUser);
-userRouter.get('/all', userController.getSearchUsers);
-
-// userRouter.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
-// userRouter.get(
-// 	'/auth/google/callback',
-// 	passport.authenticate('google', { failureRedirect: '/login' }),
-// 	function (req, res) {
-// 		// Successful authentication, redirect home.
-// 		res.redirect('/');
-// 	}
-// );
+userRouter.get('/search', userController.getSearchUsers);
+userRouter.patch('/status', userController.updateStatus);
+userRouter.patch('/role', userController.updateRole);
 
 export default userRouter;

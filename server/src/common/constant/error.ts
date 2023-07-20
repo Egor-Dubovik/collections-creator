@@ -17,4 +17,5 @@ export const errorMessage = {
 	noCollection: 'The collection with the given id does not exist',
 	notFound: 'not found',
 	noUser: 'User with given id does not exist',
+	userBlocked: 'Your account has been blocked',
 };

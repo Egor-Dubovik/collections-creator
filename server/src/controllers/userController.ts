@@ -61,6 +61,28 @@ class UserController {
 			next(err);
 		}
 	}
+
+	async updateStatus(req: Request, res: Response, next: NextFunction) {
+		try {
+			const { userId, status } = req.body;
+			if (!userId || !status) ApiError.badRequest(errorMessage.notAllFields);
+			const user = await userService.updateStatus(userId, status);
+			return res.json(user);
+		} catch (err) {
+			next(err);
+		}
+	}
+
+	async updateRole(req: Request, res: Response, next: NextFunction) {
+		try {
+			const { userId, role } = req.body;
+			if (!userId || !role) ApiError.badRequest(errorMessage.notAllFields);
+			const user = await userService.updateRole(userId, JSON.parse(role));
+			return res.json(user);
+		} catch (err) {
+			next(err);
+		}
+	}
 }
 
 export default new UserController();

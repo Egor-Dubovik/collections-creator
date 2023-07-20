@@ -22,6 +22,9 @@ class UserService {
 	async login(email: string, password: string) {
 		const user = await User.findOne({ where: { email } });
 		if (!user) throw ApiError.badRequest(errorMessage.notFoundWithEmail);
+		if (user.getDataValue('status') === 'blocked') {
+			throw ApiError.badRequest(errorMessage.userBlocked);
+		}
 		const isPassEquals = await bcrypt.compare(password, user.getDataValue('password'));
 		if (!isPassEquals) throw ApiError.badRequest(errorMessage.wrongPassword);
 		const userDto = new UserDto(user);
@@ -32,6 +35,16 @@ class UserService {
 	async logout(refreshToken: string) {
 		const token = await tokenService.removeToken(refreshToken);
 		return token;
+	}
+
+	async updateStatus(userId: number, status: string) {
+		const user = await User.update({ status }, { where: { id: userId } });
+		return user;
+	}
+
+	async updateRole(userId: number, role: string[]) {
+		const user = await User.update({ role }, { where: { id: userId } });
+		return user;
 	}
 
 	async getUserById(id: string) {
