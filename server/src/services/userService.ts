@@ -42,7 +42,7 @@ class UserService {
 		return user;
 	}
 
-	async updateRole(userId: number, role: string[]) {
+	async updateRole(userId: number, role: string) {
 		const user = await User.update({ role }, { where: { id: userId } });
 		return user;
 	}

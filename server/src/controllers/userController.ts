@@ -77,7 +77,7 @@ class UserController {
 		try {
 			const { userId, role } = req.body;
 			if (!userId || !role) ApiError.badRequest(errorMessage.notAllFields);
-			const user = await userService.updateRole(userId, JSON.parse(role));
+			const user = await userService.updateRole(userId, role);
 			return res.json(user);
 		} catch (err) {
 			next(err);
