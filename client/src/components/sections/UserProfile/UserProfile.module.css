@@ -31,7 +31,7 @@
 	margin-bottom: 15px;
 }
 
-.newCollection {
+.button {
 	padding: 60px 15px;
 	border-radius: 10px;
 	font-weight: 500;
@@ -39,7 +39,7 @@
 	transition: all 0.3s ease;
 }
 
-.newCollection:hover {
+.button:hover {
 	background-color: rgba(13, 213, 213, 0.837);
 }
 

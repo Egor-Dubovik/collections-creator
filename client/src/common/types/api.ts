@@ -7,4 +7,5 @@ export enum ROUTES {
 	COLLECTION = '/collection',
 	ITEM = '/item',
 	PROFILE = '/profile',
+	ADMIN = '/admin',
 }

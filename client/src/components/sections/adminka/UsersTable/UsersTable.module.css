@@ -1,0 +1,8 @@
+.userRow {
+	transition: all 0.3s ease;
+	cursor: pointer;
+}
+
+.userRow:hover {
+	background-color: teal;
+}
