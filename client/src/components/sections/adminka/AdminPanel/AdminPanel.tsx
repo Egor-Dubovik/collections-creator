@@ -1,33 +1,30 @@
 'use client';
-import { ChangeEvent, useState } from 'react';
-import { Heading } from '@chakra-ui/react';
-import { IUser } from '@/common/types/user';
+import { ChangeEvent, useEffect, useState } from 'react';
 import AdminToolbar from '../AdminToolbar/AdminToolbar';
 import UsersTable from '../UsersTable/UsersTable';
 import AdminPanelInfo from '../AdminPanelInfo';
 
 const AdminPanel = () => {
-	const [search, setSearch] = useState('');
-	const [selectedUsers, setSelectedUsers] = useState<IUser[]>([]);
+	const [query, setQuery] = useState('');
+	const [selectedUserIDs, setSelectedUserIDs] = useState<number[]>([]);
 
-	const onSearch = (event: ChangeEvent<HTMLInputElement>) => {
-		setSearch(event.target.value);
+	const onSearch = (event: ChangeEvent<HTMLInputElement>): void => {
+		setQuery(event.target.value);
 	};
 
-	const onSelectUser = (selectedUser: IUser) => {
-		const userIds = selectedUsers.map(user => user.id);
-		if (userIds.includes(selectedUser.id)) {
-			setSelectedUsers(selectedUsers.filter(user => user.id !== selectedUser.id));
-			return;
-		}
-		setSelectedUsers([...selectedUsers, selectedUser]);
-	};
+	useEffect(() => {
+		console.log(selectedUserIDs);
+	}, [selectedUserIDs]);
 
 	return (
 		<div>
 			<AdminPanelInfo />
-			<AdminToolbar search={search} handleSearch={onSearch} />
-			<UsersTable search={search} handleSelectUser={onSelectUser} />
+			<AdminToolbar query={query} handleSearch={onSearch} selectedUserIDs={selectedUserIDs} />
+			<UsersTable
+				query={query}
+				selectedUserIDs={selectedUserIDs}
+				setSelectedUserIDs={setSelectedUserIDs}
+			/>
 		</div>
 	);
 };

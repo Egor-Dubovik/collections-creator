@@ -1,8 +1,10 @@
-.userRow {
+.row {
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
 	transition: all 0.3s ease;
 	cursor: pointer;
 }
 
-.userRow:hover {
+.row:hover {
 	background-color: teal;
 }

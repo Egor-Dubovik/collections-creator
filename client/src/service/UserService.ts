@@ -1,5 +1,11 @@
 import { API, API_URL } from '@/common/constant/api';
-import { IAuthResponse, ILoginParams } from '@/common/types/user';
+import {
+	IAuthResponse,
+	ILoginParams,
+	IUpdateRoleData,
+	IUpdateStatusData,
+	IUser,
+} from '@/common/types/user';
 import axios from 'axios';
 import $api from '.';
 
@@ -14,13 +20,28 @@ const UserService = {
 		return response.data;
 	},
 
-	async logout() {
+	async logout(): Promise<number> {
 		const response = await $api.post<number>(API.logout);
 		return response.data;
 	},
 
-	async getUser(id: number) {
-		const response = await $api.get<number>(API.user, { params: { id } });
+	async getUser(id: number): Promise<IUser> {
+		const response = await $api.get<IUser>(API.user, { params: { id } });
+		return response.data;
+	},
+
+	async getSearchUsers(query: string): Promise<IUser[]> {
+		const response = await $api.get<IUser[]>(API.userSearch, { params: { query } });
+		return response.data;
+	},
+
+	async updateStatus(data: IUpdateStatusData): Promise<IUser> {
+		const response = await $api.patch<IUser>(API.updateStatus, data);
+		return response.data;
+	},
+
+	async updateRole(data: IUpdateRoleData): Promise<IUser> {
+		const response = await $api.patch<IUser>(API.updateRole, data);
 		return response.data;
 	},
 

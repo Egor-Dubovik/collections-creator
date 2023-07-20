@@ -3,6 +3,9 @@ export const API_URL = `${BASE_URL}cl-creator`;
 
 export const API = {
 	user: '/user',
+	userSearch: '/user/search',
+	updateStatus: '/user/status',
+	updateRole: '/user/role',
 	registration: '/user/registration',
 	login: '/user/login',
 	logout: '/user/logout',
