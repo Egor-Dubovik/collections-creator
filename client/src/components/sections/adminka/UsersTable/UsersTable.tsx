@@ -45,16 +45,16 @@ const UsersTable = ({ query, selectedUsers, setSelectedUsers }: IUsersTableProps
 			<div className='users-table__container'>
 				{err && <Text color='tomato'>{err.message}</Text>}
 				{!isLoading ? (
-					<TableContainer>
+					<TableContainer className={styles.tableContainer}>
 						<Table variant='unstyled' colorScheme='teal'>
 							<Thead>
 								<Tr className={styles.row}>
-									<Th>
+									<Th className={styles.cell}>
 										<Checkbox isChecked={!!selectedUsers.length} onChange={switchSelectAll} />
 									</Th>
-									<Th>Nickname</Th>
-									<Th>Email</Th>
-									<Th>Role</Th>
+									<Th className={styles.cell}>Nickname</Th>
+									<Th className={styles.cell}>Email</Th>
+									<Th className={styles.cell}>Role</Th>
 								</Tr>
 							</Thead>
 							<Tbody>
@@ -65,15 +65,15 @@ const UsersTable = ({ query, selectedUsers, setSelectedUsers }: IUsersTableProps
 										onClick={() => handleSelectUser(user)}
 										borderColor={user.status === 'blocked' ? 'red' : 'teal'}
 									>
-										<Td>
+										<Td className={styles.cell}>
 											<Checkbox
 												isChecked={getSelectStatus(user)}
 												onChange={() => handleSelectUser(user)}
 											/>
 										</Td>
-										<Td>{user.nickName}</Td>
-										<Td>{user.email}</Td>
-										<Td>{user.role?.join(',')}</Td>
+										<Td className={styles.cell}>{user.nickName}</Td>
+										<Td className={styles.cell}>{user.email}</Td>
+										<Td className={styles.cell}>{user.role?.join(',')}</Td>
 									</Tr>
 								))}
 							</Tbody>

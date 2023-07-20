@@ -12,3 +12,21 @@
 .row:hover {
 	background-color: teal;
 }
+
+@media (min-width: 320px) {
+	.tableContainer {
+		padding: 0;
+	}
+}
+
+@media (max-width: 768px) {
+	.cell {
+		padding: 16px 10px;
+	}
+}
+
+@media (max-width: 480px) {
+	.cell {
+		padding: 16px 10px;
+	}
+}
