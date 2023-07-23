@@ -32,11 +32,6 @@ const NavBar: FC<INavBarProps> = ({ handleSwitch, isOpen, ...flexProps }) => {
 						Home
 					</Link>
 				</Box>
-				<Box as='li' onClick={handleSwitch}>
-					<Link className={getLinkStyles(ROUTES.COLLECTIONS)} href={ROUTES.COLLECTIONS}>
-						Collections
-					</Link>
-				</Box>
 			</Flex>
 		</Box>
 	);

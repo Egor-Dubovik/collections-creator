@@ -1,0 +1,21 @@
+.arrowBox {
+	position: absolute;
+	top: 50%;
+	left: 0;
+	width: 100%;
+	transform: translate(0%, -50%);
+	justify-content: space-between;
+	align-items: center;
+	z-index: 100;
+}
+
+.arrowButton {
+	border-width: 1px;
+	border-style: solid;
+	border-radius: 50%;
+	transition: all 0.3s ease;
+}
+
+/* .arrowButton:hover {
+	background-color: #000000c4;
+} */

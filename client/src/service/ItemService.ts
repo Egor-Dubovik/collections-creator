@@ -28,6 +28,13 @@ const ItemService = {
 		return response.data;
 	},
 
+	async getRecentItems(offset: number, limit: number): Promise<IItem[]> {
+		const response = await axios.get<IItem[]>(API_URL + API.recentItems, {
+			params: { offset, limit },
+		});
+		return response.data;
+	},
+
 	async delete(id: number): Promise<[]> {
 		const response = await $api.delete<[]>(API_URL + API.item, {
 			params: { id },

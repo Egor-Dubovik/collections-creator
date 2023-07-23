@@ -1,0 +1,29 @@
+.item {
+	padding: 10px;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	border-radius: 5px;
+}
+
+.link {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.image {
+	position: relative;
+	flex: 0 0 100%;
+	padding-bottom: 100%;
+}
+
+.image img {
+	border-radius: 5px;
+}
+
+.itemName {
+	font-size: 18px;
+	font-weight: 600;
+	letter-spacing: 1px;
+}
