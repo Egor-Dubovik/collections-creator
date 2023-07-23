@@ -6,8 +6,9 @@
 		"dev": "nodemon --exec ts-node --files src/index.ts",
 		"inspect": "nodemon --inspect dist/index.js",
 		"watch": "tsc -w",
-		"build": "tsc",
-		"start": "tsc && node dist/index.js"
+		"prepare-static": "xcopy /Y /E /I src\\static dist\\static",
+		"build": "tsc && npm run prepare-static",
+		"start": "node dist/index.js"
 	},
 	"keywords": [],
 	"author": "Egor Dubovik",

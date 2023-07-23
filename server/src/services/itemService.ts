@@ -43,9 +43,7 @@ class ItemService {
 	async getRecentItems(offset: number, initLimit: number) {
 		const limit = initLimit + 1;
 		const items = await Item.findAll({ limit, offset, order: [['createdAt', 'DESC']] });
-		const hasNextPage = items.length > initLimit;
-		const currentItems = items.slice(0, initLimit);
-		return { items: currentItems, hasNextPage };
+		return items;
 	}
 
 	async getItemsByCollectionId(id: number, offset: number, limit: number, sortOrder: TypeOrder) {
