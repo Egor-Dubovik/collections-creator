@@ -3,6 +3,7 @@ import collectionRouter from './apiRouters/collectionRouter';
 import commentRoute from './apiRouters/commentRouter';
 import itemRoute from './apiRouters/itemRouter';
 import likeRoute from './apiRouters/likeRouter';
+import searchRouter from './apiRouters/searchRouter';
 import tagRouter from './apiRouters/tagRouter';
 import tokenRouter from './apiRouters/tokenRouter';
 import topicRouter from './apiRouters/topicRouter';
@@ -17,5 +18,6 @@ router.use('/tag', tagRouter);
 router.use('/like', likeRoute);
 router.use('/token', tokenRouter);
 router.use('/topic', topicRouter);
+router.use('/search', searchRouter);
 
 export default router;
