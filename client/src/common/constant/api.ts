@@ -17,6 +17,7 @@ export const API = {
 	collection: '/collection',
 	oneCollection: '/collection/one',
 	userCollection: '/collection/user',
+	collectionTop: '/collection/top',
 	item: '/item',
 	recentItems: '/item/recent',
 	allItems: '/item/all',

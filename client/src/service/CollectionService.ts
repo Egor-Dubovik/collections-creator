@@ -28,6 +28,11 @@ const CollectionService = {
 		return response.data;
 	},
 
+	async getTop(): Promise<ICollectionResponse[]> {
+		const response = await axios.get<ICollectionResponse[]>(API_URL + API.collectionTop);
+		return response.data;
+	},
+
 	async delete(id: number): Promise<ICollectionResponse[]> {
 		const response = await $api.delete<ICollectionResponse[]>(API_URL + API.collection, {
 			params: { id },

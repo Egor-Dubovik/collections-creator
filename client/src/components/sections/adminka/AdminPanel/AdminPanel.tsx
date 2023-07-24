@@ -1,4 +1,3 @@
-'use client';
 import { useState } from 'react';
 import { IUser } from '@/common/types/user';
 import { SEARCH_DELAY } from '@/common/constant/numbers';

@@ -19,6 +19,7 @@ import {
 	IconButton,
 	useBreakpointValue,
 } from '@chakra-ui/react';
+import useUserStore from '@/store/UserStore';
 
 interface ICollectionItemProps {
 	collection: ICollectionResponse;
@@ -26,6 +27,7 @@ interface ICollectionItemProps {
 
 const CollectionItem = ({ collection }: ICollectionItemProps) => {
 	const { deleteCollection, isLoading } = useDeleteCollection();
+	const user = useUserStore.use.user();
 	const isMobileResolution = useBreakpointValue({ base: true, sm: false });
 
 	const handleDelete = (event: MouseEvent<HTMLButtonElement>) => {
@@ -65,18 +67,20 @@ const CollectionItem = ({ collection }: ICollectionItemProps) => {
 						</Grid>
 						<Text>{getDateAndTimeFromString(collection.createdAt as string)}</Text>
 					</GridItem>
-					<GridItem colSpan={isMobileResolution ? 2 : 1}>
-						<IconButton
-							display='flex'
-							width={isMobileResolution ? '100%' : '40px'}
-							height={isMobileResolution ? '45px' : '40px'}
-							icon={<DeleteIcon />}
-							isLoading={isLoading}
-							variant='outline'
-							onClick={event => handleDelete(event)}
-							aria-label='delete button'
-						/>
-					</GridItem>
+					{user?.id === collection.userId && (
+						<GridItem colSpan={isMobileResolution ? 2 : 1}>
+							<IconButton
+								display='flex'
+								width={isMobileResolution ? '100%' : '40px'}
+								height={isMobileResolution ? '45px' : '40px'}
+								icon={<DeleteIcon />}
+								isLoading={isLoading}
+								variant='outline'
+								onClick={event => handleDelete(event)}
+								aria-label='delete button'
+							/>
+						</GridItem>
+					)}
 				</Grid>
 			</Link>
 		</ListItem>

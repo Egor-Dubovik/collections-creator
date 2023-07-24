@@ -10,6 +10,7 @@ import ItemService from '@/service/ItemService';
 import Image from 'next/image';
 import Link from 'next/link';
 import styles from './CollectionItems.module.css';
+import { MESSAGE } from '@/common/constant/message';
 
 interface IItemsProps {
 	collectionId: number;
@@ -65,29 +66,33 @@ const CollectionItems = ({ collectionId, order, isCommented, tags }: IItemsProps
 	return (
 		<section className={styles.collectionItems}>
 			<div className='collection-items__container'>
-				<List className={styles.list}>
-					{items?.map(item => (
-						<ListItem
-							key={item.id}
-							className={styles.item}
-							backgroundColor={colorMode !== 'dark' ? 'gray.200' : 'gray.700'}
-						>
-							<Link href={`${ROUTES.ITEM}/${item.id}`} className={styles.link}>
-								<Box className={styles.imageWrapper}>
-									<Image
-										src={BASE_URL + getImagePath(item.image, 'item.jpg')}
-										className={styles.image}
-										alt='item image'
-										sizes='100vw'
-										fill
-									/>
-								</Box>
-								<h3 className={styles.title}>{item.name}</h3>
-								<Text>{getDateAndTimeFromString(item.createdAt)}</Text>
-							</Link>
-						</ListItem>
-					))}
-				</List>
+				{items.length ? (
+					<List className={styles.list}>
+						{items?.map(item => (
+							<ListItem
+								key={item.id}
+								className={styles.item}
+								backgroundColor={colorMode !== 'dark' ? 'gray.200' : 'gray.700'}
+							>
+								<Link href={`${ROUTES.ITEM}/${item.id}`} className={styles.link}>
+									<Box className={styles.imageWrapper}>
+										<Image
+											src={BASE_URL + getImagePath(item.image, 'item.jpg')}
+											className={styles.image}
+											alt='item image'
+											sizes='100vw'
+											fill
+										/>
+									</Box>
+									<h3 className={styles.title}>{item.name}</h3>
+									<Text>{getDateAndTimeFromString(item.createdAt)}</Text>
+								</Link>
+							</ListItem>
+						))}
+					</List>
+				) : (
+					<Text>{MESSAGE.NO_ITEMS}</Text>
+				)}
 				{isHasNext && (
 					<Button onClick={handleShowMore} mt={2}>
 						show more

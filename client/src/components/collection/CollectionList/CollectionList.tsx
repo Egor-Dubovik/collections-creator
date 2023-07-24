@@ -14,7 +14,7 @@ const CollectionList = ({ collections, isLoading }: ICollectionListProps) => {
 		<>
 			{!isLoading ? (
 				<>
-					{collections.length ? (
+					{collections?.length ? (
 						<List spacing={4}>
 							{collections?.map(collection => (
 								<CollectionItem key={collection.id} collection={collection} />
