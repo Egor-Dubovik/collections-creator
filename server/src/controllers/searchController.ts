@@ -2,7 +2,6 @@ import { NextFunction, Request, Response } from 'express';
 import { errorMessage } from '../common/constant/error';
 import ApiError from '../exceptions/ApiError';
 import searchService from '../services/searchService';
-import tagService from '../services/tagService';
 
 class SearchController {
 	async findItems(req: Request, res: Response, next: NextFunction) {
