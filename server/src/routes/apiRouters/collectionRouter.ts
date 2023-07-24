@@ -7,6 +7,7 @@ const collectionRouter = Router({});
 
 collectionRouter.get('/', collectionController.getAll);
 collectionRouter.get('/one', collectionController.getOne);
+collectionRouter.get('/top', collectionController.getTop);
 collectionRouter.get('/props', collectionController.getProps);
 collectionRouter.get('/user', collectionController.getAllByUserId);
 collectionRouter.post('/', authMiddleware, fileUpload.single('image'), collectionController.create);

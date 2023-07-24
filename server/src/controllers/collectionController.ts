@@ -50,6 +50,15 @@ class CollectionController {
 		}
 	}
 
+	async getTop(req: Request, res: Response, next: NextFunction) {
+		try {
+			const collection = await collectionService.getTop();
+			return res.json(collection);
+		} catch (err) {
+			next(err);
+		}
+	}
+
 	async getAllByUserId(req: Request, res: Response, next: NextFunction) {
 		try {
 			const { id } = req.query;
