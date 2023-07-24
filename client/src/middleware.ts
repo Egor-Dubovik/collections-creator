@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import { ROUTES } from './common/types/api';
+import useUserStore from './store/UserStore';
 
 export function middleware(request: NextRequest) {
 	const refreshToken = request.cookies.get('refreshToken');

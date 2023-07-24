@@ -10,7 +10,8 @@
 
 .image {
 	position: relative;
-	flex: 0 1 30%;
+	align-self: flex-start;
+	flex: 0 0 30%;
 	padding-bottom: 30%;
 	border-radius: 50%;
 }
@@ -48,16 +49,45 @@
 	font-weight: 500;
 }
 
-@media (max-width: 992px) {
+@media (max-width: 1400px) {
+	.userInfoContent {
+		column-gap: 30px;
+	}
+	.image {
+		flex: 0 0 35%;
+		padding-bottom: 35%;
+	}
+	.contentInfo {
+		flex: 0 1 65%;
+	}
+}
+
+@media (max-width: 1200px) {
 	.userInfoContent {
 		column-gap: 25px;
 	}
 	.image {
-		flex: 0 1 40%;
+		flex: 0 0 40%;
 		padding-bottom: 40%;
 	}
 	.contentInfo {
 		flex: 0 1 60%;
+	}
+}
+
+@media (max-width: 992px) {
+	.userInfoContent {
+		column-gap: 15px;
+	}
+	.image {
+		flex: 0 0 50%;
+		padding-bottom: 50%;
+	}
+	.contentInfo {
+		flex: 0 1 50%;
+	}
+	.button {
+		padding: 50px 15px;
 	}
 }
 
@@ -70,12 +100,12 @@
 		row-gap: 20px;
 	}
 	.image {
+		width: 100%;
 		padding-bottom: 100%;
 	}
 	.contentInfo {
 		flex: 0 1 60%;
 	}
-
 	.text {
 		font-size: 18px;
 	}
