@@ -16,8 +16,9 @@ interface IHeaderProps {
 
 const Header: FC<IHeaderProps> = ({ logo }) => {
 	const [isSearchVisible, setSearchVisible] = useState(false);
+	const refreshToken = localStorage.getItem('refreshToken');
 	const setUserLoading = useUserStore.use.setLoading();
-	const { refresh, isLoading } = useRefreshToken();
+	const { refresh, isLoading } = useRefreshToken(refreshToken);
 	const { isOpen, onOpen, onClose } = useDisclosure();
 	const { colorMode } = useColorMode();
 

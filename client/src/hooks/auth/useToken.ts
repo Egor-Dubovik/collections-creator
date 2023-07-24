@@ -4,7 +4,7 @@ import { useMutation } from 'react-query';
 import UserService from '@/service/UserService';
 import useUserStore from '../../store/UserStore';
 
-const useRefreshToken = () => {
+const useRefreshToken = (refreshToken: string | null) => {
 	const setUser = useUserStore.use.setUser();
 	const {
 		mutate: refresh,
@@ -13,13 +13,15 @@ const useRefreshToken = () => {
 		error,
 	} = useMutation({
 		mutationKey: ['refresh token'],
-		mutationFn: () => UserService.refreshToken(),
+		mutationFn: () => UserService.refreshToken(refreshToken),
 		onSuccess: (data: IAuthResponse) => {
 			localStorage.setItem('token', data.accessToken);
+			localStorage.setItem('refreshToken', data.refreshToken);
 			setUser(data.user);
 		},
 		onError: () => {
 			localStorage.removeItem('token');
+			localStorage.removeItem('refreshToken');
 		},
 	});
 

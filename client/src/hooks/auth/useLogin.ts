@@ -16,6 +16,7 @@ const useLogin = () => {
 		mutationFn: (data: ILoginParams) => UserService.login(data),
 		onSuccess: (data: IAuthResponse) => {
 			localStorage.setItem('token', data.accessToken);
+			localStorage.setItem('refreshToken', data.refreshToken);
 			setUser(data.user);
 		},
 	});

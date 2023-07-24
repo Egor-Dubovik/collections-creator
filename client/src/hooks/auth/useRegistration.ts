@@ -15,6 +15,7 @@ const useRegistration = () => {
 		mutationFn: (data: FormData) => UserService.registration(data),
 		onSuccess: (data: IAuthResponse) => {
 			localStorage.setItem('token', data.accessToken);
+			localStorage.setItem('refreshToken', data.refreshToken);
 			setUser(data.user);
 		},
 	});

@@ -45,10 +45,14 @@ const UserService = {
 		return response.data;
 	},
 
-	async refreshToken() {
+	async refreshToken(refreshToken: string | null) {
+		// const response = await axios.get<IAuthResponse>(`${API_URL}${API.refresh}`, {
+		// 	withCredentials: true,
+		// });
 		const response = await axios.get<IAuthResponse>(`${API_URL}${API.refresh}`, {
-			withCredentials: true,
+			params: { refreshToken },
 		});
+		console.log(response);
 		return response.data;
 	},
 };
