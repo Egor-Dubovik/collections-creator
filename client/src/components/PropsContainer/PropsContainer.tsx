@@ -25,13 +25,13 @@ const PropsContainer: FC<IPropsContainer> = ({ props, handleDelete }) => {
 			</Flex>
 			<List className={styles.propContainer}>
 				{props.map(prop => (
-					<Tooltip key={prop.value} label={prop.name} placement='top'>
+					<Tooltip key={prop.name} label={prop.name} placement='top'>
 						<Text
 							className={styles.prop}
 							bg={colorMode !== 'dark' ? 'gray.200' : 'gray.800'}
 							onClick={() => handleDelete(prop.name)}
 						>
-							{prop.value}
+							{prop.name}
 						</Text>
 					</Tooltip>
 				))}

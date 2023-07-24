@@ -52,7 +52,6 @@ const UserService = {
 		const response = await axios.get<IAuthResponse>(`${API_URL}${API.refresh}`, {
 			params: { refreshToken },
 		});
-		console.log(response);
 		return response.data;
 	},
 };
