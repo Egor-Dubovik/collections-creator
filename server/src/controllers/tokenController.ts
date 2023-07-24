@@ -11,7 +11,7 @@ class TokenController {
 			const { refreshToken } = req.query;
 			if (!refreshToken) return next(ApiError.badRequest(errorMessage.notAuthorized));
 			const userData = await tokenService.refresh(refreshToken as string);
-			setRefreshToken(res, userData.refreshToken);
+			// setRefreshToken(res, userData.refreshToken);
 			return res.json(userData);
 		} catch (err) {
 			next(err);

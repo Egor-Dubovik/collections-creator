@@ -1,5 +1,6 @@
 import jwt from 'jsonwebtoken';
 import { Model } from 'sequelize';
+import { errorMessage } from '../common/constant/error';
 import { IUser } from '../common/types/user';
 import UserDto from '../dtos/UserDto';
 import ApiError from '../exceptions/ApiError';
@@ -60,6 +61,7 @@ class TokenService {
 	async refresh(refreshToken: string) {
 		if (!refreshToken) throw ApiError.unauthorizedError();
 		const userData = this.validateRefreshToken(refreshToken);
+		if (userData.status === 'blocked') throw ApiError.badRequest(errorMessage.userBlocked);
 		const tokenFromDb = await this.findToken(refreshToken);
 		if (!userData || !tokenFromDb) throw ApiError.unauthorizedError();
 		const user = (await User.findOne({ where: { id: userData.id } })) as Model<IUser>;
