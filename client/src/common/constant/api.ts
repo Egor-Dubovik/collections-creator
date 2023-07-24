@@ -27,4 +27,5 @@ export const API = {
 	itemTag: '/tag/item',
 	comment: '/comment',
 	like: '/like',
+	searchItems: '/search/items',
 };

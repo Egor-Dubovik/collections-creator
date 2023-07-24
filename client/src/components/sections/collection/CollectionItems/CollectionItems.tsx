@@ -1,16 +1,9 @@
 import { useState, useEffect, useCallback } from 'react';
-import { Box, Button, List, ListItem, Text, useColorMode } from '@chakra-ui/react';
-import { BASE_URL } from '@/common/constant/api';
+import { Box, Button } from '@chakra-ui/react';
 import { START_OFFSET, LIMIT } from '@/common/constant/item';
 import { IItem, IItemResData, TypeOrder } from '@/common/types/item';
-import { getDateAndTimeFromString } from '@/utils/getDateFromString';
-import { getImagePath } from '@/utils/getImagePath';
-import { ROUTES } from '@/common/types/api';
 import ItemService from '@/service/ItemService';
-import Image from 'next/image';
-import Link from 'next/link';
-import styles from './CollectionItems.module.css';
-import { MESSAGE } from '@/common/constant/message';
+import ItemList from '@/components/item/ItemList/ItemList';
 
 interface IItemsProps {
 	collectionId: number;
@@ -24,7 +17,6 @@ const CollectionItems = ({ collectionId, order, isCommented, tags }: IItemsProps
 	const [isHasNext, setIsHasNext] = useState(false);
 	const [isAddingMore, setIsAddingMore] = useState(false);
 	const [offset, setOffset] = useState<number>(START_OFFSET);
-	const { colorMode } = useColorMode();
 
 	const getItems = useCallback(async () => {
 		const data = await ItemService.getByParams({
@@ -64,42 +56,16 @@ const CollectionItems = ({ collectionId, order, isCommented, tags }: IItemsProps
 	}, [offset, order, isCommented, tags]);
 
 	return (
-		<section className={styles.collectionItems}>
+		<Box as='section' p='15px 0'>
 			<div className='collection-items__container'>
-				{items.length ? (
-					<List className={styles.list}>
-						{items?.map(item => (
-							<ListItem
-								key={item.id}
-								className={styles.item}
-								backgroundColor={colorMode !== 'dark' ? 'gray.200' : 'gray.700'}
-							>
-								<Link href={`${ROUTES.ITEM}/${item.id}`} className={styles.link}>
-									<Box className={styles.imageWrapper}>
-										<Image
-											src={BASE_URL + getImagePath(item.image, 'item.jpg')}
-											className={styles.image}
-											alt='item image'
-											sizes='100vw'
-											fill
-										/>
-									</Box>
-									<h3 className={styles.title}>{item.name}</h3>
-									<Text>{getDateAndTimeFromString(item.createdAt)}</Text>
-								</Link>
-							</ListItem>
-						))}
-					</List>
-				) : (
-					<Text>{MESSAGE.NO_ITEMS}</Text>
-				)}
+				<ItemList items={items} />
 				{isHasNext && (
 					<Button onClick={handleShowMore} mt={2}>
 						show more
 					</Button>
 				)}
 			</div>
-		</section>
+		</Box>
 	);
 };
 

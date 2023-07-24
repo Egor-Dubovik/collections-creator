@@ -10,9 +10,7 @@ const useDebounce = (changeableProps: any, callback: () => void, delay = MAIN_DE
 			callback();
 		}, delay);
 		return () => {
-			if (debounceTimer.current) {
-				clearTimeout(debounceTimer.current);
-			}
+			if (debounceTimer.current) clearTimeout(debounceTimer.current);
 		};
 	}, [changeableProps, callback, delay]);
 };
