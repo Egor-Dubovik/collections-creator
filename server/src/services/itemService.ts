@@ -53,40 +53,37 @@ class ItemService {
 		return items;
 	}
 
-	async getTotalItemsCount(collectionId: number, filters: Includeable[], include: Includeable[]) {
+	async getTotalItemsCount(collectionId: number, filters: Includeable[]) {
 		const total = await Item.count({
 			where: collectionId ? { collectionId } : undefined,
-			include: [...filters, ...include],
+			include: [...filters],
 		});
 		return total;
 	}
 
-	async getItems(data: IItemsData) {
-		const { collectionId, order, offset, limit, isCommented, tags } = data;
-		const filters = [] as Includeable[];
-		const include = [] as Includeable[];
-
-		if (isCommented) {
-			const commentFilter = filterService.createComment();
-			filters.push(commentFilter);
-		}
-
-		if (tags?.length) {
-			const tagInclude = filterService.createTagInclude(tags);
-			filters.push(tagInclude);
-		}
-
-		const totalItemsCount = await this.getTotalItemsCount(collectionId, filters, include);
-		const hasNextItem = offset + limit < totalItemsCount;
-
+	async getFilteredItems(
+		collectionId: number,
+		filters: Includeable[],
+		order: 'asc' | 'desc',
+		offset: number,
+		limit: number
+	) {
 		const items = await Item.findAll({
 			where: collectionId ? { collectionId } : undefined,
-			include: [...filters, ...include],
+			include: filters,
 			order: [['createdAt', order === 'desc' ? 'DESC' : 'ASC']],
 			offset,
 			limit,
 		});
+		return items;
+	}
 
+	async getItemsByParams(data: IItemsData) {
+		const { collectionId, order, offset, limit, isCommented, tags } = data;
+		const filters = filterService.buildFilters(isCommented, tags);
+		const items = await this.getFilteredItems(collectionId, filters, order, offset, limit);
+		const totalItemsCount = await this.getTotalItemsCount(collectionId, filters);
+		const hasNextItem = offset + limit < totalItemsCount && limit === items.length;
 		return { items, hasNextItem };
 	}
 }

@@ -1,6 +1,6 @@
 import { Includeable } from 'sequelize';
-import Comment from '../models/all/CommentModel';
 import { Tag } from '../models/all/TagModel';
+import Comment from '../models/all/CommentModel';
 
 class FilterService {
 	createComment(): Includeable {
@@ -14,6 +14,19 @@ class FilterService {
 			attributes: ['id', 'value'],
 			through: { attributes: [] },
 		};
+	}
+
+	buildFilters(isCommented?: boolean, tags?: string[]): Includeable[] {
+		const filters = [] as Includeable[];
+		if (isCommented) {
+			const commentFilter = this.createComment();
+			filters.push(commentFilter);
+		}
+		if (tags?.length) {
+			const tagInclude = this.createTagInclude(tags);
+			filters.push(tagInclude);
+		}
+		return filters;
 	}
 }
 

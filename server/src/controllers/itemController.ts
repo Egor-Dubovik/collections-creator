@@ -70,7 +70,7 @@ class ItemController {
 			const { collectionId, offset, limit, order, isCommented, tags } = req.query;
 			const tagsArray = tags ? JSON.parse(tags as string) : tags;
 			if (!offset || !limit || !order) return next(ApiError.badRequest(errorMessage.notAllFields));
-			const items = await itemService.getItems({
+			const items = await itemService.getItemsByParams({
 				collectionId: Number(collectionId),
 				offset: Number(offset),
 				limit: Number(limit),
