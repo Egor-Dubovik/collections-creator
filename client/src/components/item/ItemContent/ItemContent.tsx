@@ -19,7 +19,12 @@ const ItemContent = async ({ itemId }: IItemContentProps) => {
 		<div className={styles.content}>
 			<div className={styles.own}>
 				<div className={styles.image}>
-					<img src={BASE_URL + getImagePath(item.image, 'item.jpg')} alt='item image' />
+					<Image
+						src={BASE_URL + getImagePath(item.image, 'item.jpg')}
+						alt='item image'
+						sizes='100%'
+						fill
+					/>
 				</div>
 				<div className={styles.info}>
 					<ItemLikes itemId={itemId} />

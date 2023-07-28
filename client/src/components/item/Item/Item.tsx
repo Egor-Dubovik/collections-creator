@@ -27,14 +27,14 @@ const Item = ({ item }: IItemProps) => {
 				<Box className={styles.imageWrapper}>
 					<Image
 						src={BASE_URL + getImagePath(item.image, 'item.jpg')}
-						className={styles.image}
 						alt='item image'
+						className={styles.image}
 						onLoad={() => setIsImageLoading(false)}
 						sizes='100%'
 						priority={true}
 						fill
 					/>
-					{isImageLoading && <Skeleton h='100%' w='100%' />}
+					{isImageLoading && <Skeleton className={styles.skeleton} />}
 				</Box>
 				<h3 className={styles.title}>{item.name}</h3>
 				<Text>{getDateAndTimeFromString(item.createdAt)}</Text>
