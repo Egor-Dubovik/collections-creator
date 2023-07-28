@@ -1,21 +1,29 @@
-.arrowBox {
-	position: absolute;
-	top: 50%;
-	left: 0;
-	width: 100%;
-	transform: translate(0%, -50%);
-	justify-content: space-between;
-	align-items: center;
-	z-index: 100;
-}
-
 .arrowButton {
+	position: absolute;
+	width: 40px;
+	height: 40px;
+	top: 50%;
+	transform: translate(0%, -50%);
 	border-width: 1px;
 	border-style: solid;
 	border-radius: 50%;
 	transition: all 0.3s ease;
+	z-index: 1;
 }
 
-/* .arrowButton:hover {
-	background-color: #000000c4;
-} */
+.arrowButton svg {
+	position: absolute;
+	width: 65%;
+	height: 65%;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.arrowLeft {
+	left: 0;
+}
+
+.arrowRight {
+	right: 0;
+}

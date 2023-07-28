@@ -4,6 +4,11 @@
 	flex-direction: column;
 	gap: 10px;
 	border-radius: 5px;
+	transition: all 0.3s ease;
+}
+
+.item:hover {
+	box-shadow: 0 0 10px 2px #0db1a6c9;
 }
 
 .link {
@@ -24,6 +29,7 @@
 	height: 100%;
 	top: 0;
 	left: 0;
+	object-fit: contain;
 	border-radius: 5px;
 }
 
