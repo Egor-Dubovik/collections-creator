@@ -5,6 +5,8 @@ import useUserStore from '../../store/UserStore';
 
 const useLogout = () => {
 	const setUser = useUserStore.use.setUser();
+	let refreshToken = localStorage.getItem('refreshToken');
+
 	const {
 		mutate: logout,
 		isSuccess,
@@ -12,7 +14,7 @@ const useLogout = () => {
 		error,
 	} = useMutation({
 		mutationKey: ['logout'],
-		mutationFn: () => UserService.logout(),
+		mutationFn: () => UserService.logout(refreshToken),
 		onSuccess: () => {
 			if (typeof window !== 'undefined') localStorage.removeItem('token');
 			setUser(null);

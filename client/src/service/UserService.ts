@@ -20,8 +20,8 @@ const UserService = {
 		return response.data;
 	},
 
-	async logout(): Promise<number> {
-		const response = await $api.post<number>(API.logout);
+	async logout(refreshToken: string | null): Promise<number> {
+		const response = await $api.post<number>(API.logout, { refreshToken });
 		return response.data;
 	},
 

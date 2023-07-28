@@ -12,7 +12,7 @@ const Profile = async () => {
 
 	useEffect(() => {
 		if (!user && !isUserLoading) router.push(ROUTES.HOME);
-	}, []);
+	}, [user, isUserLoading, router]);
 
 	return (
 		<main className='main profile'>

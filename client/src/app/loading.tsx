@@ -2,7 +2,11 @@
 import Loader from '@/components/Loader';
 
 const MainPreLoader = () => {
-	return <Loader />;
+	return (
+		<main className='main'>
+			<Loader />
+		</main>
+	);
 };
 
 export default MainPreLoader;
