@@ -16,4 +16,5 @@ const RecentItems = async () => {
 	);
 };
 
+export const revalidate = 300;
 export default RecentItems;

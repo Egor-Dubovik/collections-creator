@@ -21,9 +21,15 @@ $api.interceptors.response.use(
 		if (error.response.status == 401 && error.config && !error.config._isRetry) {
 			originalRequest._isRetry = true;
 			try {
-				const userData = await UserService.refreshToken();
-				localStorage.setItem('token', userData.accessToken);
-				return $api.request(originalRequest);
+				if (typeof window !== 'undefined') {
+					const refreshToken = localStorage.getItem('refreshToken');
+					if (refreshToken) {
+						const userData = await UserService.refreshToken(refreshToken);
+						localStorage.setItem('token', userData.accessToken);
+						localStorage.setItem('refreshToken', userData.refreshToken);
+						return $api.request(originalRequest);
+					}
+				}
 			} catch (e) {
 				console.log('NOT AUTHORIZED');
 			}

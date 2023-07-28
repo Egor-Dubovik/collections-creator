@@ -13,7 +13,7 @@ const AdminPage = (): JSX.Element => {
 		if (!user?.role?.includes('admin') && !isUserLoading) {
 			router.push(ROUTES.HOME);
 		}
-	}, []);
+	}, [isUserLoading, user, router]);
 
 	return (
 		<main className='main'>

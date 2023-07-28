@@ -26,12 +26,7 @@ const ItemsCarousel = ({ items }: IItemCarouselProps) => {
 				>
 					<Link className={styles.link} href={`${ROUTES.ITEM}/${item.id}`}>
 						<Box className={styles.image}>
-							<Image
-								src={BASE_URL + getImagePath(item.image, 'item.jpg')}
-								sizes='100vw'
-								alt='item image'
-								fill
-							/>
+							<img src={BASE_URL + getImagePath(item.image, 'item.jpg')} alt='item image' />
 						</Box>
 						<h2 className={styles.itemName}>{item.name}</h2>
 					</Link>

@@ -23,13 +23,10 @@ const UserProfile = () => {
 					</Heading>
 					<div className={styles.userInfoContent}>
 						<div className={styles.image}>
-							<Image
+							<img
 								src={BASE_URL + getImagePath(user?.avatar)}
 								style={{ borderRadius: '10px' }}
 								alt='avatar'
-								priority={true}
-								fill
-								sizes='100vw'
 							/>
 						</div>
 						<div className={styles.contentInfo}>

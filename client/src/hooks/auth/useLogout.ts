@@ -14,7 +14,7 @@ const useLogout = () => {
 		mutationKey: ['logout'],
 		mutationFn: () => UserService.logout(),
 		onSuccess: () => {
-			localStorage.removeItem('token');
+			if (typeof window !== 'undefined') localStorage.removeItem('token');
 			setUser(null);
 		},
 	});

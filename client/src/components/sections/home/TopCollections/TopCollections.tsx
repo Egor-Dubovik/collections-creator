@@ -16,4 +16,5 @@ const TopCollections = async ({}: ITopCollectionsProps) => {
 	);
 };
 
+export const revalidate = 3600;
 export default TopCollections;

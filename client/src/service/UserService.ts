@@ -46,9 +46,6 @@ const UserService = {
 	},
 
 	async refreshToken(refreshToken: string | null) {
-		// const response = await axios.get<IAuthResponse>(`${API_URL}${API.refresh}`, {
-		// 	withCredentials: true,
-		// });
 		const response = await axios.get<IAuthResponse>(`${API_URL}${API.refresh}`, {
 			params: { refreshToken },
 		});

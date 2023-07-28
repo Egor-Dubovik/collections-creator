@@ -4,11 +4,12 @@ import { ICollectionResponse } from '@/common/types/collection';
 import { getImagePath } from '@/utils/getImagePath';
 import { getDateAndTimeFromString } from '@/utils/getDateFromString';
 import { DeleteIcon } from '@chakra-ui/icons';
+import { ROUTES } from '@/common/types/api';
 import Image from 'next/image';
 import styles from './CollectionItem.module.css';
 import useDeleteCollection from '@/hooks/collection/useDelete';
 import Link from 'next/link';
-import { ROUTES } from '@/common/types/api';
+import useIsUserHaveRights from '@/hooks/user/useIsUserHaveRights';
 import {
 	Box,
 	Grid,
@@ -19,7 +20,6 @@ import {
 	IconButton,
 	useBreakpointValue,
 } from '@chakra-ui/react';
-import useUserStore from '@/store/UserStore';
 
 interface ICollectionItemProps {
 	collection: ICollectionResponse;
@@ -27,10 +27,10 @@ interface ICollectionItemProps {
 
 const CollectionItem = ({ collection }: ICollectionItemProps) => {
 	const { deleteCollection, isLoading } = useDeleteCollection();
-	const user = useUserStore.use.user();
+	const isUserHaveRights = useIsUserHaveRights(collection.userId);
 	const isMobileResolution = useBreakpointValue({ base: true, sm: false });
 
-	const handleDelete = (event: MouseEvent<HTMLButtonElement>) => {
+	const handleDelete = (event: MouseEvent<HTMLButtonElement>): void => {
 		event.preventDefault();
 		deleteCollection(collection.id);
 	};
@@ -67,7 +67,7 @@ const CollectionItem = ({ collection }: ICollectionItemProps) => {
 						</Grid>
 						<Text>{getDateAndTimeFromString(collection.createdAt as string)}</Text>
 					</GridItem>
-					{user?.id === collection.userId && (
+					{isUserHaveRights && (
 						<GridItem colSpan={isMobileResolution ? 2 : 1}>
 							<IconButton
 								display='flex'

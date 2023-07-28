@@ -28,12 +28,10 @@ const ItemList = ({ items }: IItemListProps) => {
 						>
 							<Link href={`${ROUTES.ITEM}/${item.id}`} className={styles.link}>
 								<Box className={styles.imageWrapper}>
-									<Image
+									<img
 										src={BASE_URL + getImagePath(item.image, 'item.jpg')}
 										className={styles.image}
 										alt='item image'
-										sizes='100vw'
-										fill
 									/>
 								</Box>
 								<h3 className={styles.title}>{item.name}</h3>

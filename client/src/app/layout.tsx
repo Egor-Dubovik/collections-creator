@@ -1,3 +1,4 @@
+import ButtonScrollTop from '@/components/buttons/ButtonScrollTop';
 import Footer from '@/components/footer/Footer';
 import Header from '@/components/header/Header';
 import Logo from '@/components/logo/Logo';
@@ -22,6 +23,7 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
 						<Header logo={<Logo />} />
 						{children}
 						<Footer />
+						<ButtonScrollTop />
 					</div>
 				</Providers>
 			</body>

@@ -4,8 +4,10 @@ import { useMutation } from 'react-query';
 import UserService from '@/service/UserService';
 import useUserStore from '../../store/UserStore';
 
-const useRefreshToken = (refreshToken: string | null) => {
+const useRefreshToken = () => {
 	const setUser = useUserStore.use.setUser();
+	let refreshToken = localStorage.getItem('refreshToken');
+
 	const {
 		mutate: refresh,
 		isSuccess,
