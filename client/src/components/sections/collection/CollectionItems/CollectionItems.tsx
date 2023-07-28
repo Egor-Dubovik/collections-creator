@@ -57,14 +57,28 @@ const CollectionItems = ({ collectionId, order, isCommented, tags }: IItemsProps
 
 	return (
 		<Box as='section' p='15px 0'>
-			<div className='collection-items__container'>
+			<Box
+				display='flex'
+				flexDirection='column'
+				alignItems='center'
+				className='collection-items__container'
+			>
 				<ItemList items={items} />
 				{isHasNext && (
-					<Button onClick={handleShowMore} mt={2}>
+					<Button
+						h='50px'
+						p='0 45px'
+						marginTop={5}
+						alignSelf='center'
+						borderRadius='50px'
+						colorScheme='teal'
+						letterSpacing='1px'
+						onClick={handleShowMore}
+					>
 						show more
 					</Button>
 				)}
-			</div>
+			</Box>
 		</Box>
 	);
 };
