@@ -65,6 +65,17 @@ class ItemController {
 		}
 	}
 
+	async getItemsByTags(req: Request, res: Response, next: NextFunction) {
+		try {
+			const { tags } = req.query;
+			if (!tags) return next(ApiError.badRequest(errorMessage.notAllFields));
+			const newItem = await itemService.getItemsByTags(JSON.parse(tags as string));
+			return res.json(newItem);
+		} catch (err) {
+			next(err);
+		}
+	}
+
 	async getByParams(req: Request, res: Response, next: NextFunction) {
 		try {
 			const { collectionId, offset, limit, order, isCommented, tags } = req.query;

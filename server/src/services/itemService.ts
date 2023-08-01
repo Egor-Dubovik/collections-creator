@@ -33,6 +33,13 @@ class ItemService {
 		return items;
 	}
 
+	async getItemsByTags(tags: string[]) {
+		let filter = [] as Includeable[];
+		filterService.buildTagFilter(tags, filter);
+		const items = await Item.findAll({ include: filter });
+		return items;
+	}
+
 	async getOne(id: number) {
 		const item = await Item.findOne({ where: { id } });
 		if (!item) throw ApiError.badRequest(errorMessage.notFound);

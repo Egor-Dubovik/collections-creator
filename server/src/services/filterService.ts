@@ -16,16 +16,24 @@ class FilterService {
 		};
 	}
 
-	buildFilters(isCommented?: boolean, tags?: string[]): Includeable[] {
-		const filters = [] as Includeable[];
+	buildTagFilter(tags: string[] | undefined, filters: Includeable[]) {
+		if (tags && tags.length) {
+			const tagInclude = this.createTagInclude(tags);
+			filters.push(tagInclude);
+		}
+	}
+
+	buildCommentFilter(isCommented: boolean | undefined, filters: Includeable[]) {
 		if (isCommented) {
 			const commentFilter = this.createComment();
 			filters.push(commentFilter);
 		}
-		if (tags?.length) {
-			const tagInclude = this.createTagInclude(tags);
-			filters.push(tagInclude);
-		}
+	}
+
+	buildFilters(isCommented?: boolean, tags?: string[]): Includeable[] {
+		const filters = [] as Includeable[];
+		this.buildCommentFilter(isCommented, filters);
+		this.buildTagFilter(tags, filters);
 		return filters;
 	}
 }
