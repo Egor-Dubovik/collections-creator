@@ -1,4 +1,7 @@
 .list {
+	width: 100%;
+	align-self: flex-start;
+	justify-content: flex-start;
 	display: flex;
 	align-items: stretch;
 	flex-wrap: wrap;

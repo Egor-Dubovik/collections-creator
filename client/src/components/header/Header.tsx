@@ -23,10 +23,11 @@ const Header: FC<IHeaderProps> = ({ logo }) => {
 
 	const handleSwitchMenu = (): void => (isOpen ? onClose() : onOpen());
 	const handleSwitchSearch = (): void => setSearchVisible(!isSearchVisible);
+	const handleCloseSearch = (): void => setSearchVisible(false);
 
 	useEffect(() => {
 		setUserLoading(isLoading);
-	}, [isLoading]);
+	}, [isLoading, setUserLoading]);
 
 	useEffect(() => {
 		refresh();
@@ -40,7 +41,7 @@ const Header: FC<IHeaderProps> = ({ logo }) => {
 			className='header'
 			py={4}
 		>
-			<MainInputSearch isVisible={isSearchVisible} handleSwitch={handleSwitchSearch} />
+			<MainInputSearch isVisible={isSearchVisible} handleClose={handleCloseSearch} />
 			<div className='header__container'>
 				<Flex align='center' justify='space-between' gap='15px'>
 					<Box className='header__logo'>{logo}</Box>
