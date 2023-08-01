@@ -5,6 +5,7 @@ const useGetTags = () => {
 	const { data: allTags, isLoading } = useQuery({
 		queryKey: ['tags'],
 		queryFn: () => TagService.getAll(),
+		staleTime: 300000,
 	});
 	return { allTags, isLoading };
 };

@@ -9,10 +9,10 @@ interface IItemsProps {
 	collectionId: number;
 	order: TypeOrder;
 	isCommented: boolean;
-	tags: string[];
+	activeTags: string[];
 }
 
-const CollectionItems = ({ collectionId, order, isCommented, tags }: IItemsProps) => {
+const CollectionItems = ({ collectionId, order, isCommented, activeTags }: IItemsProps) => {
 	const [items, setItems] = useState<IItem[]>([]);
 	const [isHasNext, setIsHasNext] = useState(false);
 	const [isAddingMore, setIsAddingMore] = useState(false);
@@ -22,13 +22,13 @@ const CollectionItems = ({ collectionId, order, isCommented, tags }: IItemsProps
 		const data = await ItemService.getByParams({
 			order,
 			offset,
-			tags: JSON.stringify(tags),
+			tags: JSON.stringify(activeTags),
 			isCommented,
 			limit: LIMIT,
 			collectionId,
 		});
 		return data;
-	}, [order, offset, tags, isCommented, collectionId]);
+	}, [order, offset, activeTags, isCommented, collectionId]);
 
 	const handleShowMore = async () => {
 		setOffset(offset + LIMIT);
@@ -53,7 +53,7 @@ const CollectionItems = ({ collectionId, order, isCommented, tags }: IItemsProps
 
 	useEffect(() => {
 		handleSorting();
-	}, [offset, order, isCommented, tags]);
+	}, [offset, order, isCommented, activeTags]);
 
 	return (
 		<Box as='section' p='15px 0'>

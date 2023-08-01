@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { useParams } from 'next/navigation';
 import { TypeOrder } from '@/common/types/item';
-import { ICollectionResponse } from '@/common/types/collection'
+import { ICollectionResponse } from '@/common/types/collection';
 import { Text, useDisclosure } from '@chakra-ui/react';
 import ItemModel from '@/components/modals/ItemModel';
 import CollectionInfo from '@/components/sections/collection/CollectionInfo/CollectionInfo';
@@ -14,7 +14,7 @@ import Loader from '@/components/Loader';
 const CollectionPage = () => {
 	const [order, setOrder] = useState<TypeOrder>('desc');
 	const [isCommented, setIsCommented] = useState(false);
-	const [tags, setTags] = useState<string[]>([]);
+	const [activeTags, setActiveTags] = useState<string[]>([]);
 	const { isOpen, onOpen, onClose } = useDisclosure();
 	const params = useParams();
 	const id = Number(params.collectionId);
@@ -32,9 +32,14 @@ const CollectionPage = () => {
 						setOrder={setOrder}
 						isCommented={isCommented}
 						setIsCommented={setIsCommented}
-						setTags={setTags}
+						setActiveTags={setActiveTags}
 					/>
-					<CollectionItems order={order} isCommented={isCommented} tags={tags} collectionId={id} />
+					<CollectionItems
+						order={order}
+						isCommented={isCommented}
+						activeTags={activeTags}
+						collectionId={id}
+					/>
 				</>
 			) : (
 				<Loader />

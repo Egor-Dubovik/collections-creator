@@ -24,18 +24,9 @@
 	border-radius: 5px;
 }
 
-.secondTools {
-	position: relative;
-	align-self: stretch;
-	flex: 0 1 59%;
-}
-
 @media (max-width: 1400px) {
 	.mainTools {
 		flex: 0 1 31%;
-	}
-	.secondTools {
-		flex: 0 1 100%;
 	}
 }
 
@@ -54,8 +45,5 @@
 	}
 	.mainTools {
 		flex: 0 1 auto;
-	}
-	.secondTools {
-		flex: 0 0 100px;
 	}
 }

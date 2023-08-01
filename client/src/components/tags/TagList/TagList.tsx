@@ -5,28 +5,28 @@ import styles from './TagList.module.css';
 import useDebounce from '@/hooks/useDebounce';
 
 interface ITagsProps {
-	setTags: Dispatch<SetStateAction<string[]>>;
+	setActiveTags: Dispatch<SetStateAction<string[]>>;
 	tags: ITag[] | undefined;
 	loading: boolean;
 }
 
-const TagList = ({ setTags, tags, loading }: ITagsProps) => {
-	const [activeTags, setActiveTags] = useState<string[]>([]);
+const TagList = ({ setActiveTags, tags, loading }: ITagsProps) => {
+	const [selectedTags, setSelectedTags] = useState<string[]>([]);
 	const { colorMode } = useColorMode();
 
 	const handleTagClick = (value: string) => {
-		if (activeTags.includes(value)) {
-			setActiveTags(prevTags => prevTags.filter(tag => tag !== value));
+		if (selectedTags.includes(value)) {
+			setSelectedTags(prevTags => prevTags.filter(tag => tag !== value));
 			return;
 		}
-		setActiveTags(prevTags => [...prevTags, value]);
+		setSelectedTags(prevTags => [...prevTags, value]);
 	};
 
 	const handleSetTags = useCallback(() => {
-		setTags(activeTags);
-	}, [activeTags, setTags]);
+		setActiveTags(selectedTags);
+	}, [selectedTags, setActiveTags]);
 
-	useDebounce(activeTags, handleSetTags);
+	useDebounce(selectedTags, handleSetTags);
 
 	return (
 		<>
@@ -40,7 +40,7 @@ const TagList = ({ setTags, tags, loading }: ITagsProps) => {
 							<ListItem
 								key={tag.id}
 								className={`${styles.tag} ${
-									activeTags.includes(tag.value) ? styles.tagActive : ''
+									selectedTags.includes(tag.value) ? styles.tagActive : ''
 								}`}
 								onClick={() => handleTagClick(tag.value)}
 								backgroundColor={colorMode !== 'dark' ? 'gray.200' : 'gray.700'}
@@ -53,7 +53,7 @@ const TagList = ({ setTags, tags, loading }: ITagsProps) => {
 					)}
 				</List>
 			) : (
-				<Skeleton height='100%' borderRadius='5px' />
+				<Skeleton height='124px' borderRadius='5px' />
 			)}
 		</>
 	);

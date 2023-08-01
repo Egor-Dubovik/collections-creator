@@ -51,6 +51,7 @@ const MainInputSearch: FC<IMainInputSearchProps> = ({ isVisible, handleClose }) 
 				!resetButtonRef.current?.contains(event.target as Node)
 			) {
 				handleClose();
+				setSearch('');
 			}
 		},
 		[handleClose]

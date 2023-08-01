@@ -9,7 +9,7 @@ const TopCollections = async ({}: ITopCollectionsProps) => {
 	return (
 		<section className={styles.topCollections}>
 			<div className='top-collections__container'>
-				<h1 className={styles.title}>Top 3 greatest collections</h1>
+				<h2 className={styles.title}>Top 3 greatest collections</h2>
 				<CollectionList collections={collections} />
 			</div>
 		</section>

@@ -1,5 +1,6 @@
 import { API, API_URL } from '@/common/constant/api';
 import { IItemQuery, IItem, IItemData, IItemResData } from '@/common/types/item';
+import { ITag } from '@/common/types/tag';
 import axios from 'axios';
 import $api from '.';
 
@@ -24,6 +25,13 @@ const ItemService = {
 	async getByParams(data: IItemQuery): Promise<IItemResData> {
 		const response = await axios.get<IItemResData>(API_URL + API.item, {
 			params: data,
+		});
+		return response.data;
+	},
+
+	async getItemsByTags(tags: string): Promise<IItem[]> {
+		const response = await axios.get<IItem[]>(API_URL + API.itemByTags, {
+			params: { tags },
 		});
 		return response.data;
 	},

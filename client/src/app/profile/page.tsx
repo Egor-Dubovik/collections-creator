@@ -1,10 +1,11 @@
 'use client';
 import { ROUTES } from '@/common/types/api';
+import { Metadata } from 'next';
+import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 import UserCollections from '@/components/sections/UserCollections/UserCollections';
 import UserProfile from '@/components/sections/UserProfile/UserProfile';
 import useUserStore from '@/store/UserStore';
-import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
 
 const Profile = async () => {
 	const { user, isUserLoading } = useUserStore();

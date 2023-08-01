@@ -11,13 +11,13 @@ interface IToolbarProps {
 	setOrder: Dispatch<SetStateAction<TypeOrder>>;
 	isCommented: boolean;
 	setIsCommented: Dispatch<SetStateAction<boolean>>;
-	setTags: Dispatch<SetStateAction<string[]>>;
+	setActiveTags: Dispatch<SetStateAction<string[]>>;
 }
 
 const CollectionToolbar = ({
 	order,
 	isCommented,
-	setTags,
+	setActiveTags,
 	setOrder,
 	setIsCommented,
 }: IToolbarProps) => {
@@ -38,9 +38,7 @@ const CollectionToolbar = ({
 								only commented
 							</Checkbox>
 						</Box>
-						<Box className={styles.secondTools}>
-							<TagList tags={allTags} setTags={setTags} loading={isLoading} />
-						</Box>
+						<TagList tags={allTags} setActiveTags={setActiveTags} loading={isLoading} />
 					</Box>
 				</div>
 			</div>
