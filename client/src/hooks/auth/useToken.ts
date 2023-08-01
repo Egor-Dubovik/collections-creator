@@ -6,7 +6,6 @@ import useUserStore from '../../store/UserStore';
 
 const useRefreshToken = () => {
 	const setUser = useUserStore.use.setUser();
-	let refreshToken = localStorage.getItem('refreshToken');
 
 	const {
 		mutate: refresh,
@@ -15,10 +14,16 @@ const useRefreshToken = () => {
 		error,
 	} = useMutation({
 		mutationKey: ['refresh token'],
-		mutationFn: () => UserService.refreshToken(refreshToken),
+		mutationFn: () => {
+			let refreshToken: string | null = null;
+			if (typeof window !== 'undefined') refreshToken = localStorage.getItem('refreshToken');
+			return UserService.refreshToken(refreshToken);
+		},
 		onSuccess: (data: IAuthResponse) => {
-			localStorage.setItem('token', data.accessToken);
-			localStorage.setItem('refreshToken', data.refreshToken);
+			if (typeof window !== 'undefined') {
+				localStorage.setItem('token', data.accessToken);
+				localStorage.setItem('refreshToken', data.refreshToken);
+			}
 			setUser(data.user);
 		},
 		onError: () => {
