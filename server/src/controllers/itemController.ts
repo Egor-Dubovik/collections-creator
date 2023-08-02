@@ -69,8 +69,19 @@ class ItemController {
 		try {
 			const { tags } = req.query;
 			if (!tags) return next(ApiError.badRequest(errorMessage.notAllFields));
-			const newItem = await itemService.getItemsByTags(JSON.parse(tags as string));
-			return res.json(newItem);
+			const items = await itemService.getItemsByTags(JSON.parse(tags as string));
+			return res.json(items);
+		} catch (err) {
+			next(err);
+		}
+	}
+
+	async getCollectionItems(req: Request, res: Response, next: NextFunction) {
+		try {
+			const { itemId } = req.query;
+			if (!itemId) return next(ApiError.badRequest(errorMessage.notAllFields));
+			const items = await itemService.getCollectionItemsByItemId(itemId as string);
+			return res.json(items);
 		} catch (err) {
 			next(err);
 		}

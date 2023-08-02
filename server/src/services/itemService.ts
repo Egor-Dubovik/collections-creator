@@ -33,11 +33,22 @@ class ItemService {
 		return items;
 	}
 
+	async getItemsByCollectionId(collectionId: string) {
+		const items = await Item.findAll({ where: { collectionId }, order: [['createdAt', 'DESC']] });
+		return items;
+	}
+
 	async getItemsByTags(tags: string[]) {
 		let filter = [] as Includeable[];
 		filterService.buildTagFilter(tags, filter);
 		const items = await Item.findAll({ include: filter });
 		return items;
+	}
+
+	async getCollectionItemsByItemId(itemId: string) {
+		const item = await Item.findOne({ where: { id: itemId } });
+		const collectionItems = await this.getItemsByCollectionId(item?.getDataValue('collectionId'));
+		return collectionItems;
 	}
 
 	async getOne(id: number) {
@@ -50,13 +61,6 @@ class ItemService {
 	async getRecentItems(offset: number, initLimit: number) {
 		const limit = initLimit + 1;
 		const items = await Item.findAll({ limit, offset, order: [['createdAt', 'DESC']] });
-		return items;
-	}
-
-	async getItemsByCollectionId(id: number, offset: number, limit: number, sortOrder: TypeOrder) {
-		const order: OrderItem[] = [['createdAt', sortOrder.toUpperCase()]];
-		const where = { collectionId: id };
-		const items = await Item.findAll({ where, order, limit, offset });
 		return items;
 	}
 
