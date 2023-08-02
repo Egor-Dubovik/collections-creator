@@ -1,0 +1,21 @@
+.breadcrumb {
+	margin-bottom: 10px;
+}
+
+.breadcrumb ol {
+	flex-wrap: wrap;
+}
+
+.breadcrumb a:last-child {
+	border-bottom: 1px solid;
+}
+
+.link {
+	letter-spacing: 1px;
+	transition: all 0.3s ease;
+	white-space: nowrap;
+}
+
+.link:hover {
+	color: #3cc7bd;
+}

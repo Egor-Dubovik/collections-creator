@@ -30,7 +30,7 @@ const CollectionItemsCarousel = ({ itemId }: ICollectionItemsCarouselProps) => {
 				<Heading as='h2' size='lg' mb={3}>
 					Other collection items
 				</Heading>
-				{!true && !isItemLoading ? (
+				{!isLoading && !isItemLoading ? (
 					<>{data && <ItemsCarousel items={items} />}</>
 				) : (
 					<Box position='relative' h='150px'>
