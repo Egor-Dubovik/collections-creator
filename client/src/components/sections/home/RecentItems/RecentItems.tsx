@@ -1,6 +1,6 @@
 import { LIMIT, START_OFFSET } from '@/common/constant/item';
 import ItemService from '@/service/ItemService';
-import ItemsCarousel from './ItemsCarousel/ItemsCarousel';
+import ItemsCarousel from '../../../ItemsCarousel/ItemsCarousel';
 import styles from './RecentItems.module.css';
 
 const RecentItems = async () => {

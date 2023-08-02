@@ -43,6 +43,13 @@ const ItemService = {
 		return response.data;
 	},
 
+	async getCollectionItems(itemId: string): Promise<IItem[]> {
+		const response = await axios.get<IItem[]>(API_URL + API.collectionItems, {
+			params: { itemId },
+		});
+		return response.data;
+	},
+
 	async delete(id: number): Promise<[]> {
 		const response = await $api.delete<[]>(API_URL + API.item, {
 			params: { id },

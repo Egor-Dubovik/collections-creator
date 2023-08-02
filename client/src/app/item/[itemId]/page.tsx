@@ -1,4 +1,5 @@
 import ItemContent from '@/components/item/ItemContent/ItemContent';
+import CollectionItemsCarousel from '@/components/sections/CollectionItemsCarousel/CollectionItemsCarousel';
 import ItemService from '@/service/ItemService';
 import styles from './styles.module.css';
 
@@ -25,6 +26,7 @@ const ItemPage = async ({ params }: ItemPageProps) => {
 					<ItemContent itemId={itemId} />
 				</div>
 			</section>
+			<CollectionItemsCarousel itemId={itemId} />
 		</main>
 	);
 };
