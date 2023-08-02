@@ -47,7 +47,6 @@ const Header: FC<IHeaderProps> = ({ logo }) => {
 					<Box className='header__logo'>{logo}</Box>
 					<Flex className='header__menu' align='center'>
 						<NavBar
-							as='ul'
 							display={{ base: 'none', md: 'flex' }}
 							align='center'
 							flexWrap='wrap'
@@ -66,7 +65,6 @@ const Header: FC<IHeaderProps> = ({ logo }) => {
 					</Flex>
 				</Flex>
 				<NavBar
-					as='ul'
 					py={2}
 					display={{ base: isOpen ? 'flex' : 'none', md: 'none' }}
 					flexDir='column'

@@ -5,11 +5,9 @@ import Tags from '@/components/sections/Tags/Tags';
 export default async function HomePage() {
 	return (
 		<main className='main'>
-			<section>
-				<RecentItems />
-				<TopCollections />
-				<Tags />
-			</section>
+			<RecentItems />
+			<TopCollections />
+			<Tags />
 		</main>
 	);
 }

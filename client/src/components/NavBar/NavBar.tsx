@@ -24,9 +24,9 @@ const NavBar: FC<INavBarProps> = ({ handleSwitch, isOpen, ...flexProps }) => {
 		<Box
 			as='nav'
 			borderColor={colorMode !== 'dark' ? 'white' : 'black'}
-			className={isOpen ? styles.navbar_active : styles.navbar}
+			className={isOpen ? `${styles.navbar} ${styles.navbar_active}` : styles.navbar}
 		>
-			<Flex {...flexProps} className={styles.navbar__list}>
+			<Flex as='ul' {...flexProps} className={styles.navbar__list}>
 				<Box as='li' onClick={handleSwitch}>
 					<Link className={getLinkStyles(ROUTES.HOME)} href={ROUTES.HOME}>
 						Home

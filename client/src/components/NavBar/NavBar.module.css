@@ -18,11 +18,15 @@
 @media (max-width: 768px) {
 	.navbar {
 		margin-right: 0px;
+		opacity: 0;
+		transition: all 0.3s ease;
 	}
 
 	.navbar_active {
 		padding: 30px 0;
 		border-bottom: 1px solid;
+		opacity: 1;
+		transition-timing-function: ease-out;
 	}
 
 	.navbar__list {
