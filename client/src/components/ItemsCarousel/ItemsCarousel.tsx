@@ -1,5 +1,6 @@
 'use client';
 import { Box, useColorMode } from '@chakra-ui/react';
+import { capitalizeFirstLetter } from '@/utils/string/capitalizeFirstLetter';
 import { BASE_URL } from '@/common/constant/api';
 import { getImagePath } from '@/utils/getImagePath';
 import { IItem } from '@/common/types/item';
@@ -34,7 +35,7 @@ const ItemsCarousel = ({ items }: IItemCarouselProps) => {
 								fill
 							/>
 						</Box>
-						<h2 className={styles.itemName}>{item.name}</h2>
+						<h2 className={styles.itemName}>{capitalizeFirstLetter(item.name)}</h2>
 					</Link>
 				</Box>
 			))}

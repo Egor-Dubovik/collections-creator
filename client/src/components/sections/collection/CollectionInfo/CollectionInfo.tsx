@@ -3,10 +3,9 @@ import { ICollectionResponse } from '@/common/types/collection';
 import useUserPermissions from '@/hooks/permissions/useUserPermissions';
 import useGetCollectionTopic from '@/hooks/topic/useGetCollectionTopic';
 import AppBreadCrumb from '@/components/AppBreadCrumb/AppBreadCrumb';
-import { usePathname, useParams } from 'next/navigation';
-import { useRouter } from 'next/router';
 import { ICrumbLink } from '@/common/types/app';
 import { ROUTES } from '@/common/types/api';
+import { capitalizeFirstLetter } from '@/utils/string/capitalizeFirstLetter';
 
 interface ICollectionIfoProps {
 	collection: ICollectionResponse;
@@ -26,7 +25,7 @@ const CollectionInfo = ({ collection, openModel }: ICollectionIfoProps) => {
 			<div className='collection-info__container'>
 				<Box mb={2} display='flex' flexWrap='wrap' columnGap={5} rowGap={0}>
 					<Heading as='h1' size='xl' mb={{ base: 2, md: 3 }}>
-						{collection?.title}
+						{capitalizeFirstLetter(collection?.title)}
 					</Heading>
 					{canChangeData && (
 						<Button colorScheme='teal' variant='outline' onClick={openModel}>

@@ -1,3 +1,4 @@
+'use client';
 import { Breadcrumb, BreadcrumbItem } from '@chakra-ui/react';
 import { ChevronRightIcon } from '@chakra-ui/icons';
 import { ICrumbLink } from '@/common/types/app';
@@ -17,7 +18,9 @@ const AppBreadCrumb = ({ links }: IAppBreadCrumbProps) => {
 		>
 			{links.map((link, index) => (
 				<BreadcrumbItem key={index}>
-					<Link className={styles.link} href={link.path}>{link.value}</Link>
+					<Link className={styles.link} href={link.path}>
+						{link.value}
+					</Link>
 				</BreadcrumbItem>
 			))}
 		</Breadcrumb>

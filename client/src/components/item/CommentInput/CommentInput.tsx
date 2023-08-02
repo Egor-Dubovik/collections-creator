@@ -1,9 +1,11 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
-import { Button, Input, InputGroup, Text } from '@chakra-ui/react';
+import { Box, Button, Input, InputGroup, Text } from '@chakra-ui/react';
 import { ERROR_MESSAGE } from '@/common/constant/message';
 import useCreateComment from '@/hooks/comments/useCreateComment';
 import useUserStore from '@/store/UserStore';
+import { ROUTES } from '@/common/types/api';
+import { useRouter } from 'next/navigation';
 
 interface ICommentInputProps {
 	itemId: string;
@@ -15,27 +17,29 @@ const CommentInput = ({ itemId }: ICommentInputProps) => {
 	const { create, isLoading, err } = useCreateComment();
 	const user = useUserStore.use.user();
 	const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+	const router = useRouter();
 
-	const handleShowLengthError = (message?: string) => {
-		const currentMessage = message ? message : ERROR_MESSAGE.COMMENT_LENGTH;
-		setErrorMessage(currentMessage);
+	const handleShowError = (message: string): void => {
+		setErrorMessage(message);
 		if (timerRef.current) clearTimeout(timerRef.current);
 		timerRef.current = setTimeout(() => {
 			setErrorMessage('');
 		}, 3000);
 	};
 
+	const createComment = (): void => {
+		create({ itemId: Number(itemId), userId: user?.id as number, value: newComment });
+		setNewComment('');
+	};
+
 	const handleCreateComment = (): void => {
-		if (newComment && newComment.length >= 30) {
-			create({ itemId: Number(itemId), userId: user?.id as number, value: newComment });
-			setNewComment('');
-			return;
-		}
-		handleShowLengthError();
+		newComment && newComment.length >= 30
+			? createComment()
+			: handleShowError(ERROR_MESSAGE.COMMENT_LENGTH);
 	};
 
 	useEffect(() => {
-		if (err) handleShowLengthError(err.message);
+		if (err) handleShowError(err.message);
 	}, [err]);
 
 	useEffect(() => {
@@ -67,10 +71,17 @@ const CommentInput = ({ itemId }: ICommentInputProps) => {
 					</InputGroup>
 				</>
 			) : (
-				<div>
+				<Box display='flex' flexDirection='column' gap={2}>
 					<Text>Log in to leave a comment</Text>
-					<Button variant='link'>authorization</Button>
-				</div>
+					<Button
+						variant='solid'
+						colorScheme='teal'
+						alignSelf='flex-start'
+						onClick={() => router.push(ROUTES.LOGIN)}
+					>
+						authorization
+					</Button>
+				</Box>
 			)}
 		</>
 	);
