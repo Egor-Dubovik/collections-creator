@@ -26,6 +26,11 @@ const Header: FC<IHeaderProps> = ({ logo }) => {
 
 	const handleSwitchSearch = (): void => setSearchVisible(!isSearchVisible);
 	const handleCloseSearch = (): void => setSearchVisible(false);
+
+	const handleCloseMenu = () => {
+		setOverlayActive(false);
+		onClose();
+	};
 	const handleSwitchMenu = (): void => {
 		if (isOpen) {
 			setOverlayActive(false);
@@ -79,7 +84,7 @@ const Header: FC<IHeaderProps> = ({ logo }) => {
 					display={{ base: isOpen ? 'flex' : 'none', md: 'none' }}
 					flexDir='column'
 					gap='10px'
-					handleSwitch={handleSwitchMenu}
+					handleCloseMenu={handleCloseMenu}
 					isOpen={isOpen}
 				/>
 			</div>

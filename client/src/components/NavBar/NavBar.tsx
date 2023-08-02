@@ -9,11 +9,11 @@ import useBlockAppScroll from '@/hooks/useBlockAppScroll';
 import styles from './NavBar.module.css';
 
 type INavBarProps = FlexProps & {
-	handleSwitch?: () => void;
+	handleCloseMenu?: () => void;
 	isOpen?: boolean;
 };
 
-const NavBar: FC<INavBarProps> = ({ handleSwitch, isOpen, ...flexProps }) => {
+const NavBar: FC<INavBarProps> = ({ handleCloseMenu, isOpen, ...flexProps }) => {
 	const { colorMode } = useColorMode();
 	const pathname = usePathname();
 	const navBarRef = useRef<HTMLElement | null>(null);
@@ -25,9 +25,9 @@ const NavBar: FC<INavBarProps> = ({ handleSwitch, isOpen, ...flexProps }) => {
 
 	const handleClickOutsider = useCallback(
 		(event: Event): void => {
-			if (handleSwitch && !navBarRef.current?.contains(event.target as Node)) handleSwitch();
+			if (handleCloseMenu && !navBarRef.current?.contains(event.target as Node)) handleCloseMenu();
 		},
-		[handleSwitch]
+		[handleCloseMenu]
 	);
 
 	useAddClickListener(handleClickOutsider, [handleClickOutsider]);
@@ -41,7 +41,7 @@ const NavBar: FC<INavBarProps> = ({ handleSwitch, isOpen, ...flexProps }) => {
 			borderColor={colorMode !== 'dark' ? 'white' : 'black'}
 		>
 			<Flex as='ul' {...flexProps} className={styles.navbar__list}>
-				<Box as='li' onClick={handleSwitch}>
+				<Box as='li' onClick={handleCloseMenu}>
 					<Link className={getLinkStyles(ROUTES.HOME)} href={ROUTES.HOME}>
 						Home
 					</Link>
