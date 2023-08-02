@@ -2,6 +2,7 @@ import ButtonScrollTop from '@/components/buttons/ButtonScrollTop';
 import Footer from '@/components/footer/Footer';
 import Header from '@/components/header/Header';
 import Logo from '@/components/logo/Logo';
+import Overlay from '@/components/Overlay/Overlay';
 import Providers from '@/components/Providers';
 import { Roboto } from 'next/font/google';
 import { ReactNode } from 'react';
@@ -24,6 +25,7 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
 						{children}
 						<Footer />
 						<ButtonScrollTop />
+						<Overlay />
 					</div>
 				</Providers>
 			</body>

@@ -9,6 +9,8 @@ import useRefreshToken from '@/hooks/auth/useToken';
 import useUserStore from '../../store/UserStore';
 import MainInputSearch from '../inputs/MainInputSearch/MainInputSearch';
 import SearchSwitcher from '../SearchSwitcher';
+import styles from './Header.module.css';
+import useOverlayStore from '@/store/OverlayStore';
 
 interface IHeaderProps {
 	logo: ReactNode;
@@ -17,13 +19,22 @@ interface IHeaderProps {
 const Header: FC<IHeaderProps> = ({ logo }) => {
 	const [isSearchVisible, setSearchVisible] = useState(false);
 	const setUserLoading = useUserStore.use.setLoading();
+	const setOverlayActive = useOverlayStore.use.setIsActive();
 	const { refresh, isLoading } = useRefreshToken();
 	const { isOpen, onOpen, onClose } = useDisclosure();
 	const { colorMode } = useColorMode();
 
-	const handleSwitchMenu = (): void => (isOpen ? onClose() : onOpen());
 	const handleSwitchSearch = (): void => setSearchVisible(!isSearchVisible);
 	const handleCloseSearch = (): void => setSearchVisible(false);
+	const handleSwitchMenu = (): void => {
+		if (isOpen) {
+			setOverlayActive(false);
+			onClose();
+			return;
+		}
+		setOverlayActive(true);
+		onOpen();
+	};
 
 	useEffect(() => {
 		setUserLoading(isLoading);
@@ -36,9 +47,8 @@ const Header: FC<IHeaderProps> = ({ logo }) => {
 	return (
 		<Box
 			as='header'
-			position='relative'
-			bg={colorMode !== 'dark' ? 'gr.50' : 'gr.900'}
-			className='header'
+			className={styles.header}
+			background={colorMode !== 'dark' ? 'gr.50' : 'gray.800'}
 			py={4}
 		>
 			<MainInputSearch isVisible={isSearchVisible} handleClose={handleCloseSearch} />

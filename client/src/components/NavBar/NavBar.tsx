@@ -1,10 +1,12 @@
 'use client';
 import { Box, Flex, FlexProps, useColorMode } from '@chakra-ui/react';
-import Link from 'next/link';
-import { FC } from 'react';
+import { FC, useCallback, useRef } from 'react';
 import { usePathname } from 'next/navigation';
-import styles from './NavBar.module.css';
 import { ROUTES } from '@/common/types/api';
+import Link from 'next/link';
+import useAddClickListener from '@/hooks/listeners/useAddClickListener';
+import useBlockAppScroll from '@/hooks/useBlockAppScroll';
+import styles from './NavBar.module.css';
 
 type INavBarProps = FlexProps & {
 	handleSwitch?: () => void;
@@ -14,17 +16,29 @@ type INavBarProps = FlexProps & {
 const NavBar: FC<INavBarProps> = ({ handleSwitch, isOpen, ...flexProps }) => {
 	const { colorMode } = useColorMode();
 	const pathname = usePathname();
+	const navBarRef = useRef<HTMLElement | null>(null);
 
 	const getLinkStyles = (route: string): string =>
 		pathname === route
 			? `${styles.navbar__link_active} ${styles.navbar__link}`
 			: styles.navbar__link;
 
+	const handleClickOutsider = useCallback(
+		(event: Event): void => {
+			if (handleSwitch && !navBarRef.current?.contains(event.target as Node)) handleSwitch();
+		},
+		[handleSwitch]
+	);
+
+	useAddClickListener(handleClickOutsider, [handleClickOutsider]);
+	useBlockAppScroll(isOpen as boolean);
+
 	return (
 		<Box
 			as='nav'
-			borderColor={colorMode !== 'dark' ? 'white' : 'black'}
+			ref={navBarRef}
 			className={isOpen ? `${styles.navbar} ${styles.navbar_active}` : styles.navbar}
+			borderColor={colorMode !== 'dark' ? 'white' : 'black'}
 		>
 			<Flex as='ul' {...flexProps} className={styles.navbar__list}>
 				<Box as='li' onClick={handleSwitch}>
