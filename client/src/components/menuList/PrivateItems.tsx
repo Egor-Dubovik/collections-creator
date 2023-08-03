@@ -27,7 +27,7 @@ const PrivateItems: FC = () => {
 				</Link>
 			</MenuItem>
 			<MenuItem>
-				<Link style={{ width: '100%' }} href={ROUTES.HOME} onClick={() => logout()}>
+				<Link style={{ width: '100%' }} href={ROUTES.LOGIN} onClick={() => logout()}>
 					logout
 				</Link>
 				{isLoading && <Loader width='15px' height='15px' />}

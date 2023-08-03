@@ -10,6 +10,7 @@ const nextConfig = {
 	},
 };
 
+// localhost
 // collection-creater.onrender.com
 
 module.exports = nextConfig;

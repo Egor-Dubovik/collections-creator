@@ -30,7 +30,7 @@ const Item = ({ item }: IItemProps) => {
 						alt='item image'
 						className={styles.image}
 						onLoad={() => setIsImageLoading(false)}
-						sizes='100%'
+						sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
 						priority={true}
 						fill
 					/>

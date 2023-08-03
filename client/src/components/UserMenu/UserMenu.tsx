@@ -1,12 +1,14 @@
 import { FC } from 'react';
 import { ChevronDownIcon } from '@chakra-ui/icons';
-import { Button, Menu, MenuButton, Image, Box } from '@chakra-ui/react';
+import { Button, Menu, MenuButton, Box } from '@chakra-ui/react';
 import { ROUTES } from '@/common/types/api';
 import { usePathname } from 'next/navigation';
-import UserMenuList from './menuList/UserMenuList';
-import useUserStore from '../store/UserStore';
+import UserMenuList from '../menuList/UserMenuList';
+import useUserStore from '../../store/UserStore';
 import { BASE_URL } from '@/common/constant/api';
 import { getImagePath } from '@/utils/getImagePath';
+import Image from 'next/image';
+import styles from './UserMenu.module.css';
 
 interface IUserMenuProps {
 	handleSwitch?: () => void;
@@ -32,18 +34,14 @@ const UserMenu: FC<IUserMenuProps> = () => {
 					transition='color 0.2s ease'
 					rightIcon={<ChevronDownIcon />}
 				>
-					<Image
-						w='36px'
-						h='36px'
-						padding={0.5}
-						borderStyle='solid'
-						borderWidth='2px'
-						borderColor={getBorderColor()}
-						boxSizing='content-box'
-						borderRadius='full'
-						src={BASE_URL + getImagePath(user?.avatar)}
-						alt='avatar menu preview'
-					/>
+					<Box className={styles.imageBox} borderColor={getBorderColor()}>
+						<Image
+							src={BASE_URL + getImagePath(user?.avatar)}
+							alt='avatar menu preview'
+							sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+							fill
+						/>
+					</Box>
 				</MenuButton>
 				<UserMenuList />
 			</Menu>

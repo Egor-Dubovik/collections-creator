@@ -54,7 +54,7 @@ const CollectionItem = ({ collection }: ICollectionItemProps) => {
 							<Image
 								src={BASE_URL + getImagePath(collection.image, 'collection.png')}
 								alt='collection image'
-								sizes='100vw'
+								sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
 								fill
 							/>
 						</Box>

@@ -30,7 +30,7 @@ const ItemsCarousel = ({ items }: IItemCarouselProps) => {
 							<Image
 								src={BASE_URL + getImagePath(item.image, 'item.jpg')}
 								alt='item image'
-								sizes='100%'
+								sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
 								priority={true}
 								fill
 							/>

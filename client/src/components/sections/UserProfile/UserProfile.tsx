@@ -1,4 +1,5 @@
-import { Box, Button, Heading, useDisclosure } from '@chakra-ui/react';
+import { useState } from 'react';
+import { Box, Button, Heading, Skeleton, useDisclosure } from '@chakra-ui/react';
 import { BASE_URL } from '@/common/constant/api';
 import { getImagePath } from '@/utils/getImagePath';
 import { useRouter } from 'next/navigation';
@@ -9,6 +10,7 @@ import styles from './UserProfile.module.css';
 import CollectionModel from '@/components/modals/CollectionModel';
 
 const UserProfile = () => {
+	const [isImageLoading, setIsImageLoading] = useState(true);
 	const user = useUserStore.use.user();
 	const { isOpen, onOpen, onClose } = useDisclosure();
 	const router = useRouter();
@@ -23,11 +25,14 @@ const UserProfile = () => {
 					</Heading>
 					<div className={styles.userInfoContent}>
 						<div className={styles.image}>
-							<img
+							<Image
 								src={BASE_URL + getImagePath(user?.avatar)}
-								style={{ borderRadius: '10px' }}
+								onLoad={() => setIsImageLoading(false)}
 								alt='avatar'
+								sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+								fill
 							/>
+							{isImageLoading && <Skeleton className={styles.skeleton} />}
 						</div>
 						<div className={styles.contentInfo}>
 							<Box className={styles.infoItem} borderColor={'gray.300'}>

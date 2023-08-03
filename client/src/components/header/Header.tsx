@@ -4,7 +4,7 @@ import { HamburgerIcon } from '@chakra-ui/icons';
 import { Box, Flex, IconButton, useColorMode, useDisclosure } from '@chakra-ui/react';
 import ColorModeSwitcher from '../ColorModeSwitcherProps';
 import NavBar from '../NavBar/NavBar';
-import UserMenu from '../UserMenu';
+import UserMenu from '../UserMenu/UserMenu';
 import useRefreshToken from '@/hooks/auth/useToken';
 import useUserStore from '../../store/UserStore';
 import MainInputSearch from '../inputs/MainInputSearch/MainInputSearch';

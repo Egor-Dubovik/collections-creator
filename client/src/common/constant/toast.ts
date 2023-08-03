@@ -48,6 +48,6 @@ export const AUTH_TOAST: IToast = {
 		},
 		STATUS: 'error',
 	},
-	DURATION: 9000,
+	DURATION: 5000,
 	IS_CLOSABLE: true,
 };
