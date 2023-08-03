@@ -2,6 +2,7 @@ export const MESSAGE = {
 	ITEM_ADDED: 'Item was added successfully',
 	NO_COLLECTION: 'You have not added any collection yet.',
 	NO_ITEMS: 'There are no items.',
+	NO_COMMENTS: 'Not comments yet',
 	TYPE_TO_SEARCH: 'type something to search',
 };
 

@@ -1,17 +1,10 @@
 'use client';
-import { getDateAndTimeFromString } from '@/utils/getDateFromString';
-import {
-	Accordion,
-	AccordionButton,
-	AccordionIcon,
-	AccordionItem,
-	AccordionPanel,
-	Box,
-	Text,
-	useColorMode,
-} from '@chakra-ui/react';
+import { Accordion, AccordionItem, Text, useColorMode } from '@chakra-ui/react';
+import { MESSAGE } from '@/common/constant/message';
 import useGetItemComments from '@/hooks/comments/useGetItemComments';
+import CommentAccordionContent from './CommentAccordionContent/CommentAccordionContent';
 import styles from './CommentAccordionList.module.css';
+import CustomSkeleton from '@/components/CustomSkeleton';
 
 interface ICommentListProps {
 	itemId: string;
@@ -24,39 +17,29 @@ const CommentAccordionList = ({ itemId }: ICommentListProps) => {
 	return (
 		<>
 			{err && <Text color='tomato'>{err.message}</Text>}
-			<Accordion allowToggle className={styles.commentsList}>
-				{comments?.map(comment => (
-					<AccordionItem
-						key={comment.id}
-						className={styles.commentItem}
-						backgroundColor={colorMode !== 'dark' ? 'gray.200' : 'gray.700'}
-					>
-						{({ isExpanded }) => (
-							<>
-								<AccordionButton p='10px 5px' borderRadius='5px'>
-									<Box display='flex' gap={3} flex='1' textAlign='left'>
-										<Text className={styles.secondaryInfo}>
-											{comment.userNickName},{' '}
-											{getDateAndTimeFromString(comment.updatedAt as string, false)}
-										</Text>
-										<Text
-											className={`${styles.comment} ${!isExpanded && styles.active} ${
-												colorMode === 'dark' ? styles.dark : ''
-											}`}
-										>
-											{comment.value}
-										</Text>
-									</Box>
-									<AccordionIcon />
-								</AccordionButton>
-								<AccordionPanel pb={4}>
-									<Text>{comment.value}</Text>
-								</AccordionPanel>
-							</>
-						)}
-					</AccordionItem>
-				))}
-			</Accordion>
+			{!isLoading ? (
+				<>
+					{comments && comments.length ? (
+						<Accordion allowToggle className={styles.commentsList}>
+							{comments.map(comment => (
+								<AccordionItem
+									key={comment.id}
+									className={styles.commentItem}
+									backgroundColor={colorMode !== 'dark' ? 'gray.200' : 'gray.700'}
+								>
+									{({ isExpanded }) => (
+										<CommentAccordionContent isExpanded={isExpanded} comment={comment} />
+									)}
+								</AccordionItem>
+							))}
+						</Accordion>
+					) : (
+						<Text mb='15px'>{MESSAGE.NO_COMMENTS}</Text>
+					)}
+				</>
+			) : (
+				<CustomSkeleton mb='15px' spacing='10px' height='64px' borderRadius='5px' />
+			)}
 		</>
 	);
 };
