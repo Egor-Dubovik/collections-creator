@@ -6,5 +6,9 @@ export const MESSAGE = {
 };
 
 export const ERROR_MESSAGE = {
-	COMMENT_LENGTH: 'Comments must be at least 30 characters',
+	COMMENT_LENGTH: 'Comments must be at least 15 characters',
+};
+
+export const WARNING_MESSAGE = {
+	LIKE: 'Login to leave a like!',
 };

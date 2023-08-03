@@ -4,6 +4,7 @@ import { START_OFFSET, LIMIT } from '@/common/constant/item';
 import { IItem, IItemResData, TypeOrder } from '@/common/types/item';
 import ItemService from '@/service/ItemService';
 import ItemList from '@/components/item/ItemList/ItemList';
+import Loader from '@/components/Loader';
 
 interface IItemsProps {
 	collectionId: number;
@@ -13,6 +14,7 @@ interface IItemsProps {
 }
 
 const CollectionItems = ({ collectionId, order, isCommented, activeTags }: IItemsProps) => {
+	const [isLoading, setIsLoading] = useState(false);
 	const [items, setItems] = useState<IItem[]>([]);
 	const [isHasNext, setIsHasNext] = useState(false);
 	const [isAddingMore, setIsAddingMore] = useState(false);
@@ -46,9 +48,11 @@ const CollectionItems = ({ collectionId, order, isCommented, activeTags }: IItem
 	};
 
 	const handleSorting = async () => {
+		setIsLoading(true);
 		const data = await getItems();
 		handleSetItems(data);
 		setIsHasNext(data.hasNextItem);
+		setIsLoading(false);
 	};
 
 	useEffect(() => {
@@ -63,20 +67,26 @@ const CollectionItems = ({ collectionId, order, isCommented, activeTags }: IItem
 				alignItems='center'
 				className='collection-items__container'
 			>
-				<ItemList items={items} />
-				{isHasNext && (
-					<Button
-						h='50px'
-						p='0 45px'
-						marginTop={5}
-						alignSelf='center'
-						borderRadius='50px'
-						colorScheme='teal'
-						letterSpacing='1px'
-						onClick={handleShowMore}
-					>
-						show more
-					</Button>
+				{!isLoading ? (
+					<>
+						<ItemList items={items} />
+						{isHasNext && (
+							<Button
+								h='50px'
+								p='0 45px'
+								marginTop={5}
+								alignSelf='center'
+								borderRadius='50px'
+								colorScheme='teal'
+								letterSpacing='1px'
+								onClick={handleShowMore}
+							>
+								show more
+							</Button>
+						)}
+					</>
+				) : (
+					<Loader />
 				)}
 			</Box>
 		</Box>

@@ -33,7 +33,7 @@ const CommentInput = ({ itemId }: ICommentInputProps) => {
 	};
 
 	const handleCreateComment = (): void => {
-		newComment && newComment.length >= 30
+		newComment && newComment.length >= 15
 			? createComment()
 			: handleShowError(ERROR_MESSAGE.COMMENT_LENGTH);
 	};
