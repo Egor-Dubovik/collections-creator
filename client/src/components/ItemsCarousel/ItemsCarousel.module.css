@@ -37,4 +37,8 @@
 	font-size: 18px;
 	font-weight: 600;
 	letter-spacing: 1px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	width: 100%;
+	overflow: hidden;
 }
