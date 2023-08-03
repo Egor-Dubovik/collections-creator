@@ -12,7 +12,7 @@ const CustomSkeleton = ({ amount, spacing, height, borderRadius, mb }: ICustomSk
 	const skeletonArray = Array.from({ length: amount || 3 });
 
 	return (
-		<Stack spacing={spacing ? spacing : '8px'} mb={mb ? mb : '0'}>
+		<Stack mb={mb ? mb : '0'} width='100%' spacing={spacing ? spacing : '8px'}>
 			{skeletonArray.map((_, index) => (
 				<Skeleton
 					key={index}

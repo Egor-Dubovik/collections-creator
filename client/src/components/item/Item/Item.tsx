@@ -8,6 +8,7 @@ import { ROUTES } from '@/common/types/api';
 import Image from 'next/image';
 import Link from 'next/link';
 import styles from './Item.module.css';
+import { capitalizeFirstLetter } from '@/utils/string/capitalizeFirstLetter';
 
 interface IItemProps {
 	item: IItem;
@@ -36,7 +37,7 @@ const Item = ({ item }: IItemProps) => {
 					/>
 					{isImageLoading && <Skeleton className={styles.skeleton} />}
 				</Box>
-				<h3 className={styles.title}>{item.name}</h3>
+				<h3 className={styles.title}>{capitalizeFirstLetter(item.name)}</h3>
 				<Text>{getDateAndTimeFromString(item.createdAt)}</Text>
 			</Link>
 		</ListItem>

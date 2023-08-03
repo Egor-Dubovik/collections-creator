@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import { Box, Button } from '@chakra-ui/react';
+import { Box, Button, Text } from '@chakra-ui/react';
 import { START_OFFSET, LIMIT } from '@/common/constant/item';
 import { IItem, IItemResData, TypeOrder } from '@/common/types/item';
 import ItemService from '@/service/ItemService';
@@ -67,7 +67,7 @@ const CollectionItems = ({ collectionId, order, isCommented, activeTags }: IItem
 				alignItems='center'
 				className='collection-items__container'
 			>
-				{!isLoading ? (
+				{items.length > 0 ? (
 					<>
 						<ItemList items={items} />
 						{isHasNext && (
@@ -79,6 +79,7 @@ const CollectionItems = ({ collectionId, order, isCommented, activeTags }: IItem
 								borderRadius='50px'
 								colorScheme='teal'
 								letterSpacing='1px'
+								isLoading={isLoading}
 								onClick={handleShowMore}
 							>
 								show more
@@ -86,8 +87,9 @@ const CollectionItems = ({ collectionId, order, isCommented, activeTags }: IItem
 						)}
 					</>
 				) : (
-					<Loader />
+					!isLoading && <Text fontSize='18px'>No items found.</Text>
 				)}
+				{isLoading && items.length !== LIMIT && <Loader />}
 			</Box>
 		</Box>
 	);
