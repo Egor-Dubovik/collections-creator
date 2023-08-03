@@ -11,7 +11,7 @@ import './styles/globals.css';
 const appFont = Roboto({ subsets: ['cyrillic'], weight: ['400', '500', '700'] });
 
 export const metadata = {
-	title: 'Home | Collections creator',
+	title: 'Collections creator',
 	description: 'Home page with recent items, tags and greatest collections',
 };
 
