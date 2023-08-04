@@ -1,0 +1,9 @@
+.inputsBox {
+	margin-bottom: 8px;
+}
+
+@media (max-width: 480px) {
+	.inputsBox {
+		flex-direction: column;
+	}
+}

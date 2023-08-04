@@ -1,0 +1,58 @@
+.search {
+	position: absolute;
+	top: -100%;
+	left: 0;
+	width: 100%;
+	padding: 15px 0;
+	display: none;
+	z-index: 1;
+}
+
+.active {
+	display: block;
+	animation: active 0.3s forwards ease-in;
+}
+
+.hidden {
+	display: block;
+	animation: hidden 0.3s ease-out;
+}
+
+.container {
+	display: flex;
+	gap: 15px;
+}
+
+.inputSearch {
+	max-width: 500px;
+}
+
+.indicator {
+	position: relative;
+	flex: 0 0 20px;
+	height: auto;
+}
+
+@keyframes active {
+	0% {
+		top: -100%;
+		opacity: 0;
+	}
+
+	100% {
+		top: 0%;
+		opacity: 1;
+	}
+}
+
+@keyframes hidden {
+	0% {
+		top: 0%;
+		opacity: 1;
+	}
+
+	100% {
+		top: -100%;
+		opacity: 0;
+	}
+}

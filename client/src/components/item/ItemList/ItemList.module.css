@@ -1,0 +1,22 @@
+.list {
+	width: 100%;
+	align-self: flex-start;
+	justify-content: flex-start;
+	display: flex;
+	align-items: stretch;
+	flex-wrap: wrap;
+	column-gap: 20px;
+	row-gap: 15px;
+}
+
+@media (max-width: 992px) {
+	.list {
+		gap: 15px;
+	}
+}
+
+@media (max-width: 480px) {
+	.list {
+		gap: 20px;
+	}
+}

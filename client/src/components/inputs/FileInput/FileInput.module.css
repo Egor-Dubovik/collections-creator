@@ -1,0 +1,42 @@
+.filePicker {
+}
+
+.fileUploader {
+	width: 100%;
+}
+
+.dropArea {
+	position: relative;
+	width: 100%;
+	padding: 18px 15px;
+	border-width: 1px;
+	border-style: dashed;
+	border-radius: 5px;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	cursor: pointer;
+	transition: all 0.2s ease;
+}
+
+.dropArea:hover {
+	border-color: #319795;
+}
+
+.dragActive {
+	border-color: #319795;
+}
+
+.fileInfo {
+	margin-top: 8px;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.fileName {
+	color: #319795;
+}

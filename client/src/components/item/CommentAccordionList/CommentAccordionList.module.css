@@ -1,0 +1,24 @@
+.commentsList {
+	max-height: 280px;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	margin-bottom: 15px;
+	overflow-y: auto;
+}
+
+.commentItem {
+	padding: 10px 13px;
+	border-radius: 5px;
+	border: none;
+}
+
+@media (max-width: 768px) {
+	.commentsList {
+		max-height: 200px;
+	}
+
+	.commentItem {
+		padding: 10px 13px;
+	}
+}

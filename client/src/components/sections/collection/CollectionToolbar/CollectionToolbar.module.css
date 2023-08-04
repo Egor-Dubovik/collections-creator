@@ -1,0 +1,49 @@
+.collectionToolbar {
+	padding: 15px 0 5px;
+}
+
+.tools {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
+.sortTools {
+	display: flex;
+	gap: 20px;
+}
+
+.mainTools {
+	flex: 0 1 295px;
+	padding: 10px 12px;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	border-width: 1px;
+	border-style: solid;
+	border-radius: 5px;
+}
+
+@media (max-width: 1400px) {
+	.mainTools {
+		flex: 0 1 31%;
+	}
+}
+
+@media (max-width: 992px) {
+	.sortTools {
+		gap: 15px;
+	}
+	.mainTools {
+		flex: 0 1 47%;
+	}
+}
+
+@media (max-width: 768px) {
+	.sortTools {
+		flex-direction: column;
+	}
+	.mainTools {
+		flex: 0 1 auto;
+	}
+}

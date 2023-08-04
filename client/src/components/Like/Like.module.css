@@ -1,0 +1,51 @@
+.like {
+	display: flex;
+	align-items: center;
+	flex-wrap: nowrap;
+	column-gap: 15px;
+}
+
+.heart {
+	position: relative;
+	width: 18px;
+	height: 25px;
+	cursor: pointer;
+}
+
+.heart:before,
+.heart:after {
+	content: '';
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	height: 100%;
+	transform: rotate(45deg);
+	transform-origin: 50% 68%;
+	background-color: #f09d9d;
+	border-radius: 50px 50px 0 0;
+	transition: all 0.1s ease-in;
+}
+.heart:after {
+	transform: rotate(-45deg);
+}
+
+.heart:hover:before,
+.heart:hover:after {
+	background-color: #e04141;
+}
+
+.active:before,
+.active:after {
+	background-color: #e04141;
+	box-shadow: -11px -12px 5px #0003 inset;
+}
+
+.active:hover:before,
+.active:hover:after {
+	background-color: #f09d9d;
+}
+
+.typography {
+	font-size: 18px;
+}

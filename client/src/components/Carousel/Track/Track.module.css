@@ -1,0 +1,9 @@
+.track {
+	box-sizing: content-box;
+	transition: all 0.3s ease;
+}
+
+.slide {
+	position: relative;
+	padding: 8px 10px;
+}

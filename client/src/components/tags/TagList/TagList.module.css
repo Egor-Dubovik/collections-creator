@@ -1,0 +1,33 @@
+.tagList {
+	padding: 10px 12px;
+	height: 124px;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+	border-width: 1px;
+	border-style: solid;
+	border-radius: 5px;
+	overflow-y: auto;
+}
+
+.tag {
+	padding: 5px 8px;
+	align-self: start;
+	border-radius: 5px;
+	transition: all 0.2s ease;
+	cursor: pointer;
+}
+
+.tag:hover {
+	transform: scale(1.03);
+	box-shadow: 0 0 10px 2px #0db1a6c9;
+}
+
+.tagActive {
+	background-color: #0db1a6c9;
+}
+
+.tagActive:hover {
+	background-color: rgb(248, 131, 131);
+	box-shadow: 0 0 10px 2px rgb(248, 131, 131);
+}

@@ -1,0 +1,41 @@
+.navbar {
+	margin-right: 10px;
+}
+
+.navbar__link {
+	font-size: 18px;
+	transition: all 0.2s ease;
+}
+
+.navbar__link:hover {
+	color: #3cc7bd;
+}
+
+.navbar__link_active {
+	text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+	.navbar {
+		margin-right: 0px;
+		opacity: 0;
+		transition: all 0.3s ease;
+	}
+
+	.navbar_active {
+		padding: 30px 0;
+		border-bottom: 1px solid;
+		opacity: 1;
+		transition-timing-function: ease-out;
+	}
+
+	.navbar__list {
+		justify-content: center;
+		align-items: center;
+	}
+
+	.navbar__link {
+		font-size: 22px;
+		font-weight: 600;
+	}
+}
