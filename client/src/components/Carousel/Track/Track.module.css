@@ -1,9 +1,49 @@
 .track {
 	box-sizing: content-box;
 	transition: all 0.3s ease;
+	animation: appearance 1s ease forwards;
 }
 
 .slide {
 	position: relative;
 	padding: 8px 10px;
+}
+
+.skeleton {
+	padding-bottom: 26%;
+	border-radius: 5px;
+}
+
+@keyframes appearance {
+	0% {
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 1;
+	}
+}
+
+@media (max-width: 992px) {
+	.skeleton {
+		padding-bottom: 45%;
+	}
+}
+
+@media (max-width: 768px) {
+	.skeleton {
+		padding-bottom: 55%;
+	}
+}
+
+@media (max-width: 600px) {
+	.skeleton {
+		padding-bottom: 90%;
+	}
+}
+
+@media (max-width: 480px) {
+	.skeleton {
+		padding-bottom: 100%;
+	}
 }
