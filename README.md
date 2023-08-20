@@ -11,7 +11,7 @@
 ![Image preview](https://github.com/Egor-Dubovik/collections-creator/blob/main/preview.png)
 
 ### Home page
-- List of recently added items;
+- List of recently added items (custom slider);
 - List of 5 largest collections;
 - Tag cloud (when a user clicks on a tag, a list of items is displayed).
 
