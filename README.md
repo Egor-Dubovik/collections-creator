@@ -5,6 +5,9 @@
 - Front-end: Next.js, React, TypeScript, Chakra UI/CSS, HTML, Zustand, React Query, Vite 
 - Back-end: Express, Nodejs, TypeScript, Sequelize, PostgreSQL
 
+### Links:
+- Deployment: https://client-collections-creator.vercel.app
+
 ![Image preview](https://github.com/Egor-Dubovik/collections-creator/blob/main/preview.png)
 
 ### Home page
